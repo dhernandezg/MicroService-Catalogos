@@ -1,4 +1,4 @@
-package org.baz;
+package com.baz;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

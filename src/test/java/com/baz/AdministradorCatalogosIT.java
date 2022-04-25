@@ -1,4 +1,4 @@
-package org.baz;
+package com.baz;
 
 import io.quarkus.test.junit.QuarkusIntegrationTest;
 
