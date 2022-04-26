@@ -1,4 +1,4 @@
-package com.baz;
+package com.baz.services;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
