@@ -1,18 +1,16 @@
 package com.baz.models;
 
-import org.eclipse.microprofile.openapi.annotations.media.Schema;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 /**
  * <b>${CategoriasModel}</b>
  * @descripcion: Entidad que contiene las propiedades del cursor "TACategorìas"
  * del "CategoriasService".
  * @autor: Diego Vázquez Pérez
- * @ultimaModificacion: 27/04/2022
+ * @ultimaModificacion: 28/04/2022
  */
 
 @Data
