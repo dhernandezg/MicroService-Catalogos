@@ -50,7 +50,7 @@ public class CategoriasService {
      * @descripcion: Método para redireccionamiento de funciones
      * según el tipo de operación.
      * @autor: Diego Vázquez Pérez
-     * @ultimaModificacion: 01/05/2022
+     * @ultimaModificacion: 02/05/2022
      */
 
     @POST
@@ -100,7 +100,7 @@ public class CategoriasService {
 
             case "SECUENCIA":
 
-                listaCategorias.add(consultarSecuenciaCategoria());
+                listaCategorias.add(String.valueOf(consultarSecuenciaCategoria()));
                 break;
         }
 
@@ -174,7 +174,7 @@ public class CategoriasService {
      * @descripcion: Método para consultar los tipo de operaciones
      * para el CategoriasService (Se utiliza el nombre como PathParam).
      * @autor: Diego Vázquez Pérez
-     * @ultimaModificacion: 01/05/2022
+     * @ultimaModificacion: 02/05/2022
      */
 
     @Inject
@@ -190,14 +190,14 @@ public class CategoriasService {
      * @descripcion: Método para consultar la secuencia de la categoría
      * para obtener el siguiente identificador.
      * @autor: Diego Vázquez Pérez
-     * @ultimaModificacion: 01/05/2022
+     * @ultimaModificacion: 02/05/2022
      */
 
     @Inject
     private SecuenciaCategoriasDAO secuenciaCategoriasDAO;
-    private String consultarSecuenciaCategoria(){
+    private int consultarSecuenciaCategoria(){
 
-        return String.valueOf(secuenciaCategoriasDAO.consumeSecuenciaFuncion());
+        return secuenciaCategoriasDAO.consumeSecuenciaFuncion();
     }
 
 }
