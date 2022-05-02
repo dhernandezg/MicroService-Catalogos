@@ -5,6 +5,8 @@ import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
+
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
 
@@ -18,6 +20,7 @@ import java.io.Serializable;
 
 
 @Data
+@Entity
 @NoArgsConstructor
 public class CategoriasModel extends PanacheEntity {
 

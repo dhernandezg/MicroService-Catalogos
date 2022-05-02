@@ -1,8 +1,10 @@
 package com.baz.services;
 
+import com.baz.daos.ExistenciaCategoriasDAO;
 import com.baz.models.CategoriasModel;
 import com.baz.utils.Constantes;
 
+import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
@@ -84,8 +86,15 @@ public class CategoriasService {
                 break;
 
             case "EXISTENCIA":
+                String existenciaCategoria;
+                if (consultarExistenciaCategoria(categoriasModel) == 1){
+                    existenciaCategoria = "La categoria " + categoriasModel.getDescripcionCategoria() + " existe";
+                }
+                else {
+                    existenciaCategoria = "La categoria " + categoriasModel.getDescripcionCategoria() + " no existe";
+                }
 
-                listaCategorias.add(consultarExistenciaCategoria(categoriasModel));
+                listaCategorias.add(existenciaCategoria);
                 break;
 
             case "SECUENCIA":
@@ -167,9 +176,11 @@ public class CategoriasService {
      * @ultimaModificacion: 01/05/2022
      */
 
-    private String consultarExistenciaCategoria(CategoriasModel categoriasModel) {
+    @Inject
+    private ExistenciaCategoriasDAO existenciaCategoriasDAO;
+    private int consultarExistenciaCategoria(CategoriasModel categoriasModel) {
 
-        return categoriasModel.getDescripcionCategoria();
+        return existenciaCategoriasDAO.consumeExistenciaFuncion(categoriasModel.getDescripcionCategoria());
     }
 
 
@@ -182,6 +193,7 @@ public class CategoriasService {
      */
 
     private String consultarSecuenciaCategoria(CategoriasModel categoriasModel){
+
 
         return categoriasModel.getDescripcionCategoria();
     }
