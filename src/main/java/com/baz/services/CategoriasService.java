@@ -1,6 +1,7 @@
 package com.baz.services;
 
 import com.baz.daos.categorias.ExistenciaCategoriasDAO;
+import com.baz.daos.categorias.SecuenciaCategoriasDAO;
 import com.baz.models.CategoriasModel;
 import com.baz.utils.Constantes;
 
@@ -99,7 +100,7 @@ public class CategoriasService {
 
             case "SECUENCIA":
 
-                listaCategorias.add(consultarSecuenciaCategoria(categoriasModel));
+                listaCategorias.add(consultarSecuenciaCategoria());
                 break;
         }
 
@@ -192,10 +193,11 @@ public class CategoriasService {
      * @ultimaModificacion: 01/05/2022
      */
 
-    private String consultarSecuenciaCategoria(CategoriasModel categoriasModel){
+    @Inject
+    private SecuenciaCategoriasDAO secuenciaCategoriasDAO;
+    private String consultarSecuenciaCategoria(){
 
-
-        return categoriasModel.getDescripcionCategoria();
+        return String.valueOf(secuenciaCategoriasDAO.consumeSecuenciaFuncion());
     }
 
 }
