@@ -66,27 +66,27 @@ public class CategoriasService {
 
         switch (tipoOperacion){
 
-            case "CREAR":
+            case Constantes.CREATE:
 
                 listaCategorias.add(crearCategoria(categoriasModel));
                 break;
 
-            case "CONSULTAR":
+            case Constantes.READ:
 
                 listaCategorias.add(consultarCategoria(categoriasModel));
                 break;
 
-            case "ACTUALIZAR":
+            case Constantes.UPDATE:
 
                 listaCategorias.add(actualizarCategoria(categoriasModel));
                 break;
 
-            case "ELIMINAR":
+            case Constantes.DELETE:
 
                 listaCategorias.add(eliminarCategoria(categoriasModel));
                 break;
 
-            case "EXISTENCIA":
+            case Constantes.EXISTENCE:
                 String existenciaCategoria;
                 if (consultarExistenciaCategoria(categoriasModel) == 1){
                     existenciaCategoria = "La categoria " + categoriasModel.getDescripcionCategoria() + " existe";
@@ -98,7 +98,7 @@ public class CategoriasService {
                 listaCategorias.add(existenciaCategoria);
                 break;
 
-            case "SECUENCIA":
+            case Constantes.SEQUENCE:
 
                 listaCategorias.add(String.valueOf(consultarSecuenciaCategoria()));
                 break;
