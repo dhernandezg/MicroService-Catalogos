@@ -6,8 +6,7 @@ import com.baz.models.CategoriasModel;
 import com.baz.utils.Constantes;
 
 import javax.inject.Inject;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
+import javax.inject.Singleton;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,20 +18,11 @@ import java.util.List;
  * @ultimaModificacion: 01/05/2022
  */
 
-@Path("/CategoriasService")
+@Singleton
 public class CategoriasService {
 
-    /**
-     * <b>listaOperaciones</b>
-     * @descripcion: Método para consultar los tipo de operaciones
-     * para el CategoriasService (Se utiliza el nombre como PathParam).
-     * @autor: Diego Vázquez Pérez
-     * @ultimaModificacion: 01/05/2022
-     */
+    public List<String> listaOperacionesCaterogias(){
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<String> listaOperaciones(){
         ArrayList<String> lista = new ArrayList<>();
 
         lista.add(Constantes.CREATE);
@@ -41,70 +31,8 @@ public class CategoriasService {
         lista.add(Constantes.DELETE);
         lista.add(Constantes.SEQUENCE);
         lista.add(Constantes.EXISTENCE);
-        
+
         return lista;
-    }
-
-    /**
-     * <b>orquestadorOperacionesCategoria</b>
-     * @descripcion: Método para redireccionamiento de funciones
-     * según el tipo de operación.
-     * @autor: Diego Vázquez Pérez
-     * @ultimaModificacion: 02/05/2022
-     */
-
-    @POST
-    @Path("/{tipoOperacion}")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public ArrayList<String> orquestadorOperacionesCategoria(
-            @PathParam("tipoOperacion") String tipoOperacion,
-            CategoriasModel categoriasModel
-    ) {
-
-        ArrayList<String> listaCategorias = new ArrayList<>();
-
-        switch (tipoOperacion){
-
-            case Constantes.CREATE:
-
-                listaCategorias.add(crearCategoria(categoriasModel));
-                break;
-
-            case Constantes.READ:
-
-                listaCategorias.add(consultarCategoria(categoriasModel));
-                break;
-
-            case Constantes.UPDATE:
-
-                listaCategorias.add(actualizarCategoria(categoriasModel));
-                break;
-
-            case Constantes.DELETE:
-
-                listaCategorias.add(eliminarCategoria(categoriasModel));
-                break;
-
-            case Constantes.EXISTENCE:
-                String existenciaCategoria;
-                if (consultarExistenciaCategoria(categoriasModel) == 1){
-                    existenciaCategoria = "La categoria " + categoriasModel.getDescripcionCategoria() + " existe";
-                }
-                else {
-                    existenciaCategoria = "La categoria " + categoriasModel.getDescripcionCategoria() + " no existe";
-                }
-
-                listaCategorias.add(existenciaCategoria);
-                break;
-
-            case Constantes.SEQUENCE:
-
-                listaCategorias.add(String.valueOf(consultarSecuenciaCategoria()));
-                break;
-        }
-
-        return listaCategorias;
     }
 
     /**
@@ -115,7 +43,7 @@ public class CategoriasService {
      * @ultimaModificacion: 01/05/2022
      */
 
-    private String crearCategoria(CategoriasModel categoriasModel){
+    public String crearCategoria(CategoriasModel categoriasModel){
         categoriasModel.setIdCategoria("3");
         categoriasModel.setDescripcionCategoria("PAISES");
 
@@ -130,7 +58,7 @@ public class CategoriasService {
      * @ultimaModificacion: 01/05/2022
      */
 
-    private String consultarCategoria(CategoriasModel categoriasModel){
+    public String consultarCategoria(CategoriasModel categoriasModel){
         categoriasModel.setIdCategoria("4");
         categoriasModel.setDescripcionCategoria("ESTADOS");
 
@@ -145,7 +73,7 @@ public class CategoriasService {
      * @ultimaModificacion: 01/05/2022
      */
 
-    private String actualizarCategoria(CategoriasModel categoriasModel){
+    public String actualizarCategoria(CategoriasModel categoriasModel){
 
         categoriasModel.setIdCategoria("5");
         categoriasModel.setDescripcionCategoria("GEOGRAFIA");
@@ -161,7 +89,7 @@ public class CategoriasService {
      * @ultimaModificacion: 01/05/2022
      */
 
-    private String eliminarCategoria(CategoriasModel categoriasModel){
+    public String eliminarCategoria(CategoriasModel categoriasModel){
 
         categoriasModel.setIdCategoria("6");
         categoriasModel.setDescripcionCategoria("PAISES");
@@ -179,7 +107,7 @@ public class CategoriasService {
 
     @Inject
     private ExistenciaCategoriasDAO existenciaCategoriasDAO;
-    private int consultarExistenciaCategoria(CategoriasModel categoriasModel) {
+    public int consultarExistenciaCategoria(CategoriasModel categoriasModel) {
 
         return existenciaCategoriasDAO.consumeExistenciaFuncion(categoriasModel.getDescripcionCategoria());
     }
@@ -195,7 +123,7 @@ public class CategoriasService {
 
     @Inject
     private SecuenciaCategoriasDAO secuenciaCategoriasDAO;
-    private int consultarSecuenciaCategoria(){
+    public int consultarSecuenciaCategoria(){
 
         return secuenciaCategoriasDAO.consumeSecuenciaFuncion();
     }

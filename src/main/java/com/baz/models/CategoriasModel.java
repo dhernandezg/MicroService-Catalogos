@@ -30,6 +30,7 @@ public class CategoriasModel extends PanacheEntity {
     @Schema(example = "GEOGRAFIA", description = "Nombre de la categoria.")
     private String descripcionCategoria;
 
+    //Constructor de la clase
     public CategoriasModel(String idCategoria, String descripcionCategoria){
         this.idCategoria = idCategoria;
         this.descripcionCategoria = descripcionCategoria;
