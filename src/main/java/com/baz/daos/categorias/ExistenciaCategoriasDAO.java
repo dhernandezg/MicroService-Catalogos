@@ -1,4 +1,4 @@
-package com.baz.daos;
+package com.baz.daos.categorias;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;

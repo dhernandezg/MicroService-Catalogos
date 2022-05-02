@@ -1,6 +1,6 @@
 package com.baz.services;
 
-import com.baz.daos.ExistenciaCategoriasDAO;
+import com.baz.daos.categorias.ExistenciaCategoriasDAO;
 import com.baz.models.CategoriasModel;
 import com.baz.utils.Constantes;
 
