@@ -1,14 +1,11 @@
 package com.baz.models;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.io.Serializable;
 
 /**
  * <b>${CategoriasModel}</b>
@@ -25,15 +22,33 @@ import java.io.Serializable;
 public class CategoriasModel extends PanacheEntity {
 
     @Schema(example = "1", description = "Identificador de la categoria.")
-    private String idCategoria;
+    private int idCategoria;
 
     @Schema(example = "GEOGRAFIA", description = "Nombre de la categoria.")
     private String descripcionCategoria;
 
+    @Schema(example = "1", description = "ACTIVO")
+    private int idStatus;
+
+    @Schema(example = "2022-05-02 16:03:52.245", description = "Fecha de última modificación")
+    private String fechaModificacion;
+
+    @Schema(example = "DIEGO VAZQUEZ P.", description = "Nombre del usuario.")
+    private String nombreUsuario;
+
     //Constructor de la clase
-    public CategoriasModel(String idCategoria, String descripcionCategoria){
+    public CategoriasModel(
+            int idCategoria,
+            String descripcionCategoria,
+            int idStatus,
+            String fechaModificacion,
+            String nombreUsuario
+    ){
         this.idCategoria = idCategoria;
         this.descripcionCategoria = descripcionCategoria;
+        this.idStatus = idStatus;
+        this.fechaModificacion = fechaModificacion;
+        this.nombreUsuario = nombreUsuario;
     }
 
 }

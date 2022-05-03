@@ -4,11 +4,14 @@ import com.baz.daos.categorias.ExistenciaCategoriasDAO;
 import com.baz.daos.categorias.SecuenciaCategoriasDAO;
 import com.baz.models.CategoriasModel;
 import com.baz.utils.Constantes;
+import io.quarkus.vertx.http.runtime.attribute.DateTimeAttribute;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 /**
  * <b>CategoriasService</b>
@@ -44,10 +47,13 @@ public class CategoriasService {
      */
 
     public String crearCategoria(CategoriasModel categoriasModel){
-        categoriasModel.setIdCategoria("3");
-        categoriasModel.setDescripcionCategoria("PAISES");
+        String simpleDateFormat = new SimpleDateFormat("YYYY-mm-dd HH:mm:ss.SSS").format(new Date());
+        categoriasModel.setIdStatus(1);
+        categoriasModel.setIdCategoria(1);
+        categoriasModel.setDescripcionCategoria("GEO");
+        categoriasModel.setFechaModificacion(simpleDateFormat);
 
-        return categoriasModel.getDescripcionCategoria();
+        return categoriasModel.getFechaModificacion();
     }
 
     /**
@@ -59,7 +65,7 @@ public class CategoriasService {
      */
 
     public String consultarCategoria(CategoriasModel categoriasModel){
-        categoriasModel.setIdCategoria("4");
+        categoriasModel.setIdCategoria(4);
         categoriasModel.setDescripcionCategoria("ESTADOS");
 
         return categoriasModel.getDescripcionCategoria();
@@ -75,7 +81,7 @@ public class CategoriasService {
 
     public String actualizarCategoria(CategoriasModel categoriasModel){
 
-        categoriasModel.setIdCategoria("5");
+        categoriasModel.setIdCategoria(5);
         categoriasModel.setDescripcionCategoria("GEOGRAFIA");
 
         return categoriasModel.getDescripcionCategoria();
@@ -91,7 +97,7 @@ public class CategoriasService {
 
     public String eliminarCategoria(CategoriasModel categoriasModel){
 
-        categoriasModel.setIdCategoria("6");
+        categoriasModel.setIdCategoria(6);
         categoriasModel.setDescripcionCategoria("PAISES");
 
         return categoriasModel.getDescripcionCategoria();
