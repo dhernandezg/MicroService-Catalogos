@@ -106,7 +106,7 @@ public class CategoriasService {
      */
 
     @Inject
-    private ExistenciaCategoriasDAO existenciaCategoriasDAO;
+    ExistenciaCategoriasDAO existenciaCategoriasDAO;
     public int consultarExistenciaCategoria(CategoriasModel categoriasModel) {
 
         return existenciaCategoriasDAO.consumeExistenciaFuncion(categoriasModel.getDescripcionCategoria());
@@ -122,7 +122,7 @@ public class CategoriasService {
      */
 
     @Inject
-    private SecuenciaCategoriasDAO secuenciaCategoriasDAO;
+    SecuenciaCategoriasDAO secuenciaCategoriasDAO;
     public int consultarSecuenciaCategoria(){
 
         return secuenciaCategoriasDAO.consumeSecuenciaFuncion();
