@@ -9,6 +9,8 @@ import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureQuery;
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @ApplicationScoped
 public class ConsultarCategoriasDAO {
@@ -24,9 +26,9 @@ public class ConsultarCategoriasDAO {
      */
 
     @Transactional
-    public CategoriasModel consultarCategoriasFuncion(BigDecimal idCategoria, String descripcionCategoria){
+    public List<CategoriasModel> consultarCategoriasFuncion(BigDecimal idCategoria, String descripcionCategoria){
 
-        CategoriasModel categoriasModel = new CategoriasModel();
+        List<CategoriasModel> categoriasModelList = new ArrayList<>();
 
         try{
             StoredProcedureQuery storedProcedureQuery = entityManager
@@ -38,12 +40,12 @@ public class ConsultarCategoriasDAO {
 
             storedProcedureQuery.execute();
 
-            categoriasModel = (CategoriasModel) storedProcedureQuery.getResultList();
+            categoriasModelList.addAll(storedProcedureQuery.getResultList());
 
         }catch (Exception e){
             e.printStackTrace();
         }
 
-        return categoriasModel;
+        return categoriasModelList;
     }
 }

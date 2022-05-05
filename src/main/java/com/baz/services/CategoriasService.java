@@ -65,12 +65,16 @@ public class CategoriasService {
 
     @Inject
     ConsultarCategoriasDAO consultarCategoriasDAO;
-    public CategoriasModel consultarCategoria(CategoriasModel categoriasModel){
+    public List<CategoriasModel> consultarCategoria(CategoriasModel categoriasModel){
 
-        return consultarCategoriasDAO.consultarCategoriasFuncion(
+        List<CategoriasModel> categoriasModelList = new ArrayList<>();
+
+        categoriasModelList.addAll(consultarCategoriasDAO.consultarCategoriasFuncion(
                 categoriasModel.getIdCategoria(),
                 categoriasModel.getDescripcionCategoria()
-        );
+        ));
+
+        return categoriasModelList;
     }
 
     /**

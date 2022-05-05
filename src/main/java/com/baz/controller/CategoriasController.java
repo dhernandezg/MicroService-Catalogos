@@ -64,12 +64,14 @@ public class CategoriasController {
 
                 listaCategorias.add(categoriasService.crearCategoria(categoriasModel));
                 break;
-
+*/
             case Constantes.READ:
 
-                listaCategorias.add(categoriasService.consultarCategoria(categoriasModel));
+                categoriasModelResponse.addAll(
+                        categoriasService.consultarCategoria(categoriasModel)
+                );
                 break;
-
+/*
             case Constantes.UPDATE:
 
                 listaCategorias.add(categoriasService.actualizarCategoria(categoriasModel));
