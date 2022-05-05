@@ -1,10 +1,12 @@
 package com.baz.models;
 
 
+import lombok.Builder;
+import lombok.Data;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
-import javax.resource.cci.ResultSet;
-
+@Data
+@Builder
 public class ExistenciaCategoriasResponse {
 
     @Schema(example = "1", description = "Categoría existe.")
