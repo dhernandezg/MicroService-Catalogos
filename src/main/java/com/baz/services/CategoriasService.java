@@ -1,5 +1,6 @@
 package com.baz.services;
 
+import com.baz.daos.categorias.ConsultarCategoriasDAO;
 import com.baz.daos.categorias.ExistenciaCategoriasDAO;
 import com.baz.daos.categorias.SecuenciaCategoriasDAO;
 import com.baz.models.CategoriasModel;
@@ -59,14 +60,17 @@ public class CategoriasService {
      * @descripcion: Método para consular una o varias categorías
      * de la entidad.
      * @autor: Diego Vázquez Pérez
-     * @ultimaModificacion: 01/05/2022
+     * @ultimaModificacion: 05/05/2022
      */
 
-    public String consultarCategoria(CategoriasModel categoriasModel){
-        categoriasModel.setIdCategoria(BigDecimal.valueOf(4));
-        categoriasModel.setDescripcionCategoria("ESTADOS");
+    @Inject
+    ConsultarCategoriasDAO consultarCategoriasDAO;
+    public CategoriasModel consultarCategoria(CategoriasModel categoriasModel){
 
-        return categoriasModel.getDescripcionCategoria();
+        return consultarCategoriasDAO.consultarCategoriasFuncion(
+                categoriasModel.getIdCategoria(),
+                categoriasModel.getDescripcionCategoria()
+        );
     }
 
     /**

@@ -24,7 +24,7 @@ public class ConsultarCategoriasDAO {
      */
 
     @Transactional
-    public CategoriasModel consultarCategoriasFuncion(int idCategoria, String descripcionCategoria){
+    public CategoriasModel consultarCategoriasFuncion(BigDecimal idCategoria, String descripcionCategoria){
 
         CategoriasModel categoriasModel = new CategoriasModel();
 
