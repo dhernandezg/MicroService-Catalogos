@@ -17,8 +17,8 @@ public class ConsultarCategoriasDAO {
     EntityManager entityManager;
 
     /**
-     * <b>${consumeExistenciaFuncion}</b>
-     * @descripcion: Método DAO para consumo de función Existencia de Categorias en DB.
+     * <b>${consultarCategoriasFuncion}</b>
+     * @descripcion: Método DAO para consumo de función Consultar Categorias en DB.
      * @autor: Diego Vázquez Pérez
      * @ultimaModificacion: 05/05/2022
      */
