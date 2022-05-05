@@ -15,7 +15,7 @@ import java.util.List;
  * @descripcion: Clase princiàl que define los métodos HTTP para
  * consumo de servicios.
  * @autor: Diego Vázquez Pérez
- * @ultimaModificacion: 02/05/2022
+ * @ultimaModificacion: 05/05/2022
  */
 @Path("/CategoriasService")
 public class CategoriasController {
@@ -44,22 +44,22 @@ public class CategoriasController {
      * @descripcion: Método para redireccionamiento de funciones
      * según el tipo de operación.
      * @autor: Diego Vázquez Pérez
-     * @ultimaModificacion: 02/05/2022
+     * @ultimaModificacion: 05/05/2022
      */
 
     @POST
     @Path("/{tipoOperacion}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public ArrayList<String> orquestadorOperacionesCategoria(
+    public List<CategoriasModel> orquestadorOperacionesCategoria(
             @PathParam("tipoOperacion") String tipoOperacion,
             CategoriasModel categoriasModel
     ) {
 
-        ArrayList<String> listaCategorias = new ArrayList<>();
+        List<CategoriasModel> categoriasModelResponse = new ArrayList<>();
 
         switch (tipoOperacion){
-
+/*
             case Constantes.CREATE:
 
                 listaCategorias.add(categoriasService.crearCategoria(categoriasModel));
@@ -78,26 +78,20 @@ public class CategoriasController {
             case Constantes.DELETE:
 
                 listaCategorias.add(categoriasService.eliminarCategoria(categoriasModel));
-                break;
+                break;*/
 
             case Constantes.EXISTENCE:
-                String existenciaCategoria;
-                if (categoriasService.consultarExistenciaCategoria(categoriasModel) == 1){
-                    existenciaCategoria = "La categoria " + categoriasModel.getDescripcionCategoria() + " existe";
-                }
-                else {
-                    existenciaCategoria = "La categoria " + categoriasModel.getDescripcionCategoria() + " no existe";
-                }
 
-                listaCategorias.add(existenciaCategoria);
+                categoriasModelResponse.addAll(categoriasService.consultarExistenciaCategoria(categoriasModel));
+
                 break;
 
-            case Constantes.SEQUENCE:
+            /*case Constantes.SEQUENCE:
 
                 listaCategorias.add(String.valueOf(categoriasService.consultarSecuenciaCategoria()));
-                break;
+                break;*/
         }
 
-        return listaCategorias;
+        return categoriasModelResponse;
     }
 }

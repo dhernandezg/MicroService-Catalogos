@@ -4,13 +4,11 @@ import com.baz.daos.categorias.ExistenciaCategoriasDAO;
 import com.baz.daos.categorias.SecuenciaCategoriasDAO;
 import com.baz.models.CategoriasModel;
 import com.baz.utils.Constantes;
-import io.quarkus.vertx.http.runtime.attribute.DateTimeAttribute;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**
@@ -48,12 +46,12 @@ public class CategoriasService {
 
     public String crearCategoria(CategoriasModel categoriasModel){
         String simpleDateFormat = new SimpleDateFormat("YYYY-mm-dd HH:mm:ss.SSS").format(new Date());
-        categoriasModel.setIdStatus(1);
-        categoriasModel.setIdCategoria(1);
+        categoriasModel.setIdStatus(BigDecimal.valueOf(1));
+        categoriasModel.setIdCategoria(BigDecimal.valueOf(1));
         categoriasModel.setDescripcionCategoria("GEO");
-        categoriasModel.setFechaModificacion(simpleDateFormat);
+        //categoriasModel.setFechaModificacion(simpleDateFormat);
 
-        return categoriasModel.getFechaModificacion();
+        return "categoriasModel.getFechaModificacion()";
     }
 
     /**
@@ -65,7 +63,7 @@ public class CategoriasService {
      */
 
     public String consultarCategoria(CategoriasModel categoriasModel){
-        categoriasModel.setIdCategoria(4);
+        categoriasModel.setIdCategoria(BigDecimal.valueOf(4));
         categoriasModel.setDescripcionCategoria("ESTADOS");
 
         return categoriasModel.getDescripcionCategoria();
@@ -81,7 +79,7 @@ public class CategoriasService {
 
     public String actualizarCategoria(CategoriasModel categoriasModel){
 
-        categoriasModel.setIdCategoria(5);
+        categoriasModel.setIdCategoria(BigDecimal.valueOf(5));
         categoriasModel.setDescripcionCategoria("GEOGRAFIA");
 
         return categoriasModel.getDescripcionCategoria();
@@ -97,7 +95,7 @@ public class CategoriasService {
 
     public String eliminarCategoria(CategoriasModel categoriasModel){
 
-        categoriasModel.setIdCategoria(6);
+        categoriasModel.setIdCategoria(BigDecimal.valueOf(6));
         categoriasModel.setDescripcionCategoria("PAISES");
 
         return categoriasModel.getDescripcionCategoria();
@@ -108,14 +106,14 @@ public class CategoriasService {
      * @descripcion: Método para consultar los tipo de operaciones
      * para el CategoriasService (Se utiliza el nombre como PathParam).
      * @autor: Diego Vázquez Pérez
-     * @ultimaModificacion: 02/05/2022
+     * @ultimaModificacion: 05/05/2022
      */
 
     @Inject
     ExistenciaCategoriasDAO existenciaCategoriasDAO;
-    public int consultarExistenciaCategoria(CategoriasModel categoriasModel) {
+    public List<CategoriasModel> consultarExistenciaCategoria(CategoriasModel categoriasModel) {
 
-        return existenciaCategoriasDAO.consumeExistenciaFuncion(categoriasModel.getDescripcionCategoria());
+        return existenciaCategoriasDAO.consumeExistenciaFuncion(categoriasModel);
     }
 
 
