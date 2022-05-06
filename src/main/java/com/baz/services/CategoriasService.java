@@ -1,6 +1,7 @@
 package com.baz.services;
 
 import com.baz.daos.categorias.ConsultarCategoriasDAO;
+import com.baz.daos.categorias.CrearCategoriaDAO;
 import com.baz.daos.categorias.ExistenciaCategoriasDAO;
 import com.baz.daos.categorias.SecuenciaCategoriasDAO;
 import com.baz.models.CategoriasModel;
@@ -36,27 +37,34 @@ public class CategoriasService {
         lista.add(Constantes.EXISTENCE);
 
         return lista;
-    }/*
+    }
 
-    *//**
+    /**
      * <b>crearCategoria</b>
      * @descripcion: Método para crear una o varias categorías
      * en la entidad.
      * @autor: Diego Vázquez Pérez
      * @ultimaModificacion: 01/05/2022
-     *//*
+     */
 
-    public String crearCategoria(CategoriasModel categoriasModel){
-        String simpleDateFormat = new SimpleDateFormat("YYYY-mm-dd HH:mm:ss.SSS").format(new Date());
-        categoriasModel.setIdStatus(BigDecimal.valueOf(1));
-        categoriasModel.setIdCategoria(BigDecimal.valueOf(1));
-        categoriasModel.setDescripcionCategoria("GEO");
-        //categoriasModel.setFechaModificacion(simpleDateFormat);
+    @Inject
+    CrearCategoriaDAO crearCategoriaDAO;
+    public GenericResponse crearCategoria(String descripcionCategoria, String usuario){
 
-        return "categoriasModel.getFechaModificacion()";
+        GenericResponse genericResponse = new GenericResponse("", "", null);
+
+        Object object = crearCategoriaDAO.consumoCrearFuncion(
+                descripcionCategoria,
+                usuario);
+
+        genericResponse.setCodigo(Constantes.HTTP_200);
+        genericResponse.setMensaje(Constantes.MENSAJE_EXITO);
+        genericResponse.setRespuesta(object);
+
+        return genericResponse;
     }
 
-    *//**
+    /**
      * <b>consultarCategoria</b>
      * @descripcion: Método para consular una o varias categorías
      * de la entidad.

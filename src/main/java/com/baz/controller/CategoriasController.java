@@ -43,6 +43,31 @@ public class CategoriasController {
         return categoriasService.listaOperacionesCaterogias();
     }
 
+
+    /**
+     * <b>${nombreClase}</b>
+     * @descripcion: breve descripción del contenido
+     * @autor: ${user}, Desarrollador
+     * @param descripcionCategoria Nombre de la categoria.
+     * @ultimaModificacion: ${date}
+     */
+
+    @GET
+    @Path("/ConsultarCategoria")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response consultarCategoria(
+            @Schema(example = "1", description = "Identificador de la categoria", required = false)
+            @QueryParam("idCategoria") Integer idCategoria,
+            @Schema(example = "GEOGRAFIA", description = "Nombre de la categoria", required = false)
+            @QueryParam("descripcionCategoria") String descripcionCategoria
+    ){
+
+        return Response.ok().entity(
+                        categoriasService.consultarCategoria(idCategoria, descripcionCategoria))
+                .build();
+    }
+
+
     /**
      * <b>orquestadorOperacionesCategoria</b>
      * @descripcion: Método para redireccionamiento de funciones
@@ -53,7 +78,6 @@ public class CategoriasController {
 
     @GET
     @Path("/ConsultarExistencia")
-    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response consultarExistenciaCategoria(
             @Schema(example = "1", description = "Identificador de la categoria", required = false)
@@ -67,27 +91,21 @@ public class CategoriasController {
                 .build();
     }
 
-    /**
-     * <b>${nombreClase}</b>
-     * @descripcion: breve descripción del contenido
-     * @autor: ${user}, Desarrollador
-     * @param String Descripcion
-     * @ultimaModificacion: ${date}
-     */
-
-    @GET
-    @Path("/ConsultarCategoria")
-    @Consumes(MediaType.APPLICATION_JSON)
+    @PUT
+    @Path("/CrearCategoria")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response consultarCategoria(
-            @Schema(example = "1", description = "Identificador de la categoria", required = false)
-            @QueryParam("idCategoria") Integer idCategoria,
-            @Schema(example = "GEOGRAFIA", description = "Nombre de la categoria", required = false)
-            @QueryParam("descripcionCategoria") String descripcionCategoria
+    public Response crearCategoria(
+            @Schema(example = "PAISES", description = "Nombre de la categoria", required = false)
+            @QueryParam("descripcionCategoria") String descripcionCategoria,
+            @Schema(example = "Diego Vazquez Perez", description = "Nombre del usuario", required = false)
+            @QueryParam("usuario") String usuario
     ){
 
         return Response.ok().entity(
-                        categoriasService.consultarCategoria(idCategoria, descripcionCategoria))
+                categoriasService.crearCategoria(
+                        descripcionCategoria,
+                        usuario))
                 .build();
     }
+
 }

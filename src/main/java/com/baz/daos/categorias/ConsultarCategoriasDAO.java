@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureQuery;
 import javax.transaction.Transactional;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
