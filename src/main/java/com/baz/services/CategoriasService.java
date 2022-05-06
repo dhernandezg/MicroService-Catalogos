@@ -75,7 +75,7 @@ public class CategoriasService {
         List<CategoriasModel> categoriasModel = new ArrayList<>();
 
         categoriasModel.addAll(consultarCategoriasDAO.consultarCategoriasFuncion(
-                BigDecimal.valueOf(idCategoria),
+                idCategoria,
                 descripcionCategoria));
 
         genericResponse.setCodigo(Constantes.HTTP_200);

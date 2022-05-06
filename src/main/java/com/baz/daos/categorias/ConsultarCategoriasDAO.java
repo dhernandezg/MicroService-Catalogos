@@ -26,14 +26,14 @@ public class ConsultarCategoriasDAO {
      */
 
     @Transactional
-    public List<CategoriasModel> consultarCategoriasFuncion(BigDecimal idCategoria, String descripcionCategoria){
+    public List<CategoriasModel> consultarCategoriasFuncion(Integer idCategoria, String descripcionCategoria){
 
         List<CategoriasModel> categoriasModellist = new ArrayList<>();
 
         try{
             StoredProcedureQuery storedProcedureQuery = entityManager
                     .createStoredProcedureQuery("FNCATEGORIASEL")
-                    .registerStoredProcedureParameter("v_CATEGORIAID", BigDecimal.class, ParameterMode.IN)
+                    .registerStoredProcedureParameter("v_CATEGORIAID", Integer.class, ParameterMode.IN)
                     .registerStoredProcedureParameter("v_DESCCATEG", String.class, ParameterMode.IN)
                     .setParameter("v_CATEGORIAID", idCategoria)
                     .setParameter("v_DESCCATEG", descripcionCategoria);
