@@ -1,12 +1,15 @@
 package com.baz.controller;
 
 import com.baz.models.CategoriasModel;
+import com.baz.models.GenericResponse;
 import com.baz.services.CategoriasService;
 import com.baz.utils.Constantes;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,52 +51,27 @@ public class CategoriasController {
      */
 
     @POST
-    @Path("/{tipoOperacion}")
+    @Path("/ConsultarExistencia")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public List<CategoriasModel> orquestadorOperacionesCategoria(
-            @PathParam("tipoOperacion") String tipoOperacion,
+    public Response consultarExistenciaCategoria(
             CategoriasModel categoriasModel
-    ) {
+    ){
 
-        List<CategoriasModel> categoriasModelResponse = new ArrayList<>();
+        GenericResponse genericResponse = new GenericResponse("", "", null);
+        String response;
 
-        switch (tipoOperacion){
-/*
-            case Constantes.CREATE:
-
-                listaCategorias.add(categoriasService.crearCategoria(categoriasModel));
-                break;
-*/
-            case Constantes.READ:
-
-                categoriasModelResponse.addAll(
-                        categoriasService.consultarCategoria(categoriasModel)
-                );
-                break;
-/*
-            case Constantes.UPDATE:
-
-                listaCategorias.add(categoriasService.actualizarCategoria(categoriasModel));
-                break;
-
-            case Constantes.DELETE:
-
-                listaCategorias.add(categoriasService.eliminarCategoria(categoriasModel));
-                break;*/
-
-            case Constantes.EXISTENCE:
-
-                categoriasModelResponse.addAll(categoriasService.consultarExistenciaCategoria(categoriasModel));
-
-                break;
-
-            /*case Constantes.SEQUENCE:
-
-                listaCategorias.add(String.valueOf(categoriasService.consultarSecuenciaCategoria()));
-                break;*/
+        if (categoriasService.consultarExistenciaCategoria(categoriasModel.getIdCategoria(), categoriasModel.getDescripcionCategoria()) == 1){
+            response = "La categoria " + categoriasModel.getDescripcionCategoria() + " existe";
         }
+        else{
+            response = "La categoria " + categoriasModel.getDescripcionCategoria() + " NO existe";
+        }
+        categoriasModel.setDescripcionCategoria(response);
+        genericResponse.setCodigo(Constantes.HTTP_200);
+        genericResponse.setMensaje(Constantes.MENSAJE_EXITO);
+        genericResponse.setRespuesta(categoriasModel);
 
-        return categoriasModelResponse;
+        return Response.ok().entity(genericResponse).build();
     }
 }

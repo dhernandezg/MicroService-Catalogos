@@ -34,7 +34,7 @@ public class CategoriasModel implements Serializable {
     @Schema(example = "1", description = "Identificador de la categoria.")
     @Column(name = "FICATEGORIAID")
     @Id
-    private BigDecimal idCategoria;
+    private Integer idCategoria;
 
     @Schema(example = "GEOGRAFIA", description = "Nombre de la categoria.")
     @Column(name = "FCDESCCATEG")
@@ -54,7 +54,7 @@ public class CategoriasModel implements Serializable {
 
     //Constructor de la clase
     public CategoriasModel(
-            BigDecimal idCategoria,
+            Integer idCategoria,
             String descripcionCategoria,
             BigDecimal idStatus,
             //LocalDateTime fechaModificacion,

@@ -26,26 +26,26 @@ public class ExistenciaCategoriasDAO {
      */
 
     @Transactional
-    public List<CategoriasModel> consumeExistenciaFuncion(CategoriasModel categoriasModel){
+    public Integer consumeExistenciaFuncion(Integer idCategoria, String descripcionCategoria){
 
-        List<CategoriasModel> categoriasModelList = new ArrayList<>();
+        Integer existenciaBinaria = 0;
 
         try{
             StoredProcedureQuery storedProcedureQuery = entityManager
-                    .createStoredProcedureQuery("FNCATEGORIASEL")
-                    .registerStoredProcedureParameter("v_CATEGORIAID", BigDecimal.class, ParameterMode.IN)
-                    .registerStoredProcedureParameter("v_DESCCATEG", String.class, ParameterMode.IN)
-                    .setParameter("v_CATEGORIAID", categoriasModel.getIdCategoria())
-                    .setParameter("v_DESCCATEG", categoriasModel.getDescripcionCategoria());
+                    .createStoredProcedureQuery("FNCATEGOEXIST")
+                    .registerStoredProcedureParameter("PA_FICATEGORIAID", Integer.class, ParameterMode.IN)
+                    .registerStoredProcedureParameter("FCDESCCATEG", String.class, ParameterMode.IN)
+                    .setParameter("PA_FICATEGORIAID", idCategoria)
+                    .setParameter("FCDESCCATEG", descripcionCategoria);
 
             storedProcedureQuery.execute();
 
-            categoriasModelList = storedProcedureQuery.getResultList();
+            existenciaBinaria = (Integer) storedProcedureQuery.getSingleResult();
 
         }catch (Exception e){
             e.printStackTrace();
         }
 
-        return categoriasModelList;
+        return existenciaBinaria;
     }
 }

@@ -35,15 +35,15 @@ public class CategoriasService {
         lista.add(Constantes.EXISTENCE);
 
         return lista;
-    }
+    }/*
 
-    /**
+    *//**
      * <b>crearCategoria</b>
      * @descripcion: Método para crear una o varias categorías
      * en la entidad.
      * @autor: Diego Vázquez Pérez
      * @ultimaModificacion: 01/05/2022
-     */
+     *//*
 
     public String crearCategoria(CategoriasModel categoriasModel){
         String simpleDateFormat = new SimpleDateFormat("YYYY-mm-dd HH:mm:ss.SSS").format(new Date());
@@ -55,13 +55,13 @@ public class CategoriasService {
         return "categoriasModel.getFechaModificacion()";
     }
 
-    /**
+    *//**
      * <b>consultarCategoria</b>
      * @descripcion: Método para consular una o varias categorías
      * de la entidad.
      * @autor: Diego Vázquez Pérez
      * @ultimaModificacion: 05/05/2022
-     */
+     *//*
 
     @Inject
     ConsultarCategoriasDAO consultarCategoriasDAO;
@@ -77,13 +77,13 @@ public class CategoriasService {
         return categoriasModelList;
     }
 
-    /**
+    *//**
      * <b>actualizarCategoria</b>
      * @descripcion: Método para actualizar una o varias catergorías
      * de la entidad.
      * @autor: Diego Vázquez Pérez
      * @ultimaModificacion: 01/05/2022
-     */
+     *//*
 
     public String actualizarCategoria(CategoriasModel categoriasModel){
 
@@ -93,13 +93,13 @@ public class CategoriasService {
         return categoriasModel.getDescripcionCategoria();
     }
 
-    /**
+    *//**
      * <b>eliminarCategoria</b>
      * @descripcion: Método para borrado lógico de una o varias
      * categorías de la entidad.
      * @autor: Diego Vázquez Pérez
      * @ultimaModificacion: 01/05/2022
-     */
+     *//*
 
     public String eliminarCategoria(CategoriasModel categoriasModel){
 
@@ -108,7 +108,7 @@ public class CategoriasService {
 
         return categoriasModel.getDescripcionCategoria();
     }
-
+*/
     /**
      * <b>listaOperaciones</b>
      * @descripcion: Método para consultar los tipo de operaciones
@@ -119,9 +119,11 @@ public class CategoriasService {
 
     @Inject
     ExistenciaCategoriasDAO existenciaCategoriasDAO;
-    public List<CategoriasModel> consultarExistenciaCategoria(CategoriasModel categoriasModel) {
+    public Integer consultarExistenciaCategoria(Integer idCategoria, String descripcionCategoria) {
 
-        return existenciaCategoriasDAO.consumeExistenciaFuncion(categoriasModel);
+        return existenciaCategoriasDAO.consumeExistenciaFuncion(
+                idCategoria,
+                descripcionCategoria);
     }
 
 
