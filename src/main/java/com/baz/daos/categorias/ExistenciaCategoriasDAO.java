@@ -26,21 +26,22 @@ public class ExistenciaCategoriasDAO {
      */
 
     @Transactional
-    public Integer consumeExistenciaFuncion(Integer idCategoria, String descripcionCategoria){
+    public int consumeExistenciaFuncion(BigDecimal idCategoria, String descripcionCategoria){
 
-        Integer existenciaBinaria = 0;
+        int existenciaBinaria = 0;
 
         try{
             StoredProcedureQuery storedProcedureQuery = entityManager
                     .createStoredProcedureQuery("FNCATEGOEXIST")
-                    .registerStoredProcedureParameter("PA_FICATEGORIAID", Integer.class, ParameterMode.IN)
+                    .registerStoredProcedureParameter("PA_FICATEGORIAID", BigDecimal.class, ParameterMode.IN)
                     .registerStoredProcedureParameter("FCDESCCATEG", String.class, ParameterMode.IN)
                     .setParameter("PA_FICATEGORIAID", idCategoria)
                     .setParameter("FCDESCCATEG", descripcionCategoria);
 
             storedProcedureQuery.execute();
+            System.out.println("#########\n####################\n############"+existenciaBinaria);
 
-            existenciaBinaria = (Integer) storedProcedureQuery.getSingleResult();
+            existenciaBinaria = (int) storedProcedureQuery.getSingleResult();
 
         }catch (Exception e){
             e.printStackTrace();

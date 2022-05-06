@@ -4,6 +4,7 @@ import com.baz.daos.categorias.ConsultarCategoriasDAO;
 import com.baz.daos.categorias.ExistenciaCategoriasDAO;
 import com.baz.daos.categorias.SecuenciaCategoriasDAO;
 import com.baz.models.CategoriasModel;
+import com.baz.models.GenericResponse;
 import com.baz.utils.Constantes;
 
 import javax.inject.Inject;
@@ -63,20 +64,27 @@ public class CategoriasService {
      * @ultimaModificacion: 05/05/2022
      *//*
 
+
+*/
     @Inject
     ConsultarCategoriasDAO consultarCategoriasDAO;
-    public List<CategoriasModel> consultarCategoria(CategoriasModel categoriasModel){
+    public GenericResponse consultarCategoria(Integer idCategoria,
+                                              String descripcionCategoria){
 
-        List<CategoriasModel> categoriasModelList = new ArrayList<>();
+        GenericResponse genericResponse = new GenericResponse("", "", null);
+        List<CategoriasModel> categoriasModel = new ArrayList<>();
 
-        categoriasModelList.addAll(consultarCategoriasDAO.consultarCategoriasFuncion(
-                categoriasModel.getIdCategoria(),
-                categoriasModel.getDescripcionCategoria()
-        ));
+        categoriasModel.addAll(consultarCategoriasDAO.consultarCategoriasFuncion(
+                BigDecimal.valueOf(idCategoria),
+                descripcionCategoria));
 
-        return categoriasModelList;
+        genericResponse.setCodigo(Constantes.HTTP_200);
+        genericResponse.setMensaje(Constantes.MENSAJE_EXITO);
+        genericResponse.setRespuesta(categoriasModel);
+
+        return genericResponse;
     }
-
+/*
     *//**
      * <b>actualizarCategoria</b>
      * @descripcion: Método para actualizar una o varias catergorías
@@ -119,11 +127,25 @@ public class CategoriasService {
 
     @Inject
     ExistenciaCategoriasDAO existenciaCategoriasDAO;
-    public Integer consultarExistenciaCategoria(Integer idCategoria, String descripcionCategoria) {
+    public GenericResponse consultarExistenciaCategoria(Integer idCategoria, String descripcionCategoria) {
 
-        return existenciaCategoriasDAO.consumeExistenciaFuncion(
-                idCategoria,
-                descripcionCategoria);
+        GenericResponse genericResponse = new GenericResponse("", "", null);
+        String response;
+
+        if (existenciaCategoriasDAO.consumeExistenciaFuncion(
+                BigDecimal.valueOf(idCategoria),
+                descripcionCategoria) == 1){
+            response = "La categoria " + descripcionCategoria + " existe";
+        }
+        else{
+            response = "La categoria " + descripcionCategoria + " NO existe";
+        }
+
+        genericResponse.setCodigo(Constantes.HTTP_200);
+        genericResponse.setMensaje(Constantes.MENSAJE_EXITO);
+        genericResponse.setRespuesta(response);
+
+        return genericResponse;
     }
 
 

@@ -28,7 +28,7 @@ public class ConsultarCategoriasDAO {
     @Transactional
     public List<CategoriasModel> consultarCategoriasFuncion(BigDecimal idCategoria, String descripcionCategoria){
 
-        List<CategoriasModel> categoriasModelList = new ArrayList<>();
+        List<CategoriasModel> categoriasModellist = new ArrayList<>();
 
         try{
             StoredProcedureQuery storedProcedureQuery = entityManager
@@ -40,12 +40,14 @@ public class ConsultarCategoriasDAO {
 
             storedProcedureQuery.execute();
 
-            categoriasModelList.addAll(storedProcedureQuery.getResultList());
+            System.out.println("########\n####################\n###########"+storedProcedureQuery.getResultList());
+
+            categoriasModellist.addAll(storedProcedureQuery.getResultList());
 
         }catch (Exception e){
             e.printStackTrace();
         }
 
-        return categoriasModelList;
+        return categoriasModellist;
     }
 }

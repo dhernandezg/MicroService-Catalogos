@@ -4,6 +4,7 @@ import com.baz.models.CategoriasModel;
 import com.baz.models.GenericResponse;
 import com.baz.services.CategoriasService;
 import com.baz.utils.Constantes;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -50,28 +51,43 @@ public class CategoriasController {
      * @ultimaModificacion: 05/05/2022
      */
 
-    @POST
+    @GET
     @Path("/ConsultarExistencia")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response consultarExistenciaCategoria(
-            CategoriasModel categoriasModel
+            @Schema(example = "1", description = "Identificador de la categoria", required = false)
+            @QueryParam("idCategoria") Integer idCategoria,
+            @Schema(example = "GEOGRAFIA", description = "Nombre de la categoria", required = false)
+            @QueryParam("descripcionCategoria") String descripcionCategoria
     ){
 
-        GenericResponse genericResponse = new GenericResponse("", "", null);
-        String response;
+        return Response.ok().entity(
+                categoriasService.consultarExistenciaCategoria(idCategoria, descripcionCategoria))
+                .build();
+    }
 
-        if (categoriasService.consultarExistenciaCategoria(categoriasModel.getIdCategoria(), categoriasModel.getDescripcionCategoria()) == 1){
-            response = "La categoria " + categoriasModel.getDescripcionCategoria() + " existe";
-        }
-        else{
-            response = "La categoria " + categoriasModel.getDescripcionCategoria() + " NO existe";
-        }
-        categoriasModel.setDescripcionCategoria(response);
-        genericResponse.setCodigo(Constantes.HTTP_200);
-        genericResponse.setMensaje(Constantes.MENSAJE_EXITO);
-        genericResponse.setRespuesta(categoriasModel);
+    /**
+     * <b>${nombreClase}</b>
+     * @descripcion: breve descripción del contenido
+     * @autor: ${user}, Desarrollador
+     * @param String Descripcion
+     * @ultimaModificacion: ${date}
+     */
 
-        return Response.ok().entity(genericResponse).build();
+    @GET
+    @Path("/ConsultarCategoria")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response consultarCategoria(
+            @Schema(example = "1", description = "Identificador de la categoria", required = false)
+            @QueryParam("idCategoria") Integer idCategoria,
+            @Schema(example = "GEOGRAFIA", description = "Nombre de la categoria", required = false)
+            @QueryParam("descripcionCategoria") String descripcionCategoria
+    ){
+
+        return Response.ok().entity(
+                        categoriasService.consultarCategoria(idCategoria, descripcionCategoria))
+                .build();
     }
 }
