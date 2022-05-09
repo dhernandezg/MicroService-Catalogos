@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 /**
  * <b>${CategoriasModel}</b>
@@ -27,24 +28,24 @@ import java.math.BigDecimal;
 public class CategoriasModel implements Serializable {
 
     @Schema(example = "1", description = "Identificador de la categoria.")
-    @Column(name = "FICATEGORIAID")
+    @Column(name = "CATEGORIAID")
     @Id
     private Integer idCategoria;
 
     @Schema(example = "GEOGRAFIA", description = "Nombre de la categoria.")
-    @Column(name = "FCDESCCATEG")
+    @Column(name = "DESCCATEG")
     private String descripcionCategoria;
 
     @Schema(example = "1", description = "ACTIVO")
-    @Column(name = "FISTATUSID")
+    @Column(name = "STATUSID")
     private BigDecimal idStatus;
-/*
+
     @Schema(example = "2022-05-02 16:03:52.245", description = "Fecha de última modificación")
-    @Column(name = "FDMODIFICACION")
-    private LocalDateTime fechaModificacion;*/
+    @Column(name = "MODIFICACION")
+    private LocalDateTime fechaModificacion;
 
     @Schema(example = "DIEGO VAZQUEZ P.", description = "Nombre del usuario.")
-    @Column(name = "FCUSUARIO")
+    @Column(name = "USUARIO")
     private String nombreUsuario;
 
     //Constructor de la clase

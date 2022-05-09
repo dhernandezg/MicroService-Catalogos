@@ -49,7 +49,7 @@ public class CategoriasDAOImpl implements CategoriasDAO{
 
         try{
             StoredProcedureQuery storedProcedureQuery = manejaEntidad
-                    .createStoredProcedureQuery("FNCATEGORIASEL")
+                    .createStoredProcedureQuery("FNCATEGORIASEL", CategoriasModel.class)
                     .registerStoredProcedureParameter("v_CATEGORIAID", Integer.class, ParameterMode.IN)
                     .registerStoredProcedureParameter("v_DESCCATEG", String.class, ParameterMode.IN)
                     .setParameter("v_CATEGORIAID", categoriasModel.getIdCategoria())
