@@ -1,4 +1,4 @@
-package com.baz.models;
+package com.baz.categorias.models;
 
 import lombok.Data;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;

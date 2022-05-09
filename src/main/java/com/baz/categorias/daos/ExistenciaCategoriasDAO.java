@@ -1,6 +1,4 @@
-package com.baz.daos.categorias;
-
-import com.baz.models.CategoriasModel;
+package com.baz.categorias.daos;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -9,8 +7,6 @@ import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureQuery;
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 @ApplicationScoped
 public class ExistenciaCategoriasDAO {

@@ -1,17 +1,12 @@
 package com.baz.controller;
 
-import com.baz.models.CategoriasModel;
-import com.baz.models.GenericResponse;
-import com.baz.services.CategoriasService;
-import com.baz.utils.Constantes;
+import com.baz.categorias.services.CategoriasService;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

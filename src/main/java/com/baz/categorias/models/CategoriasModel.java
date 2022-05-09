@@ -1,4 +1,4 @@
-package com.baz.models;
+package com.baz.categorias.models;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import lombok.Data;

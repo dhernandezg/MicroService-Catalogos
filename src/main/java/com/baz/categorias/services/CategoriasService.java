@@ -1,17 +1,16 @@
-package com.baz.services;
+package com.baz.categorias.services;
 
-import com.baz.daos.categorias.ConsultarCategoriasDAO;
-import com.baz.daos.categorias.CrearCategoriaDAO;
-import com.baz.daos.categorias.ExistenciaCategoriasDAO;
-import com.baz.daos.categorias.SecuenciaCategoriasDAO;
-import com.baz.models.CategoriasModel;
-import com.baz.models.GenericResponse;
+import com.baz.categorias.models.CategoriasModel;
+import com.baz.categorias.models.GenericResponse;
+import com.baz.categorias.daos.ConsultarCategoriasDAO;
+import com.baz.categorias.daos.CrearCategoriaDAO;
+import com.baz.categorias.daos.ExistenciaCategoriasDAO;
+import com.baz.categorias.daos.SecuenciaCategoriasDAO;
 import com.baz.utils.Constantes;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**

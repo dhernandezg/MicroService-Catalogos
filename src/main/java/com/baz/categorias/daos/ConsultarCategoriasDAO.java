@@ -1,6 +1,6 @@
-package com.baz.daos.categorias;
+package com.baz.categorias.daos;
 
-import com.baz.models.CategoriasModel;
+import com.baz.categorias.models.CategoriasModel;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;

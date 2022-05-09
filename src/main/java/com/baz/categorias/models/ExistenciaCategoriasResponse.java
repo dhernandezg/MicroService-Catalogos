@@ -1,4 +1,4 @@
-package com.baz.models;
+package com.baz.categorias.models;
 
 
 import lombok.Builder;
