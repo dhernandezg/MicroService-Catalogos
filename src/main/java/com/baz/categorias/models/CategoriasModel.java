@@ -1,6 +1,5 @@
 package com.baz.categorias.models;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
@@ -11,10 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Timestamp;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  * <b>${CategoriasModel}</b>
