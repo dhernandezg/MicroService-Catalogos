@@ -63,29 +63,6 @@ public class CategoriasController {
     }
 
 
-    /**
-     * <b>orquestadorOperacionesCategoria</b>
-     * @descripcion: Método para redireccionamiento de funciones
-     * según el tipo de operación.
-     * @autor: Diego Vázquez Pérez
-     * @ultimaModificacion: 05/05/2022
-     */
-
-    @GET
-    @Path("/ConsultarExistencia")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response consultarExistenciaCategoria(
-            @Schema(example = "1", description = "Identificador de la categoria", required = false)
-            @QueryParam("idCategoria") Integer idCategoria,
-            @Schema(example = "GEOGRAFIA", description = "Nombre de la categoria", required = false)
-            @QueryParam("descripcionCategoria") String descripcionCategoria
-    ){
-
-        return Response.ok().entity(
-                categoriasService.consultarExistenciaCategoria(idCategoria, descripcionCategoria))
-                .build();
-    }
-
     @PUT
     @Path("/CrearCategoria")
     @Produces(MediaType.APPLICATION_JSON)

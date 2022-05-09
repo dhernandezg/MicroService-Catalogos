@@ -15,7 +15,7 @@ import java.util.List;
 
 public interface CategoriasDAO {
 
-    public void crearCategoria(CategoriasModel categoriasModel);
+    public Object crearCategoria(CategoriasModel categoriasModel);
     public List<CategoriasModel> consultarCategoria(CategoriasModel categoriasModel);
     public void actualizarCategoria(CategoriasModel categoriasModel);
     public void eliminarCategoria(CategoriasModel categoriasModel);

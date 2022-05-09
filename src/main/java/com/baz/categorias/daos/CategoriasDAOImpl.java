@@ -17,9 +17,28 @@ public class CategoriasDAOImpl implements CategoriasDAO{
     @Inject
     EntityManager manejaEntidad;
 
+    @Transactional
     @Override
-    public void crearCategoria(CategoriasModel categoriasModel) {
+    public Object crearCategoria(CategoriasModel categoriasModel) {
 
+        Object response = 0;
+
+        try{
+            StoredProcedureQuery storedProcedureQuery = manejaEntidad.createStoredProcedureQuery("FNCATEGORIAINS")
+                    .registerStoredProcedureParameter("v_DESCCATEG", String.class, ParameterMode.IN)
+                    .registerStoredProcedureParameter("v_USUARIO", String.class, ParameterMode.IN)
+                    .setParameter("v_DESCCATEG", categoriasModel.getDescripcionCategoria())
+                    .setParameter("v_USUARIO", categoriasModel.getNombreUsuario());
+
+            storedProcedureQuery.execute();
+
+            response = storedProcedureQuery.getSingleResult();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return response;
     }
 
     @Transactional
