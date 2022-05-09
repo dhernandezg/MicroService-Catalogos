@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
  * @descripcion: Entidad que contiene las propiedades del cursor "TACategorìas"
  * del "CategoriasService".
  * @autor: Diego Vázquez Pérez
- * @ultimaModificacion: 05/05/2022
+ * @ultimaModificacion: 09/05/2022
  */
 
 

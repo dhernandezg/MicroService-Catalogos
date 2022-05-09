@@ -1,6 +1,8 @@
 package com.baz.controller;
 
+import com.baz.categorias.dtos.GenericResponse;
 import com.baz.categorias.services.CategoriasService;
+import com.baz.utils.Constantes;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import javax.inject.Inject;
@@ -51,9 +53,9 @@ public class CategoriasController {
     @Path("/ConsultarCategoria")
     @Produces(MediaType.APPLICATION_JSON)
     public Response consultarCategoria(
-            @Schema(example = "1", description = "Identificador de la categoria", required = false)
+            @Schema(example = "1", description = "Identificador de la categoria")
             @QueryParam("idCategoria") Integer idCategoria,
-            @Schema(example = "GEOGRAFIA", description = "Nombre de la categoria", required = false)
+            @Schema(example = "GEOGRAFIA", description = "Nombre de la categoria")
             @QueryParam("descripcionCategoria") String descripcionCategoria
     ){
 
@@ -66,18 +68,16 @@ public class CategoriasController {
     @PUT
     @Path("/CrearCategoria")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response crearCategoria(
-            @Schema(example = "PAISES", description = "Nombre de la categoria", required = false)
+    public GenericResponse<Boolean> crearCategoria(
+            @Schema(example = "PAISES", description = "Nombre de la categoria")
             @QueryParam("descripcionCategoria") String descripcionCategoria,
-            @Schema(example = "Diego Vazquez Perez", description = "Nombre del usuario", required = false)
+            @Schema(example = "Diego Vazquez Perez", description = "Nombre del usuario")
             @QueryParam("usuario") String usuario
     ){
 
-        return Response.ok().entity(
-                categoriasService.crearCategoria(
-                        descripcionCategoria,
-                        usuario))
-                .build();
+        boolean response = categoriasService.crearCategoria(descripcionCategoria, usuario);
+
+        return new GenericResponse<>(Constantes.HTTP_200, Constantes.MENSAJE_EXITO, response);
     }
 
 }

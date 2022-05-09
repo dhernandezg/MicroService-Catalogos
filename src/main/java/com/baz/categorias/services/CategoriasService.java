@@ -2,12 +2,11 @@ package com.baz.categorias.services;
 
 import com.baz.categorias.daos.*;
 import com.baz.categorias.models.CategoriasModel;
-import com.baz.categorias.models.GenericResponse;
+import com.baz.categorias.dtos.GenericResponse;
 import com.baz.utils.Constantes;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import java.math.BigDecimal;
 import java.util.*;
 
 /**
@@ -22,7 +21,7 @@ import java.util.*;
 public class CategoriasService {
 
     @Inject
-    CategoriasDAO categoriasDAO;
+    CrearCategoriaDAO crearCategoriaDAO;
 
     public List<String> listaOperacionesCaterogias(){
 
@@ -46,20 +45,13 @@ public class CategoriasService {
      * @ultimaModificacion: 01/05/2022
      */
 
-    public GenericResponse crearCategoria(String descripcionCategoria, String usuario){
+    public boolean crearCategoria(String descripcionCategoria, String usuario){
 
-        GenericResponse genericResponse = new GenericResponse("", "", null);
         CategoriasModel categoriasModel = new CategoriasModel();
+
         categoriasModel.setDescripcionCategoria(descripcionCategoria);
         categoriasModel.setNombreUsuario(usuario);
-
-        Object object = categoriasDAO.crearCategoria(categoriasModel);
-
-        genericResponse.setCodigo(Constantes.HTTP_200);
-        genericResponse.setMensaje(Constantes.MENSAJE_EXITO);
-        genericResponse.setRespuesta(object);
-
-        return genericResponse;
+        return crearCategoriaDAO.crearCategoria(categoriasModel);
     }
 
     /**
@@ -72,7 +64,7 @@ public class CategoriasService {
 
     public GenericResponse consultarCategoria(Integer idCategoria,
                                               String descripcionCategoria){
-
+/*
         GenericResponse genericResponse = new GenericResponse("", "", null);
         List<CategoriasModel> categoriasModel = new ArrayList<>();
         CategoriasModel categoriasModel1 = new CategoriasModel();
@@ -85,7 +77,8 @@ public class CategoriasService {
         genericResponse.setMensaje(Constantes.MENSAJE_EXITO);
         genericResponse.setRespuesta(categoriasModel);
 
-        return genericResponse;
+        return genericResponse;*/
+        return null;
     }
 
 }
