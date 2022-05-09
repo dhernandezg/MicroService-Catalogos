@@ -12,30 +12,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 @ApplicationScoped
-public class ConsultarCategoriasDAO {
+public class CategoriasDAOImpl implements CategoriasDAO{
 
     @Inject
-    EntityManager entityManager;
+    EntityManager manejaEntidad;
 
-    /**
-     * <b>${consultarCategoriasFuncion}</b>
-     * @descripcion: Método DAO para consumo de función Consultar Categorias en DB.
-     * @autor: Diego Vázquez Pérez
-     * @ultimaModificacion: 05/05/2022
-     */
+    @Override
+    public void crearCategoria(CategoriasModel categoriasModel) {
+
+    }
 
     @Transactional
-    public List<CategoriasModel> consultarCategoriasFuncion(Integer idCategoria, String descripcionCategoria){
+    @Override
+    public List<CategoriasModel> consultarCategoria(CategoriasModel categoriasModel) {
 
         List<CategoriasModel> categoriasModellist = new ArrayList<>();
 
         try{
-            StoredProcedureQuery storedProcedureQuery = entityManager
+            StoredProcedureQuery storedProcedureQuery = manejaEntidad
                     .createStoredProcedureQuery("FNCATEGORIASEL")
                     .registerStoredProcedureParameter("v_CATEGORIAID", Integer.class, ParameterMode.IN)
                     .registerStoredProcedureParameter("v_DESCCATEG", String.class, ParameterMode.IN)
-                    .setParameter("v_CATEGORIAID", idCategoria)
-                    .setParameter("v_DESCCATEG", descripcionCategoria);
+                    .setParameter("v_CATEGORIAID", categoriasModel.getIdCategoria())
+                    .setParameter("v_DESCCATEG", categoriasModel.getDescripcionCategoria());
 
             storedProcedureQuery.execute();
 
@@ -48,5 +47,15 @@ public class ConsultarCategoriasDAO {
         }
 
         return categoriasModellist;
+    }
+
+    @Override
+    public void actualizarCategoria(CategoriasModel categoriasModel) {
+
+    }
+
+    @Override
+    public void eliminarCategoria(CategoriasModel categoriasModel) {
+
     }
 }

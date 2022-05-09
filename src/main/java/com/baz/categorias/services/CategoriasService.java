@@ -1,11 +1,8 @@
 package com.baz.categorias.services;
 
+import com.baz.categorias.daos.*;
 import com.baz.categorias.models.CategoriasModel;
 import com.baz.categorias.models.GenericResponse;
-import com.baz.categorias.daos.ConsultarCategoriasDAO;
-import com.baz.categorias.daos.CrearCategoriaDAO;
-import com.baz.categorias.daos.ExistenciaCategoriasDAO;
-import com.baz.categorias.daos.SecuenciaCategoriasDAO;
 import com.baz.utils.Constantes;
 
 import javax.inject.Inject;
@@ -74,16 +71,17 @@ public class CategoriasService {
 
 */
     @Inject
-    ConsultarCategoriasDAO consultarCategoriasDAO;
+    CategoriasDAO categoriasDAO;
     public GenericResponse consultarCategoria(Integer idCategoria,
                                               String descripcionCategoria){
 
         GenericResponse genericResponse = new GenericResponse("", "", null);
         List<CategoriasModel> categoriasModel = new ArrayList<>();
-
-        categoriasModel.addAll(consultarCategoriasDAO.consultarCategoriasFuncion(
-                idCategoria,
-                descripcionCategoria));
+        CategoriasModel categoriasModel1 = new CategoriasModel();
+        categoriasModel1.setIdCategoria(idCategoria);
+        categoriasModel1.setDescripcionCategoria(descripcionCategoria);
+        categoriasModel.addAll(categoriasDAO.consultarCategoria(
+                categoriasModel1));
 
         genericResponse.setCodigo(Constantes.HTTP_200);
         genericResponse.setMensaje(Constantes.MENSAJE_EXITO);

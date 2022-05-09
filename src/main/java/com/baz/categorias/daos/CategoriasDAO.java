@@ -2,6 +2,8 @@ package com.baz.categorias.daos;
 
 import com.baz.categorias.models.CategoriasModel;
 
+import java.util.List;
+
 
 /**
  * <b>CategoriasDAO</b>
@@ -14,7 +16,7 @@ import com.baz.categorias.models.CategoriasModel;
 public interface CategoriasDAO {
 
     public void crearCategoria(CategoriasModel categoriasModel);
-    public CategoriasModel consultarCategoria(CategoriasModel categoriasModel);
+    public List<CategoriasModel> consultarCategoria(CategoriasModel categoriasModel);
     public void actualizarCategoria(CategoriasModel categoriasModel);
     public void eliminarCategoria(CategoriasModel categoriasModel);
 
