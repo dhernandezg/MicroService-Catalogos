@@ -4,7 +4,6 @@ import com.baz.categorias.models.OperacionPsql;
 import com.baz.utils.BaseDeDatosService;
 import com.baz.utils.ProceduredParameter;
 import com.baz.utils.StoredProcedure;
-import org.testcontainers.shaded.org.bouncycastle.util.Store;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;

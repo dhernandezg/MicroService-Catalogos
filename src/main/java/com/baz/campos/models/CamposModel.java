@@ -43,5 +43,5 @@ public class CamposModel implements Serializable {
 
     @Schema(example = "Daniel Hernandez", description = "NOmbre del usuario.")
     @Column(name = "usuario")
-    private Integer usuarioNombre;
+    private String usuarioNombre;
 }
