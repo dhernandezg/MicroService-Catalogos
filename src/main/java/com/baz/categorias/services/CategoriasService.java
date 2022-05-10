@@ -32,12 +32,10 @@ public class CategoriasService {
 
         ArrayList<String> lista = new ArrayList<>();
 
-        lista.add(Constantes.CREATE);
-        lista.add(Constantes.READ);
-        lista.add(Constantes.UPDATE);
-        lista.add(Constantes.DELETE);
-        lista.add(Constantes.SEQUENCE);
-        lista.add(Constantes.EXISTENCE);
+        lista.add(Constantes.CREATE + Constantes.CATEGORIAS);
+        lista.add(Constantes.READ + Constantes.CATEGORIAS);
+        lista.add(Constantes.UPDATE + Constantes.CATEGORIAS);
+        lista.add(Constantes.DELETE + Constantes.CATEGORIAS);
 
         return lista;
     }

@@ -2,12 +2,18 @@ package com.baz.utils;
 
 public class Constantes {
 
+    //OPERACIONES
     public final static String CREATE = "CREAR";
     public final static String READ = "CONSULTAR";
     public final static String UPDATE = "ACTUALIZAR";
     public final static String DELETE = "ELIMINAR";
-    public final static String SEQUENCE = "SECUENCIA";
-    public final static String EXISTENCE = "EXISTENCIA";
+
+    //ENTIDADES
+    public final static String CATEGORIAS = "Categoria";
+    public final static String CATALOGOS = "Catalogo";
+    public final static String CAMPOS = "Campo";
+    public final static String STATUS = "Status";
+    public final static String JERARQUIAS = "Jerarquia";
 
     //CODIGOS HTTP
 
