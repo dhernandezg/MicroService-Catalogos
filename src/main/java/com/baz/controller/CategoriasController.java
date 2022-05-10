@@ -1,6 +1,7 @@
 package com.baz.controller;
 
 import com.baz.categorias.dtos.GenericResponse;
+import com.baz.categorias.models.CategoriasModel;
 import com.baz.categorias.services.CategoriasService;
 import com.baz.utils.Constantes;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
@@ -42,28 +43,37 @@ public class CategoriasController {
 
 
     /**
-     * <b>${nombreClase}</b>
-     * @descripcion: breve descripción del contenido
-     * @autor: ${user}, Desarrollador
+     * <b>consultarCategoria</b>
+     * @descripcion: Método GET para consulta por categoría.
+     * @autor: DIego Vázquez Pérez
+     * @param idCategoria Descripción de la categoria.
      * @param descripcionCategoria Nombre de la categoria.
-     * @ultimaModificacion: ${date}
+     * @ultimaModificacion: 09/05/2022
      */
 
     @GET
     @Path("/ConsultarCategoria")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response consultarCategoria(
+    public GenericResponse<Iterable<CategoriasModel>> consultarCategoria(
             @Schema(example = "1", description = "Identificador de la categoria")
             @QueryParam("idCategoria") Integer idCategoria,
             @Schema(example = "GEOGRAFIA", description = "Nombre de la categoria")
             @QueryParam("descripcionCategoria") String descripcionCategoria
     ){
 
-        return Response.ok().entity(
-                        categoriasService.consultarCategoria(idCategoria, descripcionCategoria))
-                .build();
+        Iterable<CategoriasModel> categoriasModel = categoriasService.consultarCategoria(idCategoria, descripcionCategoria);
+
+        return new GenericResponse<Iterable<CategoriasModel>>(Constantes.HTTP_200, Constantes.MENSAJE_EXITO, categoriasModel) ;
     }
 
+    /**
+     * <b>crearCategoria</b>
+     * @descripcion: Método PUT para crear categoría.
+     * @autor: Diego Vázquez Pérez
+     * @param descripcionCategoria Descripcion/nombre de la categoría.
+     * @param usuario Nombre del usuario quien da de alta la categoría.
+     * @ultimaModificacion: 09/05/2022
+     */
 
     @PUT
     @Path("/CrearCategoria")

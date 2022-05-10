@@ -23,6 +23,9 @@ public class CategoriasService {
     @Inject
     CrearCategoriaDAO crearCategoriaDAO;
 
+    @Inject
+    ConsultarCategoriaDAO consultarCategoriaDAO;
+
     public List<String> listaOperacionesCaterogias(){
 
         ArrayList<String> lista = new ArrayList<>();
@@ -62,23 +65,10 @@ public class CategoriasService {
      * @ultimaModificacion: 05/05/2022
      */
 
-    public GenericResponse consultarCategoria(Integer idCategoria,
-                                              String descripcionCategoria){
-/*
-        GenericResponse genericResponse = new GenericResponse("", "", null);
-        List<CategoriasModel> categoriasModel = new ArrayList<>();
-        CategoriasModel categoriasModel1 = new CategoriasModel();
-        categoriasModel1.setIdCategoria(idCategoria);
-        categoriasModel1.setDescripcionCategoria(descripcionCategoria);
-        categoriasModel.addAll(categoriasDAO.consultarCategoria(
-                categoriasModel1));
+    public List<CategoriasModel> consultarCategoria(Integer idCategoria,
+                                                    String descripcionCategoria){
 
-        genericResponse.setCodigo(Constantes.HTTP_200);
-        genericResponse.setMensaje(Constantes.MENSAJE_EXITO);
-        genericResponse.setRespuesta(categoriasModel);
-
-        return genericResponse;*/
-        return null;
+        return consultarCategoriaDAO.consultarCategoria(idCategoria, descripcionCategoria);
     }
 
 }

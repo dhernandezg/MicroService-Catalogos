@@ -38,7 +38,7 @@ public class CategoriasModel implements Serializable {
 
     @Schema(example = "1", description = "ACTIVO")
     @Column(name = "STATUSID")
-    private BigDecimal idStatus;
+    private Integer idStatus;
 
     @Schema(example = "2022-05-02 16:03:52.245", description = "Fecha de última modificación")
     @Column(name = "MODIFICACION")
@@ -52,7 +52,7 @@ public class CategoriasModel implements Serializable {
     public CategoriasModel(
             Integer idCategoria,
             String descripcionCategoria,
-            BigDecimal idStatus,
+            Integer idStatus,
             //LocalDateTime fechaModificacion,
             String nombreUsuario
     ){
