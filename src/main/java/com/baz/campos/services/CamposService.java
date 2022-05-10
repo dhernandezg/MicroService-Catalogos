@@ -4,6 +4,7 @@ import com.baz.campos.daos.ActualizarCampoDao;
 import com.baz.campos.daos.ConsultarCampoDao;
 import com.baz.campos.daos.CrearCampoDao;
 import com.baz.campos.daos.EliminarCampoDao;
+import com.baz.campos.models.CamposModel;
 import com.baz.categorias.dtos.GenericResponse;
 import com.baz.utils.Constantes;
 
@@ -70,6 +71,23 @@ public class CamposService {
 
         return crearCampoDao.crearCampo(descripcionCampo,
                 usuarioNombre);
+
+    }
+
+    /**
+     * <b>consultarCampo</b>
+     * @descripcion: Método para invocar consultar campo.
+     * @autor: Diego Vázquez Pérez
+     * @param idCampo Identificador del campo
+     * @param descripcionCampo Descripción del campo
+     * @ultimaModificacion: ${date}
+     */
+
+    public List<CamposModel> consultarCampo(Integer idCampo,
+                                            String descripcionCampo){
+
+        return consultarCampoDao.consultarCampos(idCampo,
+                descripcionCampo);
 
     }
 }
