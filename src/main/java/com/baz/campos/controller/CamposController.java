@@ -57,7 +57,8 @@ public class CamposController {
         Iterable<CamposModel> camposModels = camposService.consultarCampo(idCampo,
                 descripcionCampo);
 
-        return new GenericResponse<>(Constantes.HTTP_200,
+        return new GenericResponse<>(
+                Constantes.HTTP_200,
                 Constantes.MENSAJE_EXITO,
                 camposModels);
     }
@@ -80,10 +81,47 @@ public class CamposController {
             @Schema(example = "Daniel Hernandez", description = "Nombre del usuario.")
             @QueryParam("usuarioNombre") String usuarioNombre){
 
-        boolean response = camposService.crearCampo(descripcionCampo,
+        boolean response = camposService.crearCampo(
+                descripcionCampo,
                 usuarioNombre);
 
         return new GenericResponse<>(Constantes.HTTP_200,
+                Constantes.MENSAJE_EXITO,
+                response);
+
+    }
+
+    /**
+     * <b>actualizarCampo</b>
+     * @descripcion: Método PUT para actualizar campo
+     * @autor: Diego Vázquez Pérez
+     * @param idCampo Identificador del campo
+     * @param descripcionCampo Descripción del campo
+     * @param idStatus Identificador del status
+     * @param usuarioNombre Nombre del usuario
+     * @ultimaModificacion: 10/05/2022
+     */
+
+    @PUT
+    @Path("/ActualizarCampo")
+    @Produces(MediaType.APPLICATION_JSON)
+    public GenericResponse<Boolean> actualizarCampo(
+            @Schema(example = "1", description = "Identificador del campo.")
+            @QueryParam("idCampo") Integer idCampo,
+            @Schema(example = "NOMBRE_CORTO", description = "Descripción del campo.")
+            @QueryParam("descripcionCampo") String descripcionCampo,
+            @Schema(example = "1", description = "Status del campo.")
+            @QueryParam("idStatus") Integer idStatus,
+            @Schema(example = "Daniel Hernandez", description = "Nombre del usuario.")
+            @QueryParam("usuarioNombre") String usuarioNombre){
+
+        boolean response = camposService.actualizarCampo(idCampo,
+                descripcionCampo,
+                idStatus,
+                usuarioNombre);
+
+        return new GenericResponse<>(
+                Constantes.HTTP_200,
                 Constantes.MENSAJE_EXITO,
                 response);
 
