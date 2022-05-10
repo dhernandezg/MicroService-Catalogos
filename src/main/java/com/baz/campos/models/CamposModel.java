@@ -37,7 +37,7 @@ public class CamposModel implements Serializable {
     @Column(name = "statusid")
     private Integer idStatus;
 
-    @Schema(example = "1", description = "Fecha de última modificaciñon del campo.")
+    @Schema(example = "2022-12-12 12:12:12.123", description = "Fecha de última modificaciñon del campo.")
     @Column(name = "modificacion")
     private LocalDateTime fechaModificacion;
 
