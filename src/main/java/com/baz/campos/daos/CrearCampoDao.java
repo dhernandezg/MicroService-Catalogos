@@ -9,11 +9,10 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 /**
- * <b>${nombreClase}</b>
- * @descripcion: breve descripción del contenido
- * @autor: ${user}, Desarrollador
- * @param String Descripcion
- * @ultimaModificacion: ${date}
+ * <b>CrearCampoDao</b>
+ * @descripcion: Clase crearCampoDao para acceso a DB
+ * @autor: Diego Vázquez Pérez
+ * @ultimaModificacion: 10/05/2022
  */
 
 @ApplicationScoped
@@ -24,7 +23,7 @@ public class CrearCampoDao {
 
     /**
      * <b>crearCampo</b>
-     * @descripcion: Método para crea campo.
+     * @descripcion: Método para crear campo.
      * @autor: Diego Vázquez Pérez
      * @param descripcionCampo Descripcion del campo
      * @param usuarioNombre Nombre del usuario
