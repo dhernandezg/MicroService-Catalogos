@@ -7,10 +7,7 @@ import com.baz.utils.Constantes;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,5 +60,32 @@ public class CamposController {
         return new GenericResponse<>(Constantes.HTTP_200,
                 Constantes.MENSAJE_EXITO,
                 camposModels);
+    }
+
+    /**
+     * <b>crearCampo</b>
+     * @descripcion: Método POST para crear campo
+     * @autor: Diego Vázquez Pérez
+     * @param descripcionCampo Descripcion del campo.
+     * @param usuarioNombre Nombre del usuario
+     * @ultimaModificacion: 10/05/2022
+     */
+
+    @POST
+    @Path("/CrearCampo")
+    @Produces(MediaType.APPLICATION_JSON)
+    public GenericResponse<Boolean> crearCampo(
+            @Schema(example = "NOMBRE_CORTO", description = "Descripción del campo.")
+            @QueryParam("descripcionCampo") String descripcionCampo,
+            @Schema(example = "Daniel Hernandez", description = "Nombre del usuario.")
+            @QueryParam("usuarioNombre") String usuarioNombre){
+
+        boolean response = camposService.crearCampo(descripcionCampo,
+                usuarioNombre);
+
+        return new GenericResponse<>(Constantes.HTTP_200,
+                Constantes.MENSAJE_EXITO,
+                response);
+
     }
 }
