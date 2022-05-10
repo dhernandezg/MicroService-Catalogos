@@ -10,14 +10,14 @@ import javax.inject.Inject;
 import java.util.List;
 
 /**
- * <b>ConsultarCategoriaDAO</b>
- * @descripcion: Clase ConsultarCategoriaDAO para acceso a DB.
+ * <b>ConsultarCategoriaDao</b>
+ * @descripcion: Clase ConsultarCategoriaDao para acceso a DB.
  * @autor: Diego Vázquez Pérez
  * @ultimaModificacion: 09/05/2022
  */
 
 @ApplicationScoped
-public class ConsultarCategoriaDAO {
+public class ConsultarCategoriaDao {
 
     @Inject
     BaseDeDatosService baseDeDatosService;

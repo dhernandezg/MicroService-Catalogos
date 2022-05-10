@@ -10,14 +10,14 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 /**
- * <b>CrearCategoriaDAO</b>
+ * <b>CrearCategoriaDao</b>
  * @descripcion: Clase DAO para acceso a DB.
  * @autor: Diego Vázquez Pérez
  * @ultimaModificacion: 09/05/2022
  */
 
 @ApplicationScoped
-public class CrearCategoriaDAO {
+public class CrearCategoriaDao {
 
     @Inject
     BaseDeDatosService baseDeDatosService;

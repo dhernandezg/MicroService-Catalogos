@@ -2,7 +2,6 @@ package com.baz.categorias.services;
 
 import com.baz.categorias.daos.*;
 import com.baz.categorias.models.CategoriasModel;
-import com.baz.categorias.dtos.GenericResponse;
 import com.baz.utils.Constantes;
 
 import javax.inject.Inject;
@@ -21,10 +20,10 @@ import java.util.*;
 public class CategoriasService {
 
     @Inject
-    CrearCategoriaDAO crearCategoriaDAO;
+    CrearCategoriaDao crearCategoriaDAO;
 
     @Inject
-    ConsultarCategoriaDAO consultarCategoriaDAO;
+    ConsultarCategoriaDao consultarCategoriaDAO;
 
     public List<String> listaOperacionesCaterogias(){
 
