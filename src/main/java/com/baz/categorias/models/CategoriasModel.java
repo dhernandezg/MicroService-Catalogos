@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
@@ -47,20 +46,4 @@ public class CategoriasModel implements Serializable {
     @Schema(example = "DIEGO VAZQUEZ P.", description = "Nombre del usuario.")
     @Column(name = "USUARIO")
     private String nombreUsuario;
-
-    //Constructor de la clase
-    public CategoriasModel(
-            Integer idCategoria,
-            String descripcionCategoria,
-            Integer idStatus,
-            //LocalDateTime fechaModificacion,
-            String nombreUsuario
-    ){
-        this.idCategoria = idCategoria;
-        this.descripcionCategoria = descripcionCategoria;
-        this.idStatus = idStatus;
-        //this.fechaModificacion = fechaModificacion;
-        this.nombreUsuario = nombreUsuario;
-    }
-
 }
