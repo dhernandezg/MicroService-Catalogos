@@ -26,16 +26,16 @@ public class EliminarCategoriaDao {
      * @descripcion: Método que permite eliminar una categoría mediante parámetros.
      * @autor: Diego Vázquez Pérez
      * @param idCategoria Identificador de la categoría.
-     * @param descripcionCategoria Descripción de la categoría.
+     * @param usuarioNombre Nombre del usuario.
      * @ultimaModificacion: 10/05/2022
      */
 
     public boolean eliminarCategoria(Integer idCategoria,
-                                     String descripcionCategoria){
+                                     String usuarioNombre){
 
         StoredProcedure storedProcedure = new StoredProcedure("FNCATEGORIADEL", OperacionPsql.class);
         storedProcedure.addParameters(new ProceduredParameter(1, "v_CATEGORIAID", idCategoria, Integer.class));
-        storedProcedure.addParameters(new ProceduredParameter(2, "v_USUARIO", descripcionCategoria, String.class));
+        storedProcedure.addParameters(new ProceduredParameter(2, "v_USUARIO", usuarioNombre, String.class));
 
         var data = baseDeDatosService.<OperacionPsql>obtenerElementos(storedProcedure);
 

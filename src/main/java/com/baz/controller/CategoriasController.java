@@ -92,14 +92,17 @@ public class CategoriasController {
 
 
     /**
-     * <b>${nombreClase}</b>
-     * @descripcion: breve descripción del contenido
-     * @autor: ${user}, Desarrollador
-     * @param String Descripcion
-     * @ultimaModificacion: ${date}
+     * <b>actualizarCategoria</b>
+     * @descripcion: Método para invocar actualización de catergoría.
+     * @autor: Diego Vázquez Pérez
+     * @param idCategoria Identificador de la categoria
+     * @param descripcionCategoria Nombre de la categoría.
+     * @param idStatus Identificador del estatus
+     * @param usuarioNombre Nombre del usuario
+     * @ultimaModificacion: 10/05/2022
      */
 
-    @PUT
+    @PATCH
     @Path("/ActualizarCategoria")
     @Produces(MediaType.APPLICATION_JSON)
     public GenericResponse<Boolean> actualizarCategoria(
@@ -120,6 +123,35 @@ public class CategoriasController {
                 descripcionCategoria,
                 idStatus,
                 usuarioNombre);
+        return new GenericResponse<>(Constantes.HTTP_200, Constantes.MENSAJE_EXITO, response);
+    }
+
+
+    /**
+     * <b>eliminarCategoria</b>
+     * @descripcion: Servicio para invocación de eliminar categoría.
+     * @autor: Diego Vázquez Pérez
+     * @param idCategoria Identificador de la categoria
+     * @param  usuarioNombre Nombre del usuario
+     * @ultimaModificacion: 10/05/2022
+     */
+
+
+    @DELETE
+    @Path("/EliminarCategoria")
+    @Produces(MediaType.APPLICATION_JSON)
+    public GenericResponse<Boolean> eliminarCategoria(
+            @Schema(example = "1", description = "Identificador de la categoria")
+            @QueryParam("idCategoria") Integer idCategoria,
+
+            @Schema(example = "Diego Vazquez Perez", description = "Nombre del usuario")
+            @QueryParam("usuarioNombre") String usuarioNombre
+    ){
+
+        boolean response = categoriasService.eliminarCategoria(
+                idCategoria,
+                usuarioNombre);
+
         return new GenericResponse<>(Constantes.HTTP_200, Constantes.MENSAJE_EXITO, response);
     }
 

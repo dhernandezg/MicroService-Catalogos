@@ -106,15 +106,15 @@ public class CategoriasService {
      * @descripcion: Método para invocar la eliminación de categoría.
      * @autor: Diego Vázquez Pérez
      * @param idCategoria Identificador de la categoria.
-     * @param descripcionCategoria Descripción de la categoría.
+     * @param usuarioNombre Nombre del usuario.
      * @ultimaModificacion: 10/05/2022
      */
 
     public boolean eliminarCategoria(Integer idCategoria,
-                                     String descripcionCategoria){
+                                     String usuarioNombre){
 
         return eliminarCategoriaDao.eliminarCategoria(idCategoria,
-                descripcionCategoria);
+                usuarioNombre);
     }
 
 }
