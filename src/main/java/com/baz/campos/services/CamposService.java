@@ -27,21 +27,15 @@ public class CamposService {
      * @ultimaModificacion: 10/05/2022
      */
 
-    public GenericResponse<List> listaOperacionesCampos(){
+    public ArrayList listaOperacionesCampos(){
 
         ArrayList<String> lista = new ArrayList<>();
-        GenericResponse response = new GenericResponse<>("", "", null);
 
         lista.add(Constantes.CREATE + Constantes.CAMPOS);
         lista.add(Constantes.READ + Constantes.CAMPOS);
         lista.add(Constantes.UPDATE + Constantes.CAMPOS);
         lista.add(Constantes.DELETE + Constantes.CAMPOS);
 
-        response.setCodigo(Constantes.HTTP_200);
-        response.setMensaje(Constantes.MENSAJE_EXITO);
-        response.setRespuesta(lista);
-
-
-        return response;
+        return lista;
     }
 }

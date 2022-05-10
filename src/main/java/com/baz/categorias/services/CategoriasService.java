@@ -28,7 +28,7 @@ public class CategoriasService {
     @Inject
     ActualizarCategoriaDao actualizarCategoriaDao;
 
-    public List<String> listaOperacionesCaterogias(){
+    public ArrayList listaOperacionesCaterogias(){
 
         ArrayList<String> lista = new ArrayList<>();
 

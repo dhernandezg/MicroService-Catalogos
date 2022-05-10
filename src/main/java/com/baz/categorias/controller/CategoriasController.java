@@ -1,4 +1,4 @@
-package com.baz.controller;
+package com.baz.categorias.controller;
 
 import com.baz.categorias.dtos.GenericResponse;
 import com.baz.categorias.models.CategoriasModel;
@@ -9,7 +9,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,9 +36,12 @@ public class CategoriasController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<String> listaOperaciones(){
+    public GenericResponse<ArrayList> listaOperaciones(){
 
-        return categoriasService.listaOperacionesCaterogias();
+        return new GenericResponse<>(
+                Constantes.HTTP_200,
+                Constantes.MENSAJE_EXITO,
+                categoriasService.listaOperacionesCaterogias());
     }
 
 
@@ -92,10 +95,13 @@ public class CategoriasController {
 
 
     /**
-     * <b>${nombreClase}</b>
-     * @descripcion: breve descripción del contenido
-     * @autor: ${user}, Desarrollador
-     * @param String Descripcion
+     * <b>actualizarCategoria</b>
+     * @descripcion: Servicio para eliminar categoría.
+     * @autor: Diego Vázquez Pérez
+     * @param idCategoria Identificador de la categoria
+     * @param descripcionCategoria Nombre de la categoría
+     * @param idStatus Identificador del estatus
+     * @param usuarioNombre Nombre del usuario
      * @ultimaModificacion: ${date}
      */
 

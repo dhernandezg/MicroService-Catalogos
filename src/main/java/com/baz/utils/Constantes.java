@@ -3,10 +3,10 @@ package com.baz.utils;
 public class Constantes {
 
     //OPERACIONES
-    public final static String CREATE = "CREAR";
-    public final static String READ = "CONSULTAR";
-    public final static String UPDATE = "ACTUALIZAR";
-    public final static String DELETE = "ELIMINAR";
+    public final static String CREATE = "Crear";
+    public final static String READ = "Consultar";
+    public final static String UPDATE = "Actualizar";
+    public final static String DELETE = "Eliminar";
 
     //ENTIDADES
     public final static String CATEGORIAS = "Categoria";

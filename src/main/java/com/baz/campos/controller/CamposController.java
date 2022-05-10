@@ -1,0 +1,38 @@
+package com.baz.campos.controller;
+
+import com.baz.campos.services.CamposService;
+import com.baz.categorias.dtos.GenericResponse;
+import com.baz.utils.Constantes;
+
+import javax.inject.Inject;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import java.util.ArrayList;
+import java.util.List;
+
+@Path("/CamposService")
+public class CamposController {
+
+    @Inject
+    CamposService camposService;
+
+    /**
+     * <b>listaOperaciones</b>
+     * @descripcion: Método para mostrar lista de operaciones que
+     * el usuario puede ejecutar en Campos.
+     * @autor: Diego Vázquez Pérez
+     * @ultimaModificacion: Diego Vázquez Pérez
+     */
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public GenericResponse<ArrayList> listaOperaciones(){
+
+        return new GenericResponse<>(
+                Constantes.HTTP_200,
+                Constantes.MENSAJE_EXITO,
+                camposService.listaOperacionesCampos());
+    }
+}
