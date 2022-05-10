@@ -126,4 +126,32 @@ public class CamposController {
                 response);
 
     }
+
+    /**
+     * <b>eliminarCampo</b>
+     * @descripcion: Método DELETE para eliminar campos.
+     * @autor: Diego Vázquez Pérez
+     * @param idCampo Identificador del campo
+     * @param usuarioNombre Nombre del usuario
+     * @ultimaModificacion: 10/05/2022
+     */
+
+    @DELETE
+    @Path("/EliminarCampo")
+    @Produces(MediaType.APPLICATION_JSON)
+    public GenericResponse<Boolean> eliminarCampo(
+            @Schema(example = "1", description = "Identificador del campo.")
+            @QueryParam("idCampo") Integer idCampo,
+            @Schema(example = "Daniel Hernandez", description = "Nombre del usuario.")
+            @QueryParam("usuarioNombre") String usuarioNombre){
+
+        boolean response = camposService.eliminarCampo(
+                idCampo,
+                usuarioNombre);
+
+        return new GenericResponse<>(
+                Constantes.HTTP_200,
+                Constantes.MENSAJE_EXITO,
+                response);
+    }
 }
