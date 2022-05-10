@@ -90,4 +90,26 @@ public class CamposService {
                 descripcionCampo);
 
     }
+
+    /**
+     * <b>actualizarCampo</b>
+     * @descripcion: Método para invocar actualizar campo
+     * @autor: Diego Vázquez Pérez
+     * @param idCampo Identificador del campo
+     * @param descripcionCampo Descripción del campo
+     * @param idStatus Identificador del status
+     * @param usuarioNombre Nombre del usuario
+     * @ultimaModificacion: 10/05/2022
+     */
+
+    public boolean actualizarCampo(Integer idCampo,
+                                   String descripcionCampo,
+                                   Integer idStatus,
+                                   String usuarioNombre){
+
+        return actualizarCampoDao.actualizarCampo(idCampo,
+                descripcionCampo,
+                idStatus,
+                usuarioNombre);
+    }
 }
