@@ -75,7 +75,7 @@ public class CategoriasController {
      * @ultimaModificacion: 09/05/2022
      */
 
-    @PUT
+    @POST
     @Path("/CrearCategoria")
     @Produces(MediaType.APPLICATION_JSON)
     public GenericResponse<Boolean> crearCategoria(
@@ -87,6 +87,39 @@ public class CategoriasController {
 
         boolean response = categoriasService.crearCategoria(descripcionCategoria, usuario);
 
+        return new GenericResponse<>(Constantes.HTTP_200, Constantes.MENSAJE_EXITO, response);
+    }
+
+
+    /**
+     * <b>${nombreClase}</b>
+     * @descripcion: breve descripción del contenido
+     * @autor: ${user}, Desarrollador
+     * @param String Descripcion
+     * @ultimaModificacion: ${date}
+     */
+
+    @PUT
+    @Path("/ActualizarCategoria")
+    @Produces(MediaType.APPLICATION_JSON)
+    public GenericResponse<Boolean> actualizarCategoria(
+            @Schema(example = "1", description = "Identificador de la categoria")
+            @QueryParam("idCategoria") Integer idCategoria,
+
+            @Schema(example = "DIVISAS", description = "Nombre de la categoría.")
+            @QueryParam("descripcionCategoria") String descripcionCategoria,
+
+            @Schema(example = "1", description = "Identificador del estatus.")
+            @QueryParam("idStatus") Integer idStatus,
+
+            @Schema(example = "Diego Vazquez Perez", description = "Nombre del usuario")
+            @QueryParam("usuarioNombre") String usuarioNombre
+    ){
+
+        boolean response = categoriasService.actualizarCategoria(idCategoria,
+                descripcionCategoria,
+                idStatus,
+                usuarioNombre);
         return new GenericResponse<>(Constantes.HTTP_200, Constantes.MENSAJE_EXITO, response);
     }
 

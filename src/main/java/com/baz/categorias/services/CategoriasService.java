@@ -75,11 +75,15 @@ public class CategoriasService {
 
 
     /**
-     * <b>${nombreClase}</b>
-     * @descripcion: breve descripción del contenido
-     * @autor: ${user}, Desarrollador
-     * @param String Descripcion
-     * @ultimaModificacion: ${date}
+     * <b>actualizarCategoria</b>
+     * @descripcion: Método para actualizar categorías mediante idCategoria,
+     * descripcionCategoria, idStatus, usuarioNombre.
+     * @autor: Diego Vázquez Pérez
+     * @param idCategoria Identificador de la categoría.
+     * @param descripcionCategoria NOmbre de la categoría.
+     * @param idStatus Identificador del estado de la categoría.
+     * @param usuarioNombre NOmbre del usuario que actualiza la categoría.
+     * @ultimaModificacion: 09/05/2022
      */
 
     public boolean actualizarCategoria(Integer idCategoria,
