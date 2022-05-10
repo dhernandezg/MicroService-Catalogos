@@ -28,6 +28,9 @@ public class CategoriasService {
     @Inject
     ActualizarCategoriaDao actualizarCategoriaDao;
 
+    @Inject
+    EliminarCategoriaDao eliminarCategoriaDao;
+
     public List<String> listaOperacionesCaterogias(){
 
         ArrayList<String> lista = new ArrayList<>();
@@ -95,6 +98,23 @@ public class CategoriasService {
                 descripcionCategoria,
                 idStatus,
                 usuarioNombre);
+    }
+
+
+    /**
+     * <b>eliminarCategoria</b>
+     * @descripcion: Método para invocar la eliminación de categoría.
+     * @autor: Diego Vázquez Pérez
+     * @param idCategoria Identificador de la categoria.
+     * @param descripcionCategoria Descripción de la categoría.
+     * @ultimaModificacion: 10/05/2022
+     */
+
+    public boolean eliminarCategoria(Integer idCategoria,
+                                     String descripcionCategoria){
+
+        return eliminarCategoriaDao.eliminarCategoria(idCategoria,
+                descripcionCategoria);
     }
 
 }
