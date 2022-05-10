@@ -25,6 +25,9 @@ public class CategoriasService {
     @Inject
     ConsultarCategoriaDao consultarCategoriaDAO;
 
+    @Inject
+    ActualizarCategoriaDao actualizarCategoriaDao;
+
     public List<String> listaOperacionesCaterogias(){
 
         ArrayList<String> lista = new ArrayList<>();
@@ -68,6 +71,26 @@ public class CategoriasService {
                                                     String descripcionCategoria){
 
         return consultarCategoriaDAO.consultarCategoria(idCategoria, descripcionCategoria);
+    }
+
+
+    /**
+     * <b>${nombreClase}</b>
+     * @descripcion: breve descripción del contenido
+     * @autor: ${user}, Desarrollador
+     * @param String Descripcion
+     * @ultimaModificacion: ${date}
+     */
+
+    public boolean actualizarCategoria(Integer idCategoria,
+                                       String descripcionCategoria,
+                                       Integer idStatus,
+                                       String usuarioNombre){
+
+        return actualizarCategoriaDao.actualizarCategoria(idCategoria,
+                descripcionCategoria,
+                idStatus,
+                usuarioNombre);
     }
 
 }
