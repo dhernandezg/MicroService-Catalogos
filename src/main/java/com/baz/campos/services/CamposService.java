@@ -112,4 +112,21 @@ public class CamposService {
                 idStatus,
                 usuarioNombre);
     }
+
+    /**
+     * <b>eliminarCampo</b>
+     * @descripcion: Método para invocar eliminar campo.
+     * @autor: Diego Vázquez Pérez
+     * @param idCampo Identificador del campo
+     * @param usuarioNombre Nombre del usuario
+     * @ultimaModificacion: 10/05/2022
+     */
+
+    public boolean eliminarCampo(Integer idCampo,
+                                 String usuarioNombre){
+
+        return eliminarCampoDao.eliminarCampo(idCampo,
+                usuarioNombre);
+
+    }
 }
