@@ -4,11 +4,13 @@ import com.baz.origen.daos.ActualizarOrigen;
 import com.baz.origen.daos.ConsultarOrigen;
 import com.baz.origen.daos.CrearOrigen;
 import com.baz.origen.daos.EliminarOrigen;
+import com.baz.origen.models.OrigenModel;
 import com.baz.utils.Constantes;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <b>${nombreClase}</b>
@@ -69,5 +71,24 @@ public class OrigenService {
         return crearOrigen.crearOrigen(descripcionOrigen,
                 claveOrigen,
                 usuarioNombre);
+    }
+
+    /**
+     * <b>consultarOrigen</b>
+     * @descripcion: Método para consultar origen
+     * @autor: Diego Vázquez Pérez
+     * @param idOrigen Identificador del origen
+     * @param descripcionOrigen Descripción del origen
+     * @param claveOrigen Clave del origen
+     * @ultimaModificacion: 12/05/2022
+     */
+
+    public List<OrigenModel> consultarOrigen(Integer idOrigen,
+                                             String descripcionOrigen,
+                                             String claveOrigen){
+
+        return consultarOrigen.consultarOrigen(idOrigen,
+                descripcionOrigen,
+                claveOrigen);
     }
 }
