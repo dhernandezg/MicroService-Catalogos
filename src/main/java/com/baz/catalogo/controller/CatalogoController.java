@@ -1,70 +1,119 @@
 package com.baz.catalogo.controller;
 
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.PATCH;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 import com.baz.catalogo.models.Catalogo;
 import com.baz.catalogo.services.CatalogoFactory;
-import com.baz.dtos.CatalogoResponse;
+import com.baz.dtos.CatalogoResponseDto;
+import com.baz.utils.Constantes;
 
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
+
+/**
+ * <b>CatalogoController</b>
+ * @descripcion: Controlador del endpoint para catálogos
+ * @autor: Daniel Hernandez Garcia
+ * @ultimaModificacion: 11/05/2022
+ */
 @Path("/catalogos")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class CatalogoController {
+public class CatalogoController{
+    /**
+     * Objeto con acceso a la fabrica de catálogos
+     * */
     @Inject
     CatalogoFactory catalogoFactory;
 
+     /**
+     * Consulta la lista de catálogos con los parámetros especificados
+     * @param @QueryParam("idCategoria") - Contiene el identificador de categoría a consultar
+     * @param @QueryParam("idCatalogo") - Contiene el identificador del catalogo a consultar
+     * @param @QueryParam("idTipoCatalogo") - Contiene el identificador del tipo de catalogo a consultar
+     * @param @QueryParam("descripcion") - Contiene la descripción del catalogo a consultar
+     * @return CatalogoResponse<Iterable<Catalogo>> Respuesta con la lista de catálogos
+     */
     @GET
-    public CatalogoResponse<Iterable<Catalogo>> Consultar(@QueryParam("idCategoria") Integer idCategoria,
-            @QueryParam("idCatalogo") Integer idCatalogo,
-            @QueryParam("idTipoCatalogo") Integer idTipoCatalogo,
-            @QueryParam("descripcion") String descripcion) {
+    @Operation(summary = "Consulta la lista de catálogos con los parámetros especificados")
+    public CatalogoResponseDto<Iterable<Catalogo>> consultar(
+            @Parameter(description =  "Contiene el identificador de categoría a consultar") @QueryParam("idCategoria") Integer idCategoria,
+            @Parameter(description =  "Contiene el identificador del catalogo a consultar") @QueryParam("idCatalogo") Integer idCatalogo,
+            @Parameter(description =  "Contiene el identificador del tipo de catalogo a consultar") @QueryParam("idTipoCatalogo") Integer idTipoCatalogo,
+            @Parameter(description =  "Contiene la descripción del catalogo a consultar")@QueryParam("descripcion") String descripcion) {
         Catalogo datosConsulta = new Catalogo(idCategoria, idCatalogo, idTipoCatalogo, descripcion);
         Iterable<Catalogo> catalogos = catalogoFactory.obtenerCatalogos(datosConsulta);
-        return new CatalogoResponse<Iterable<Catalogo>>("200", "Operación exitosa.", catalogos);
+        return new CatalogoResponseDto<>("200", Constantes.MENSAJE_EXITO, catalogos);
     }
 
+    /**
+     * Consulta la lista de catálogos por identificador de catalogo especificado
+     * @param idCatalogo Identificador catalogo
+     * @return CatalogoResponse<Iterable<Catalogo>> Respuesta con lista de catálogos
+     */
     @GET
     @Path("/{idCatalogo}")
-    public CatalogoResponse<Iterable<Catalogo>> Consultar(@PathParam("idCatalogo") int idCatalogo) {
+    @Operation(summary = "Consulta la lista de catálogos por identificador de catalogo especificado")
+    public CatalogoResponseDto<Iterable<Catalogo>> consultar(
+            @Parameter(description =  "Identificador catalogo") @PathParam("idCatalogo") int idCatalogo) {
         Catalogo datosConsulta = new Catalogo(idCatalogo);
         Iterable<Catalogo> catalogos = catalogoFactory.obtenerCatalogos(datosConsulta);
-        return new CatalogoResponse<Iterable<Catalogo>>("200", "Operación exitosa.", catalogos);
+        return new CatalogoResponseDto<>("200", Constantes.MENSAJE_EXITO, catalogos);
     }
 
+    /**
+     * Registra un nuevo catalogo
+     * @param datosInsercion - Datos del catalogo a insertar
+     * @return CatalogoResponse<Boolean> Respuesta con valor true si se registro correctamente
+     */
     @POST
-    public CatalogoResponse<Boolean> Alta(Catalogo datosInsercion) {
+    @Operation(summary = "Registra un nuevo catalogo")
+    public CatalogoResponseDto<Boolean> registrar(
+            @Parameter(description =  "Datos del catalogo a insertar") Catalogo datosInsercion) {
         boolean exitoAlta = catalogoFactory.agregarCatalogo(datosInsercion);
-        return new CatalogoResponse<Boolean>("200", "Operación exitosa.", exitoAlta);
+        return new CatalogoResponseDto<>("200", "Operación exitosa.", exitoAlta);
     }
 
+    /**
+     * Elimina un catalogo a partir de un identificador
+     * @param @PathParam("idCatalogo") - Identificador de catalogo
+     * @param @PathParam("idCategoria") - Identificador de categoría
+     * @param @PathParam("usuario") - Usuario que realiza la eliminación
+     * @return CatalogoResponse<Boolean> Respuesta eliminación con valor true si fue exitoso
+     */
     @DELETE
     @Path("/{idCatalogo}/categoria/{idCategoria}/usuario/{usuario}")
-    public CatalogoResponse<Boolean> Eliminar(@PathParam("idCatalogo") Integer idCatalogo,
-            @PathParam("idCategoria") Integer idCategoria,
-            @PathParam("usuario") String usuario) {
-        boolean exitoAlta = catalogoFactory.eliminarCatalogo(idCategoria, idCatalogo, usuario);
-        return new CatalogoResponse<Boolean>("200", "Operación exitosa.", exitoAlta);
+    @Operation(summary = "Elimina un catalogo a partir de un identificador")
+    public CatalogoResponseDto<Boolean> eliminar(
+            @Parameter(description =  "Identificador de catalogo") @PathParam("idCatalogo") Integer idCatalogo,
+            @Parameter(description =  "Identificador de categoría") @PathParam("idCategoria") Integer idCategoria,
+            @Parameter(description =  "Usuario que opera") @PathParam("usuario") String usuario) {
+        boolean exitoEliminar = catalogoFactory.eliminarCatalogo(idCategoria, idCatalogo, usuario);
+        return new CatalogoResponseDto<>("200", Constantes.MENSAJE_EXITO, exitoEliminar);
     }
 
+    /**
+     * Actualiza los datos especificados de un catalogo
+     * @param datosActualizacion - Datos de actualización
+     * @return CatalogoResponse<Boolean> - Respuesta de actualización, true si fue exitosa
+     */
     @PUT
-    public CatalogoResponse<Boolean> Actualizar(Catalogo datosActualizacion) {
-        return ActualizarCatalogo(datosActualizacion);
+    @Operation(summary = "Actualiza los datos especificados de un catalogo")
+    public CatalogoResponseDto<Boolean> actualizar(@Parameter(description =  "Datos de actualización") Catalogo datosActualizacion) {
+        return actualizarCatalogo(datosActualizacion);
     }
 
+    /**
+     * Actualización parcial de los datos de un catalogo
+     * @param datosActualizacion Datos a actualizar
+     * @return CatalogoResponse<Boolean> Respuesta actualización, true si fue exitosa
+     */
     @PATCH
-    public CatalogoResponse<Boolean> ActualizarCatalogo(Catalogo datosActualizacion) {
-        boolean exitoAlta = catalogoFactory.actualizarCatalogo(datosActualizacion);
-        return new CatalogoResponse<Boolean>("200", "Operación exitosa.", exitoAlta);
+    @Operation(summary = "Actualización parcial de los datos de un catalogo")
+    public CatalogoResponseDto<Boolean> actualizarCatalogo(@Parameter(description =  "Datos a actualizar")Catalogo datosActualizacion) {
+        boolean exitoActualizar = catalogoFactory.actualizarCatalogo(datosActualizacion);
+        return new CatalogoResponseDto<>("200", Constantes.MENSAJE_EXITO, exitoActualizar);
     }
 }
