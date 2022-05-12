@@ -13,11 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <b>${nombreClase}</b>
- * @descripcion: breve descripción del contenido
- * @autor: ${user}, Desarrollador
- * @param String Descripcion
- * @ultimaModificacion: ${date}
+ * <b>OrigenService</b>
+ * @descripcion: Clase principal del servicio de Origen,
+ * dentro se encuentran los métodos CRUDde origen.
+ * @autor: Diego Vázquez Pérez
+ * @ultimaModificacion: 12/05/2022
  */
 
 @Singleton
