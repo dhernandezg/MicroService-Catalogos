@@ -75,7 +75,7 @@ public class OrigenService {
 
     /**
      * <b>consultarOrigen</b>
-     * @descripcion: Método para consultar origen
+     * @descripcion: Método para invocar consultar origen
      * @autor: Diego Vázquez Pérez
      * @param idOrigen Identificador del origen
      * @param descripcionOrigen Descripción del origen
@@ -90,5 +90,17 @@ public class OrigenService {
         return consultarOrigen.consultarOrigen(idOrigen,
                 descripcionOrigen,
                 claveOrigen);
+    }
+
+    /**
+     * <b>actualizarOrigen</b>
+     * @descripcion: Método para invocar actualizar origen
+     * @autor: Diego Vázquez Pérez
+     * @param origenModel Modelo de atributos del tipo Origen
+     * @ultimaModificacion: 12/05/2022
+     */
+
+    public boolean actualizarOrigen(OrigenModel origenModel){
+        return actualizarOrigen.actualizarOrigen(origenModel);
     }
 }
