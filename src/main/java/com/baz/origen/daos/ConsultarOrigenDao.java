@@ -27,17 +27,20 @@ public class ConsultarOrigenDao {
      * @descripcion: Método para consultar origen
      * @autor: Diego Vázquez Pérez
      * @param idOrigen Identificador del origen
-     * @param descripcionTipoCatalogo Descripcion del tipo de catálogo
+     * @param descripcionOrigen Descripcion del tipo de catálogo
+     * @param claveOrigen Clave del origen
      * @ultimaModificacion: 10/05/2022
      */
 
     public List<OrigenModel> consultarOrigen(
             Integer idOrigen,
-            String descripcionTipoCatalogo){
+            String descripcionOrigen,
+            String claveOrigen){
 
-        StoredProcedure storedProcedure = new StoredProcedure("FNTIPOCATALOSEL", OrigenModel.class);
-        storedProcedure.addParameters(new ProceduredParameter(1, "v_TIPOCATID", idOrigen, Integer.class));
-        storedProcedure.addParameters(new ProceduredParameter(2, "v_DESCTIPOCAT", descripcionTipoCatalogo, String.class));
+        StoredProcedure storedProcedure = new StoredProcedure("FNORIGENSEL", OrigenModel.class);
+        storedProcedure.addParameters(new ProceduredParameter(1, "v_ORIGENID", idOrigen, Integer.class));
+        storedProcedure.addParameters(new ProceduredParameter(2, "v_DESCORIGEN", descripcionOrigen, String.class));
+        storedProcedure.addParameters(new ProceduredParameter(3, "v_CLAVEORIGEN", claveOrigen, String.class));
 
         return baseDeDatosService.<OrigenModel>obtenerElementos(storedProcedure);
 
