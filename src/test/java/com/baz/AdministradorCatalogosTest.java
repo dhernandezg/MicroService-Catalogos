@@ -11,11 +11,6 @@ public class AdministradorCatalogosTest {
 
     @Test
     public void testHelloEndpoint() {
-        given()
-          .when().get("/administrador-catalogos")
-          .then()
-             .statusCode(200)
-             .body(is("Hello from RESTEasy Reactive"));
     }
 
 }

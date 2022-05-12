@@ -15,13 +15,13 @@ public class CatalogoResponseDto<T>{
     /**
      * Contiene el código de respuesta para la operación
      * */
-    @Schema(example = "200")
+    @Schema(example = "200.Catalogo-Consulta.C00000")
     private String codigo;
 
     /**
      * Contiene el mensaje con la descripción o resultado de la operación
      * */
-    @Schema(example = "Transacción exitosa")
+    @Schema(example = "La operación fue un éxito")
     private String mensaje;
 
     /**
