@@ -14,6 +14,7 @@ public class Constantes {
     public final static String CAMPOS = "Campo";
     public final static String STATUS = "Status";
     public final static String JERARQUIAS = "Jerarquia";
+    public final static String ORIGEN = "Origen";
 
     //CODIGOS HTTP
 
