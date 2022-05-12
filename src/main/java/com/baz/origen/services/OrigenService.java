@@ -52,4 +52,22 @@ public class OrigenService {
 
         return lista;
     }
+
+    /**
+     * <b>crearOrigen</b>
+     * @descripcion: Método para invocar crear origen.
+     * @autor: Diego Vázquez Pérez
+     * @param descripcionOrigen Descripción del origen
+     * @param claveOrigen Clave del origen
+     * @param usuarioNombre Nombre del usuario
+     * @ultimaModificacion: 12/05/2022
+     */
+
+    public boolean crearOrigen(String descripcionOrigen,
+                               String claveOrigen,
+                               String usuarioNombre){
+        return crearOrigen.crearOrigen(descripcionOrigen,
+                claveOrigen,
+                usuarioNombre);
+    }
 }
