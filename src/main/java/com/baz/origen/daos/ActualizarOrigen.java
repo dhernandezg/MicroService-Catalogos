@@ -6,6 +6,7 @@ import com.baz.utils.BaseDeDatosService;
 import com.baz.utils.ProceduredParameter;
 import com.baz.utils.StoredProcedure;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 /**
@@ -15,6 +16,7 @@ import javax.inject.Inject;
  * @ultimaModificacion: 12/05/2022
  */
 
+@ApplicationScoped
 public class ActualizarOrigen {
 
     @Inject
