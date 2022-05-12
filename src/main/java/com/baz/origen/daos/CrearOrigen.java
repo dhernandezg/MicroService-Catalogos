@@ -9,14 +9,14 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 /**
- * <b>CrearOrigenDao</b>
+ * <b>CrearOrigen</b>
  * @descripcion: Clase crear Origen para acceso a DB
  * @autor: Diego Vázquez Pérez
  * @ultimaModificacion: 10/05/2022
  */
 
 @ApplicationScoped
-public class CrearOrigenDao {
+public class CrearOrigen {
 
     @Inject
     BaseDeDatosService baseDeDatosService;

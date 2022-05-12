@@ -10,14 +10,14 @@ import javax.inject.Inject;
 import java.util.List;
 
 /**
- * <b>ConsultarOrigenDao</b>
+ * <b>ConsultarOrigen</b>
  * @descripcion: Clase consultar origen para acceso a DB
  * @autor: Diego Vázquez Pérez
  * @ultimaModificacion: 10/05/2022
  */
 
 @ApplicationScoped
-public class ConsultarOrigenDao {
+public class ConsultarOrigen {
 
     @Inject
     BaseDeDatosService baseDeDatosService;

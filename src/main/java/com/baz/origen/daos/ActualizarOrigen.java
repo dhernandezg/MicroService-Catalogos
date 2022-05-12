@@ -9,24 +9,23 @@ import com.baz.utils.StoredProcedure;
 import javax.inject.Inject;
 
 /**
- * <b>${nombreClase}</b>
- * @descripcion: breve descripción del contenido
- * @autor: ${user}, Desarrollador
- * @param String Descripcion
- * @ultimaModificacion: ${date}
+ * <b>ActualizarOrigen</b>
+ * @descripcion: Clase de acceso a DB para actualizar origen.
+ * @autor: Diego Vázquez Pérez
+ * @ultimaModificacion: 12/05/2022
  */
 
-public class DaoActualizarOrigen {
+public class ActualizarOrigen {
 
     @Inject
     BaseDeDatosService baseDeDatosService;
 
     /**
-     * <b>${nombreClase}</b>
-     * @descripcion: breve descripción del contenido
-     * @autor: ${user}, Desarrollador
-     * @param String Descripcion
-     * @ultimaModificacion: ${date}
+     * <b>actualizarOrigen</b>
+     * @descripcion: Método para actualizar origen en DB
+     * @autor: Diego Vázquez Pérez
+     * @param origenModel Entrada como modelo de datos origen, se omite fecha de moficiacion.
+     * @ultimaModificacion: 12/05/2022
      */
 
     public boolean actualizarOrigen(
