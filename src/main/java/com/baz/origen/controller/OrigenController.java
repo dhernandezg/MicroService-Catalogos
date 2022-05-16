@@ -101,4 +101,29 @@ public class OrigenController {
                 Constantes.MENSAJE_EXITO,
                 origenModels);
     }
+
+    /**
+     * <b>actualizarOrigen</b>
+     * @descripcion: Método PUT para actualizar origen
+     * @autor: Diego Vázquez Pérez
+     * @param origenModel Modelo de datos de acuerdo con la entidad TAORIGEN
+     * @ultimaModificacion: 16/05/2022
+     */
+
+    @PUT
+    @Path("/ActualizarOrigen")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public GenericResponse<Boolean> actualizarOrigen(
+            OrigenModel origenModel
+    ){
+
+        boolean response = origenService.actualizarOrigen(origenModel);
+
+        return new GenericResponse<>(
+                Constantes.HTTP_200,
+                Constantes.MENSAJE_EXITO,
+                response);
+
+    }
 }
