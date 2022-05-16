@@ -16,12 +16,12 @@ import java.time.LocalDateTime;
 public class OrigenModel implements Serializable {
 
     @Schema(example = "1", description = "Identificador del origen.")
-    @Column(name = "tipocatid")
+    @Column(name = "origenid")
     @Id
     private Integer idOrigen;
 
     @Schema(example = "Inteligencia de Datos e Innovación", description = "Descripción del origen.")
-    @Column(name = "desctipocat")
+    @Column(name = "descorigen")
     private String descripcionOrigen;
 
     @Schema(example = "IDI", description = "Clave del origen.")

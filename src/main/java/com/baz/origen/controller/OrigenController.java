@@ -106,19 +106,40 @@ public class OrigenController {
      * <b>actualizarOrigen</b>
      * @descripcion: Método PUT para actualizar origen
      * @autor: Diego Vázquez Pérez
-     * @param origenModel Modelo de datos de acuerdo con la entidad TAORIGEN
+     * @param idOrigen Identificador del origen a actualizar
+     * @param descripcionOrigen Nueva descripción del origen
+     * @param claveOrigen Nueva clave del origen
+     * @param idStatus Nuevo status del origen
+     * @param usuarioNombre Nombre del usuario que actualiza
      * @ultimaModificacion: 16/05/2022
      */
 
     @PUT
     @Path("/ActualizarOrigen")
-    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public GenericResponse<Boolean> actualizarOrigen(
-            OrigenModel origenModel
+            @Schema(example = "1", description = "Identificador del origen.")
+            @QueryParam("idOrigen") Integer idOrigen,
+
+            @Schema(example = "Inteligencia de Datos e Innovación", description = "Descripción del origen.")
+            @QueryParam("descripcionOrigen") String descripcionOrigen,
+
+            @Schema(example = "IDI", description = "Clave del campo.")
+            @QueryParam("claveOrigen") String claveOrigen,
+
+            @Schema(example = "1", description = "Status del origen.")
+            @QueryParam("idStatus") Integer idStatus,
+
+            @Schema(example = "Daniel Hernandez", description = "Nombre del usuario que actualiza.")
+            @QueryParam("usuarioNombre") String usuarioNombre
     ){
 
-        boolean response = origenService.actualizarOrigen(origenModel);
+        boolean response = origenService.actualizarOrigen(
+                idOrigen,
+                descripcionOrigen,
+                claveOrigen,
+                idStatus,
+                usuarioNombre);
 
         return new GenericResponse<>(
                 Constantes.HTTP_200,

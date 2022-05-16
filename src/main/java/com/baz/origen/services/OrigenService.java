@@ -6,9 +6,11 @@ import com.baz.origen.daos.CrearOrigen;
 import com.baz.origen.daos.EliminarOrigen;
 import com.baz.origen.models.OrigenModel;
 import com.baz.utils.Constantes;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import javax.ws.rs.QueryParam;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -96,11 +98,25 @@ public class OrigenService {
      * <b>actualizarOrigen</b>
      * @descripcion: Método para invocar actualizar origen
      * @autor: Diego Vázquez Pérez
-     * @param origenModel Modelo de atributos del tipo Origen
-     * @ultimaModificacion: 12/05/2022
+     * @param idOrigen Identificador del origen a actualizar
+     * @param descripcionOrigen Nueva descripción del origen
+     * @param claveOrigen Nueva clave del origen
+     * @param idStatus Nuevo status del origen
+     * @param usuarioNombre Nombre del usuario que actualiza
+     * @ultimaModificacion: 16/05/2022
      */
 
-    public boolean actualizarOrigen(OrigenModel origenModel){
-        return actualizarOrigen.actualizarOrigen(origenModel);
+    public boolean actualizarOrigen(
+            Integer idOrigen,
+            String descripcionOrigen,
+            String claveOrigen,
+            Integer idStatus,
+            String usuarioNombre){
+        return actualizarOrigen.actualizarOrigen(
+                idOrigen,
+                descripcionOrigen,
+                claveOrigen,
+                idStatus,
+                usuarioNombre);
     }
 }

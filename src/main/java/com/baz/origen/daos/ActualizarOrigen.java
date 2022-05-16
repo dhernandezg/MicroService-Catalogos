@@ -26,19 +26,27 @@ public class ActualizarOrigen {
      * <b>actualizarOrigen</b>
      * @descripcion: Método para actualizar origen en DB
      * @autor: Diego Vázquez Pérez
-     * @param origenModel Entrada como modelo de datos origen, se omite fecha de moficiacion.
-     * @ultimaModificacion: 12/05/2022
+     * @param idOrigen Identificador del origen a actualizar
+     * @param descripcionOrigen Nueva descripción del origen
+     * @param claveOrigen Nueva clave del origen
+     * @param idStatus Nuevo status del origen
+     * @param usuarioNombre Nombre del usuario que actualiza
+     * @ultimaModificacion: 16/05/2022
      */
 
     public boolean actualizarOrigen(
-            OrigenModel origenModel){
+            Integer idOrigen,
+            String descripcionOrigen,
+            String claveOrigen,
+            Integer idStatus,
+            String usuarioNombre){
 
         StoredProcedure actualizarOrigenFuncion = new StoredProcedure("FNORIGENUPD", OperacionPsql.class);
-        actualizarOrigenFuncion.addParameters(new ProceduredParameter(1, "v_ORIGENID", origenModel.getIdOrigen(), Integer.class));
-        actualizarOrigenFuncion.addParameters(new ProceduredParameter(2, "v_DESCORIGEN", origenModel.getDescripcionOrigen(), String.class));
-        actualizarOrigenFuncion.addParameters(new ProceduredParameter(3, "v_CLAVEORIGEN", origenModel.getClaveOrigen(), String.class));
-        actualizarOrigenFuncion.addParameters(new ProceduredParameter(4, "v_STATUSID", origenModel.getIdStatus(), Integer.class));
-        actualizarOrigenFuncion.addParameters(new ProceduredParameter(5, "v_USUARIO", origenModel.getUsuarioNombre(), String.class));
+        actualizarOrigenFuncion.addParameters(new ProceduredParameter(1, "v_ORIGENID", idOrigen, Integer.class));
+        actualizarOrigenFuncion.addParameters(new ProceduredParameter(2, "v_DESCORIGEN", descripcionOrigen, String.class));
+        actualizarOrigenFuncion.addParameters(new ProceduredParameter(3, "v_CLAVEORIGEN", claveOrigen, String.class));
+        actualizarOrigenFuncion.addParameters(new ProceduredParameter(4, "v_STATUSID", idStatus, Integer.class));
+        actualizarOrigenFuncion.addParameters(new ProceduredParameter(5, "v_USUARIO", usuarioNombre, String.class));
 
         var data = baseDeDatosService.<OperacionPsql>obtenerElementos(actualizarOrigenFuncion);
 
