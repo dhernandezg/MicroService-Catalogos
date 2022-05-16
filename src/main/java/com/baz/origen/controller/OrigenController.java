@@ -5,6 +5,7 @@ import com.baz.origen.models.OrigenModel;
 import com.baz.origen.services.OrigenService;
 import com.baz.utils.Constantes;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -146,5 +147,33 @@ public class OrigenController {
                 Constantes.MENSAJE_EXITO,
                 response);
 
+    }
+
+    /**
+     * <b>eliminarOrigen</b>
+     * @descripcion: Método DELETE para eliminar origen
+     * @autor: Diego Vázquez Pérez
+     * @param idOrigen Identificador del origen a eliminar
+     * @param usuarioNombre Nombre del usuario que elimina
+     * @ultimaModificacion: 16/05/2022
+     */
+
+    @DELETE
+    @Path("/EliminarOrigen")
+    @Produces(MediaType.APPLICATION_JSON)
+    public GenericResponse<Boolean> eliminarOrigen(
+            @Schema(example = "1", description = "Identificador del origen a eliinar.")
+            @QueryParam("idOrigen") Integer idOrigen,
+
+            @Schema(example = "Diego Vázquez", description = "Nombre del usuario que elimina.")
+            @QueryParam("usuarioNombre") String usuarioNombre
+    ){
+
+        boolean response = origenService.eliminarOrigen(idOrigen, usuarioNombre);
+
+        return new GenericResponse<>(
+                Constantes.HTTP_200,
+                Constantes.MENSAJE_EXITO,
+                response);
     }
 }

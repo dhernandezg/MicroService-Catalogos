@@ -119,4 +119,19 @@ public class OrigenService {
                 idStatus,
                 usuarioNombre);
     }
+
+    /**
+     * <b>eliminarOrigen
+     * @descripcion: Método para invocar eliminar origen
+     * @autor: Diego Vázquez Pérez
+     * @param idOrigen Identificador del origen a eliminar
+     * @param usuarioNombre Nombre del usuario que elimina
+     * @ultimaModificacion: 16/05/2022
+     */
+
+    public boolean eliminarOrigen(Integer idOrigen,
+                                  String usuarioNombre){
+
+        return eliminarOrigen.eliminarOrigen(idOrigen, usuarioNombre);
+    }
 }
