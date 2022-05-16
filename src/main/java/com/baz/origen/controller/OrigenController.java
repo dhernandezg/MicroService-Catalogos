@@ -1,6 +1,7 @@
 package com.baz.origen.controller;
 
 import com.baz.categorias.dtos.GenericResponse;
+import com.baz.origen.models.OrigenModel;
 import com.baz.origen.services.OrigenService;
 import com.baz.utils.Constantes;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
@@ -65,5 +66,39 @@ public class OrigenController {
                 Constantes.HTTP_200,
                 Constantes.MENSAJE_EXITO,
                 response);
+    }
+
+    /**
+     * <b>consultarOrigen</b>
+     * @descripcion: Método GET para consulta de origen
+     * @autor: Diego Vázquez Pérez
+     * @param idOrigen Identificador del origen
+     * @param descripcionOrigen Descripción del origen
+     * @param claveOrigen Clave del origen
+     * @ultimaModificacion: 16/05/2022
+     */
+
+    @GET
+    @Path("/ConsultarOrigen")
+    @Produces(MediaType.APPLICATION_JSON)
+    public GenericResponse<Iterable<OrigenModel>> consultarOrigen(
+            @Schema(example = "1", description = "Identificador del origen.")
+            @QueryParam("idOrigen") Integer idOrigen,
+
+            @Schema(example = "Inteligencia de Datos e Innovación", description = "Descripción del origen.")
+            @QueryParam("descripcionOrigen") String descripcionOrigen,
+
+            @Schema(example = "IDI", description = "Clave del campo.")
+            @QueryParam("claveOrigen") String claveOrigen){
+
+        Iterable<OrigenModel> origenModels = origenService.consultarOrigen(
+                idOrigen,
+                descripcionOrigen,
+                claveOrigen);
+
+        return new GenericResponse<>(
+                Constantes.HTTP_200,
+                Constantes.MENSAJE_EXITO,
+                origenModels);
     }
 }
