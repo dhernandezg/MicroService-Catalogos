@@ -50,16 +50,16 @@ public class CategoriasService {
      * @descripcion: Método para crear una o varias categorías
      * en la entidad.
      * @autor: Diego Vázquez Pérez
-     * @ultimaModificacion: 01/05/2022
+     * @ultimaModificacion: 18/05/2022
      */
 
-    public boolean crearCategoria(String descripcionCategoria, String usuario){
+    public boolean crearCategoria(
+            String descripcionCategoria,
+            String usuario){
 
-        CategoriasModel categoriasModel = new CategoriasModel();
-
-        categoriasModel.setDescripcionCategoria(descripcionCategoria);
-        categoriasModel.setNombreUsuario(usuario);
-        return crearCategoriaDAO.crearCategoria(categoriasModel);
+        return crearCategoriaDAO.crearCategoria(
+                descripcionCategoria,
+                usuario);
     }
 
     /**

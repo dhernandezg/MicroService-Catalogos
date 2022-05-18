@@ -27,14 +27,16 @@ public class CrearCategoriaDao {
      * <b>crearCategoria</b>
      * @descripcion: Método que permite crear una categoría.
      * @autor: Diego Vázquez Pérez
-     * @ultimaModificacion: 09/05/2022
+     * @ultimaModificacion: 18/05/2022
      */
 
-    public boolean crearCategoria(CategoriasModel categoriasModel) {
+    public boolean crearCategoria(
+            String descripcionCategoria,
+            String usuarioNombre) {
 
-        StoredProcedure storedProcedure = new StoredProcedure("FNCATEGORIAINS", OperacionPsql.class);
-        storedProcedure.addParameters(new ProceduredParameter(1, "v_DESCCATEG", categoriasModel.getDescripcionCategoria(), String.class));
-        storedProcedure.addParameters(new ProceduredParameter(2, "v_USUARIO", categoriasModel.getNombreUsuario(), String.class));
+        StoredProcedure storedProcedure = new StoredProcedure("FNCATEGOINS", OperacionPsql.class);
+        storedProcedure.addParameters(new ProceduredParameter(1, "PA_FCDESCCATEG", descripcionCategoria, String.class));
+        storedProcedure.addParameters(new ProceduredParameter(2, "PA_USUARIO", usuarioNombre, String.class));
 
         var data = baseDeDatosService.<OperacionPsql>obtenerElementos(storedProcedure);
 
