@@ -1,6 +1,5 @@
 package com.baz.categorias.daos;
 
-import com.baz.categorias.models.CategoriasModel;
 import com.baz.categorias.models.OperacionPsql;
 import com.baz.utils.BaseDeDatosService;
 import com.baz.utils.ProceduredParameter;
@@ -10,14 +9,14 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 /**
- * <b>CrearCategoriaDao</b>
+ * <b>CrearCategoria</b>
  * @descripcion: Clase DAO para acceso a DB.
  * @autor: Diego Vázquez Pérez
  * @ultimaModificacion: 09/05/2022
  */
 
 @ApplicationScoped
-public class CrearCategoriaDao {
+public class CrearCategoria {
 
     @Inject
     BaseDeDatosService baseDeDatosService;
@@ -34,7 +33,7 @@ public class CrearCategoriaDao {
             String descripcionCategoria,
             String usuarioNombre) {
 
-        StoredProcedure storedProcedure = new StoredProcedure("FNCATEGOINS", OperacionPsql.class);
+        StoredProcedure storedProcedure = new StoredProcedure("SC_CATREM.FNCATEGOINS", OperacionPsql.class);
         storedProcedure.addParameters(new ProceduredParameter(1, "PA_FCDESCCATEG", descripcionCategoria, String.class));
         storedProcedure.addParameters(new ProceduredParameter(2, "PA_USUARIO", usuarioNombre, String.class));
 

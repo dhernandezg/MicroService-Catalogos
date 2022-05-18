@@ -20,7 +20,7 @@ import java.util.*;
 public class CategoriasService {
 
     @Inject
-    CrearCategoriaDao crearCategoriaDAO;
+    CrearCategoria crearCategoria;
 
     @Inject
     ConsultarCategoriaDao consultarCategoriaDAO;
@@ -57,7 +57,7 @@ public class CategoriasService {
             String descripcionCategoria,
             String usuario){
 
-        return crearCategoriaDAO.crearCategoria(
+        return crearCategoria.crearCategoria(
                 descripcionCategoria,
                 usuario);
     }
