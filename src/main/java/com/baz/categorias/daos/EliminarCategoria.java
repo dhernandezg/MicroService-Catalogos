@@ -9,14 +9,14 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 /**
- * <b>EliminarCategoriaDao</b>
+ * <b>EliminarCategoria</b>
  * @descripcion: Método ELiminar Categorías DAO para acceso a DB.
  * @autor: Diego Vázquez Pérez
- * @ultimaModificacion: 10/05/2022
+ * @ultimaModificacion: 19/05/2022
  */
 
 @ApplicationScoped
-public class EliminarCategoriaDao {
+public class EliminarCategoria {
 
     @Inject
     BaseDeDatosService baseDeDatosService;
@@ -27,15 +27,15 @@ public class EliminarCategoriaDao {
      * @autor: Diego Vázquez Pérez
      * @param idCategoria Identificador de la categoría.
      * @param usuarioNombre Nombre del usuario.
-     * @ultimaModificacion: 10/05/2022
+     * @ultimaModificacion: 19/05/2022
      */
 
     public boolean eliminarCategoria(Integer idCategoria,
                                      String usuarioNombre){
 
-        StoredProcedure storedProcedure = new StoredProcedure("FNCATEGORIADEL", OperacionPsql.class);
-        storedProcedure.addParameters(new ProceduredParameter(1, "v_CATEGORIAID", idCategoria, Integer.class));
-        storedProcedure.addParameters(new ProceduredParameter(2, "v_USUARIO", usuarioNombre, String.class));
+        StoredProcedure storedProcedure = new StoredProcedure("SC_CATREM.FNCATEGODEL", OperacionPsql.class);
+        storedProcedure.addParameters(new ProceduredParameter(1, "PA_FICATEGORIAID", idCategoria, Integer.class));
+        storedProcedure.addParameters(new ProceduredParameter(2, "PA_USUARIO", usuarioNombre, String.class));
 
         var data = baseDeDatosService.<OperacionPsql>obtenerElementos(storedProcedure);
 

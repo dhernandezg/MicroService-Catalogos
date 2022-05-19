@@ -12,7 +12,7 @@ import javax.inject.Inject;
  * <b>ActualizarCategoria</b>
  * @descripcion: Método ActualizarCategoriaDAO para acceso a DB.
  * @autor: Diego Vázquez Pérez
- * @ultimaModificacion: 09/05/2022
+ * @ultimaModificacion: 19/05/2022
  */
 
 @ApplicationScoped

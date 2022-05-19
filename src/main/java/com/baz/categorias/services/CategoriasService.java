@@ -29,7 +29,7 @@ public class CategoriasService {
     ActualizarCategoria actualizarCategoria;
 
     @Inject
-    EliminarCategoriaDao eliminarCategoriaDao;
+    EliminarCategoria eliminarCategoria;
 
     public List<String> listaOperacionesCaterogias(){
 
@@ -113,7 +113,7 @@ public class CategoriasService {
     public boolean eliminarCategoria(Integer idCategoria,
                                      String usuarioNombre){
 
-        return eliminarCategoriaDao.eliminarCategoria(idCategoria,
+        return eliminarCategoria.eliminarCategoria(idCategoria,
                 usuarioNombre);
     }
 
