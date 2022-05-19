@@ -1,4 +1,4 @@
-package com.baz.controller;
+package com.baz.categorias.controller;
 
 import com.baz.categorias.dtos.GenericResponse;
 import com.baz.categorias.models.CategoriasModel;
