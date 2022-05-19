@@ -9,14 +9,14 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 /**
- * <b>CrearCampoDao</b>
+ * <b>CrearCampo</b>
  * @descripcion: Clase crearCampoDao para acceso a DB
  * @autor: Diego Vázquez Pérez
- * @ultimaModificacion: 10/05/2022
+ * @ultimaModificacion: 19/05/2022
  */
 
 @ApplicationScoped
-public class CrearCampoDao {
+public class CrearCampo {
 
     @Inject
     BaseDeDatosService baseDeDatosService;
@@ -25,9 +25,10 @@ public class CrearCampoDao {
      * <b>crearCampo</b>
      * @descripcion: Método para crear campo.
      * @autor: Diego Vázquez Pérez
-     * @param descripcionCampo Descripcion del campo
-     * @param usuarioNombre Nombre del usuario
-     * @ultimaModificacion: 10/05/2022
+     * @param nombreCampo Nombre del campo a registrar
+     * @param descripcionCampo Descripcion del campo a registrar
+     * @param usuarioNombre Nombre del usuario que registra
+     * @ultimaModificacion: 19/05/2022
      */
 
     public boolean crearCampo(String nombreCampo,

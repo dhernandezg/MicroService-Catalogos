@@ -2,10 +2,9 @@ package com.baz.campos.services;
 
 import com.baz.campos.daos.ActualizarCampoDao;
 import com.baz.campos.daos.ConsultarCampoDao;
-import com.baz.campos.daos.CrearCampoDao;
+import com.baz.campos.daos.CrearCampo;
 import com.baz.campos.daos.EliminarCampoDao;
 import com.baz.campos.models.CamposModel;
-import com.baz.categorias.dtos.GenericResponse;
 import com.baz.utils.Constantes;
 
 import javax.inject.Inject;
@@ -26,7 +25,7 @@ import java.util.List;
 public class CamposService {
 
     @Inject
-    CrearCampoDao crearCampoDao;
+    CrearCampo crearCampo;
 
     @Inject
     ConsultarCampoDao consultarCampoDao;
@@ -66,10 +65,12 @@ public class CamposService {
      * @ultimaModificacion: 10/05/2022
      */
 
-    public boolean crearCampo(String descripcionCampo,
+    public boolean crearCampo(String nombreCampo,
+                              String descripcionCampo,
                               String usuarioNombre){
 
-        return crearCampoDao.crearCampo(descripcionCampo,
+        return crearCampo.crearCampo(nombreCampo,
+                descripcionCampo,
                 usuarioNombre);
 
     }

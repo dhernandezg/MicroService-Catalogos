@@ -22,7 +22,7 @@ public class CamposController {
      * @descripcion: Método para mostrar lista de operaciones que
      * el usuario puede ejecutar en Campos.
      * @autor: Diego Vázquez Pérez
-     * @ultimaModificacion: Diego Vázquez Pérez
+     * @ultimaModificacion: 19/05/2022
      */
 
     @GET
@@ -68,19 +68,24 @@ public class CamposController {
      * @autor: Diego Vázquez Pérez
      * @param descripcionCampo Descripcion del campo.
      * @param usuarioNombre Nombre del usuario
-     * @ultimaModificacion: 10/05/2022
+     * @ultimaModificacion: 19/05/2022
      */
 
     @POST
     @Path("/CrearCampo")
     @Produces(MediaType.APPLICATION_JSON)
     public GenericResponse<Boolean> crearCampo(
+            @Schema(example = "ID", description = "Nombre del campo.")
+            @QueryParam("nombreCampo") String nombreCampo,
+
             @Schema(example = "NOMBRE_CORTO", description = "Descripción del campo.")
             @QueryParam("descripcionCampo") String descripcionCampo,
+
             @Schema(example = "Daniel Hernandez", description = "Nombre del usuario.")
             @QueryParam("usuarioNombre") String usuarioNombre){
 
         boolean response = camposService.crearCampo(
+                nombreCampo,
                 descripcionCampo,
                 usuarioNombre);
 
