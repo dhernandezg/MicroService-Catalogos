@@ -40,27 +40,20 @@ public class CategoriasModel implements Serializable {
     @Column(name = "STATUSID")
     private Integer idStatus;
 
-    @Schema(example = "2022-05-02 16:03:52.245", description = "Fecha de última modificación")
-    @Column(name = "MODIFICACION")
+    @Schema(example = "2022-05-02 16:03:52.245", description = "Fecha de creación")
+    @Column(name = "FECHACREA")
+    private LocalDateTime fechaCreacion;
+
+    @Schema(example = "2022-05-03 16:03:52.245", description = "Fecha de última modificación")
+    @Column(name = "FECHAMOD")
     private LocalDateTime fechaModificacion;
 
-    @Schema(example = "DIEGO VAZQUEZ P.", description = "Nombre del usuario.")
-    @Column(name = "USUARIO")
-    private String nombreUsuario;
+    @Schema(example = "DIEGO VAZQUEZ P.", description = "Nombre del usuario que creó el registro.")
+    @Column(name = "USUARIOCREA")
+    private String usuarioCreacion;
 
-    //Constructor de la clase
-    public CategoriasModel(
-            Integer idCategoria,
-            String descripcionCategoria,
-            Integer idStatus,
-            //LocalDateTime fechaModificacion,
-            String nombreUsuario
-    ){
-        this.idCategoria = idCategoria;
-        this.descripcionCategoria = descripcionCategoria;
-        this.idStatus = idStatus;
-        //this.fechaModificacion = fechaModificacion;
-        this.nombreUsuario = nombreUsuario;
-    }
+    @Schema(example = "DANIEL H.", description = "Nombre del usuario que modificó el registro.")
+    @Column(name = "USUARIOMOD")
+    private String usuarioModificacion;
 
 }

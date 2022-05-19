@@ -23,7 +23,7 @@ public class CategoriasService {
     CrearCategoria crearCategoria;
 
     @Inject
-    ConsultarCategoriaDao consultarCategoriaDAO;
+    ConsultarCategoria consultarCategoria;
 
     @Inject
     ActualizarCategoriaDao actualizarCategoriaDao;
@@ -73,7 +73,7 @@ public class CategoriasService {
     public List<CategoriasModel> consultarCategoria(Integer idCategoria,
                                                     String descripcionCategoria){
 
-        return consultarCategoriaDAO.consultarCategoria(idCategoria, descripcionCategoria);
+        return consultarCategoria.consultarCategoria(idCategoria, descripcionCategoria);
     }
 
 
