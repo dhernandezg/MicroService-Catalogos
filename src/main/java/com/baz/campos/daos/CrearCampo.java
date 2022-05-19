@@ -30,12 +30,14 @@ public class CrearCampoDao {
      * @ultimaModificacion: 10/05/2022
      */
 
-    public boolean crearCampo(String descripcionCampo,
+    public boolean crearCampo(String nombreCampo,
+                              String descripcionCampo,
                               String usuarioNombre){
 
-        StoredProcedure storedProcedure = new StoredProcedure("FNCAMPOINS", OperacionPsql.class);
-        storedProcedure.addParameters(new ProceduredParameter(1, "v_DESCCAMPO", descripcionCampo, String.class));
-        storedProcedure.addParameters(new ProceduredParameter(2, "v_USUARIO", usuarioNombre, String.class));
+        StoredProcedure storedProcedure = new StoredProcedure("SC_CATREM.FNCAMPOINS", OperacionPsql.class);
+        storedProcedure.addParameters(new ProceduredParameter(1, "PA_FCCAMPO", nombreCampo, String.class));
+        storedProcedure.addParameters(new ProceduredParameter(2, "PA_FCDESCCAMPO", descripcionCampo, String.class));
+        storedProcedure.addParameters(new ProceduredParameter(3, "PA_USUARIO", usuarioNombre, String.class));
 
         var data = baseDeDatosService.<OperacionPsql>obtenerElementos(storedProcedure);
 
