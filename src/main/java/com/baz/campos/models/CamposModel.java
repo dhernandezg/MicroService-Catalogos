@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
  * <b>CamposModel</b>
  * @descripcion: Entidad que contiene las propiedades del cursor "TACAMPO".
  * @autor: Diego Vázquez Pérez
- * @ultimaModificacion: 10/09/2022
+ * @ultimaModificacion: 19/05/2022
  */
 
 @Data
@@ -25,23 +25,35 @@ import java.time.LocalDateTime;
 public class CamposModel implements Serializable {
 
     @Schema(example = "1", description = "Identificador de campo.")
-    @Column(name = "campoid")
+    @Column(name = "CAMPOID")
     @Id
     private Integer idCampo;
 
-    @Schema(example = "SIMBOLO", description = "Descripción del campo.")
+    @Schema(example = "ID", description = "Nombre del campo.")
+    @Column(name = "CAMPO")
+    private String nombreCampo;
+
+    @Schema(example = "IDENTIFICADOR", description = "Descripción del campo.")
     @Column(name = "desccampo")
     private String descripcionCampo;
 
-    @Schema(example = "1", description = "Identificador del status del campo.")
-    @Column(name = "statusid")
+    @Schema(example = "1", description = "Identificador del estatus del campo.")
+    @Column(name = "STATUSID")
     private Integer idStatus;
 
-    @Schema(example = "1", description = "Fecha de última modificaciñon del campo.")
-    @Column(name = "modificacion")
-    private LocalDateTime fechaModificacion;
+    @Schema(example = "2022-05-18 19:00:00-000", description = "Fecha de creación del campo.")
+    @Column(name = "FECHACREA")
+    private LocalDateTime fechaCrea;
 
-    @Schema(example = "Daniel Hernandez", description = "NOmbre del usuario.")
-    @Column(name = "usuario")
-    private String usuarioNombre;
+    @Schema(example = "2022-05-19 19:00:00-000", description = "Fecha de última modificaciñon del campo.")
+    @Column(name = "FECHAMOD")
+    private LocalDateTime fechaMod;
+
+    @Schema(example = "Daniel Hernandez", description = "Nombre del usuario que generó el registro.")
+    @Column(name = "USUARIOCREA")
+    private String usuarioCreacion;
+
+    @Schema(example = "Diego Vaz Pez", description = "Nombre del usuario que modificó el registro.")
+    @Column(name = "USUARIOMOD")
+    private String usuarioModificaciñon;
 }

@@ -1,7 +1,7 @@
 package com.baz.campos.services;
 
 import com.baz.campos.daos.ActualizarCampoDao;
-import com.baz.campos.daos.ConsultarCampoDao;
+import com.baz.campos.daos.ConsultarCampo;
 import com.baz.campos.daos.CrearCampo;
 import com.baz.campos.daos.EliminarCampoDao;
 import com.baz.campos.models.CamposModel;
@@ -28,7 +28,7 @@ public class CamposService {
     CrearCampo crearCampo;
 
     @Inject
-    ConsultarCampoDao consultarCampoDao;
+    ConsultarCampo consultarCampo;
 
     @Inject
     ActualizarCampoDao actualizarCampoDao;
@@ -87,7 +87,7 @@ public class CamposService {
     public List<CamposModel> consultarCampo(Integer idCampo,
                                             String descripcionCampo){
 
-        return consultarCampoDao.consultarCampos(idCampo,
+        return consultarCampo.consultarCampos(idCampo,
                 descripcionCampo);
 
     }
