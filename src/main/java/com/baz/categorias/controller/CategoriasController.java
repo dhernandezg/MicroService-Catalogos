@@ -4,6 +4,7 @@ import com.baz.categorias.dtos.GenericResponse;
 import com.baz.categorias.models.CategoriasModel;
 import com.baz.categorias.services.CategoriasService;
 import com.baz.utils.Constantes;
+import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import javax.inject.Inject;
@@ -36,6 +37,7 @@ public class CategoriasController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    @Operation(summary = "Consulta las operaciones disponibles en el servicio de categorías.")
     public List<String> listaOperaciones(){
 
         return categoriasService.listaOperacionesCaterogias();
@@ -54,6 +56,7 @@ public class CategoriasController {
     @GET
     @Path("/ConsultarCategoria")
     @Produces(MediaType.APPLICATION_JSON)
+    @Operation(summary = "Consulta una categoría particular o todas las categorías.")
     public GenericResponse<Iterable<CategoriasModel>> consultarCategoria(
             @Schema(example = "1", description = "Identificador de la categoria")
             @QueryParam("idCategoria") Integer idCategoria,
@@ -77,6 +80,7 @@ public class CategoriasController {
 
     @POST
     @Path("/CrearCategoria")
+    @Operation(summary = "Registra una nueva categoría..")
     @Produces(MediaType.APPLICATION_JSON)
     public GenericResponse<Boolean> crearCategoria(
             @Schema(example = "PAISES", description = "Nombre de la categoria")
@@ -102,8 +106,9 @@ public class CategoriasController {
      * @ultimaModificacion: 10/05/2022
      */
 
-    @PATCH
+    @PUT
     @Path("/ActualizarCategoria")
+    @Operation(summary = "Actualiza los datos especificados de una categoría.")
     @Produces(MediaType.APPLICATION_JSON)
     public GenericResponse<Boolean> actualizarCategoria(
             @Schema(example = "1", description = "Identificador de la categoria")
@@ -139,6 +144,7 @@ public class CategoriasController {
 
     @DELETE
     @Path("/EliminarCategoria")
+    @Operation(summary = "Elimina una categoría mediante su identificador.")
     @Produces(MediaType.APPLICATION_JSON)
     public GenericResponse<Boolean> eliminarCategoria(
             @Schema(example = "1", description = "Identificador de la categoria")
