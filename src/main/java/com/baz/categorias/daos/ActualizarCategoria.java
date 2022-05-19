@@ -28,9 +28,10 @@ public class ActualizarCategoria {
 
         StoredProcedure storedProcedure = new StoredProcedure("SC_CATREM.FNCATEGOUPD", OperacionPsql.class);
         storedProcedure.addParameters(new ProceduredParameter(1, "PA_FICATEGORIAID", idCategoria, Integer.class));
-        storedProcedure.addParameters(new ProceduredParameter(2, "PA_FCDESCCATEG", descripcionCategoria, String.class));
-        storedProcedure.addParameters(new ProceduredParameter(3, "v_STATUSID", idStatus, Integer.class));
-        storedProcedure.addParameters(new ProceduredParameter(4, "PA_FISTATUSID", usuarioNombre, String.class));
+        storedProcedure.addParameters(new ProceduredParameter(2, "PA_USUARIO", usuarioNombre, String.class));
+        storedProcedure.addParameters(new ProceduredParameter(3, "PA_FCDESCCATEG", descripcionCategoria, String.class));
+        storedProcedure.addParameters(new ProceduredParameter(4, "PA_FISTATUSID", idStatus, Integer.class));
+
 
         var data = baseDeDatosService.<OperacionPsql>obtenerElementos(storedProcedure);
 
