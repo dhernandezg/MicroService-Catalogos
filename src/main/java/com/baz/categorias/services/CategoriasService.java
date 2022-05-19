@@ -26,7 +26,7 @@ public class CategoriasService {
     ConsultarCategoria consultarCategoria;
 
     @Inject
-    ActualizarCategoriaDao actualizarCategoriaDao;
+    ActualizarCategoria actualizarCategoria;
 
     @Inject
     EliminarCategoriaDao eliminarCategoriaDao;
@@ -94,7 +94,7 @@ public class CategoriasService {
                                        Integer idStatus,
                                        String usuarioNombre){
 
-        return actualizarCategoriaDao.actualizarCategoria(idCategoria,
+        return actualizarCategoria.actualizarCategoria(idCategoria,
                 descripcionCategoria,
                 idStatus,
                 usuarioNombre);

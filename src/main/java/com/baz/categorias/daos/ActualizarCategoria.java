@@ -9,14 +9,14 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 /**
- * <b>ActualizarCategoriaDao</b>
+ * <b>ActualizarCategoria</b>
  * @descripcion: Método ActualizarCategoriaDAO para acceso a DB.
  * @autor: Diego Vázquez Pérez
  * @ultimaModificacion: 09/05/2022
  */
 
 @ApplicationScoped
-public class ActualizarCategoriaDao {
+public class ActualizarCategoria {
 
     @Inject
     BaseDeDatosService baseDeDatosService;
@@ -26,11 +26,11 @@ public class ActualizarCategoriaDao {
                                        Integer idStatus,
                                        String usuarioNombre){
 
-        StoredProcedure storedProcedure = new StoredProcedure("FNCATEGORIAUPD", OperacionPsql.class);
-        storedProcedure.addParameters(new ProceduredParameter(1, "v_CATEGORIAID", idCategoria, Integer.class));
-        storedProcedure.addParameters(new ProceduredParameter(2, "v_DESCCATEG", descripcionCategoria, String.class));
+        StoredProcedure storedProcedure = new StoredProcedure("SC_CATREM.FNCATEGOUPD", OperacionPsql.class);
+        storedProcedure.addParameters(new ProceduredParameter(1, "PA_FICATEGORIAID", idCategoria, Integer.class));
+        storedProcedure.addParameters(new ProceduredParameter(2, "PA_FCDESCCATEG", descripcionCategoria, String.class));
         storedProcedure.addParameters(new ProceduredParameter(3, "v_STATUSID", idStatus, Integer.class));
-        storedProcedure.addParameters(new ProceduredParameter(4, "v_USUARIO", usuarioNombre, String.class));
+        storedProcedure.addParameters(new ProceduredParameter(4, "PA_FISTATUSID", usuarioNombre, String.class));
 
         var data = baseDeDatosService.<OperacionPsql>obtenerElementos(storedProcedure);
 
