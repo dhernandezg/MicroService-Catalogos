@@ -33,10 +33,10 @@ public class ActualizarCatalogoDao {
         fnActualizaCatalogo.addParameters(new ProceduredParameter(1, "v_CATEGORIAID", datosCatalogo.getIdCategoria(), Integer.class));
         fnActualizaCatalogo.addParameters(new ProceduredParameter(2, "v_CATALOGOID", datosCatalogo.getIdCatalogo(), Integer.class));
         fnActualizaCatalogo.addParameters(new ProceduredParameter(3, "v_TIPOCATID", datosCatalogo.getIdTipoCatalogo(), Integer.class));
-        fnActualizaCatalogo.addParameters(new ProceduredParameter(4, "v_DESCCATALOGO", datosCatalogo.getDescripcionCatalogo(), String.class));
+        fnActualizaCatalogo.addParameters(new ProceduredParameter(4, "v_DESCCATALOGO", datosCatalogo.getNombreCatalogo(), String.class));
         fnActualizaCatalogo.addParameters(new ProceduredParameter(5, "v_CATALOBASEID", datosCatalogo.getIdCatalogoBase(), Integer.class));
         fnActualizaCatalogo.addParameters(new ProceduredParameter(6, "v_STATUSID", datosCatalogo.getIdEstatus(), Integer.class));
-        fnActualizaCatalogo.addParameters(new ProceduredParameter(7, "v_USUARIO", datosCatalogo.getUsuarioPropietario(), String.class));
+        fnActualizaCatalogo.addParameters(new ProceduredParameter(7, "v_USUARIO", datosCatalogo.getUsuarioModificacion(), String.class));
         List<OperacionPsql> resultado = accesoDatos.<OperacionPsql>obtenerElementos(fnActualizaCatalogo);
         return !resultado.isEmpty() && resultado.get(0).estatus == 1;
     }
