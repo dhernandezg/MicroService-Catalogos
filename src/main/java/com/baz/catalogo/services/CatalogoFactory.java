@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import com.baz.catalogo.daos.*;
 import com.baz.catalogo.models.Catalogo;
+import com.baz.catalogo.models.DatosActualizacion;
 import com.baz.catalogo.models.DatosAlta;
 import com.baz.catalogo.models.DatosConsulta;
 
@@ -39,7 +40,7 @@ public class CatalogoFactory {
          * @param datosCatalogo Datos del catalogo a actualizar
          * @return boolean True su la actualización fue correcta
          */
-        public boolean actualizarCatalogo(Catalogo datosCatalogo) {
+        public boolean actualizarCatalogo(DatosActualizacion datosCatalogo) {
                 return actualizaCatalogo.actualizarCatalogo(datosCatalogo);
         }
 

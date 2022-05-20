@@ -5,6 +5,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 import com.baz.catalogo.models.Catalogo;
+import com.baz.catalogo.models.DatosActualizacion;
 import com.baz.catalogo.models.DatosAlta;
 import com.baz.catalogo.models.DatosConsulta;
 import com.baz.catalogo.services.CatalogoFactory;
@@ -107,22 +108,7 @@ public class CatalogoController {
     @Operation(summary = "Actualiza los datos especificados de un catalogo")
     @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id")
     public CatalogoResponseDto<Boolean> actualizar(
-            @Parameter(description = "Datos de actualización") Catalogo datosActualizacion) {
-        return actualizarCatalogo(datosActualizacion);
-    }
-
-    /**
-     * Actualización parcial de los datos de un catalogo
-     * 
-     * @param datosActualizacion Datos a actualizar
-     * @return CatalogoResponse<Boolean> Respuesta actualización, true si fue
-     *         exitosa
-     */
-    @PATCH
-    @Operation(summary = "Actualización parcial de los datos de un catalogo")
-    @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id")
-    public CatalogoResponseDto<Boolean> actualizarCatalogo(
-            @Parameter(description = "Datos a actualizar") Catalogo datosActualizacion) {
+            @Parameter(description = "Datos de actualización") DatosActualizacion datosActualizacion) {
         boolean exitoActualizar = catalogoFactory.actualizarCatalogo(datosActualizacion);
         return new CatalogoResponseDto<>(Constantes.HTTP_200, Constantes.MENSAJE_EXITO, exitoActualizar);
     }

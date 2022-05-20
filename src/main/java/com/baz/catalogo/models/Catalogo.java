@@ -27,6 +27,7 @@ public class Catalogo implements Serializable {
     /**
      * Contiene el identificador de categoría
      * */
+    @Id
     @Column(name = "categoriaid")
     private Integer idCategoria;
 
@@ -41,7 +42,7 @@ public class Catalogo implements Serializable {
      * Contiene el identificador para el tipo catalogo
      * */
     @Column(name = "tipocatid")
-    private Integer idTipoCatalogo;
+    private Short idTipoCatalogo;
 
     /**
      * Contiene la descripcion del catalogo
@@ -59,7 +60,7 @@ public class Catalogo implements Serializable {
      * Contiene el identificador para el estatus del catalogo
      * */
     @Column(name="statusid")
-    private Integer idEstatus;
+    private Short idEstatus;
 
     /**
      * Contiene la fecha y hora de la creación para el catalogo
