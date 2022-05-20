@@ -10,17 +10,17 @@ public class Constantes {
     /**
      * Códigos HTTP
      * */
-    public static final String HTTP_200 = "200";
-    public static final String HTTP_201 = "201";
-    public static final String HTTP_400 = "400";
-    public static final String HTTP_401 = "401";
-    public static final String HTTP_404 = "404";
-    public static final String HTTP_500 = "500";
+    public static final String HTTP_200 = "200.Remesas-Gestion-Catalogos.C00000";
+    public static final String HTTP_201 = "201.Remesas-Gestion-Catalogos.C20000";
+    public static final String HTTP_400 = "400.Remesas-Gestion-Catalogos.C20000";
+    public static final String HTTP_401 = "401.Remesas-Gestion-Catalogos.C20000";
+    public static final String HTTP_404 = "404.Remesas-Gestion-Catalogos.C20000";
+    public static final String HTTP_500 = "500.Remesas-Gestion-Catalogos.C20000";
 
     /**
      * Mensajes HTTP
      * */
-    public static final String MENSAJE_EXITO = "Operación exitosa.";
+    public static final String MENSAJE_EXITO = "La operación fue un éxito";
     public static final String MENSAJE_CODIGO400 = "Datos de entrada incorrectos, por favor valide su información.";
     public static final String MENSAJE_CODIGO401 = "No estas autorizado, favor de validar.";
     public static final String MENSAJE_CODIGO404 = "Recurso no encontrado";

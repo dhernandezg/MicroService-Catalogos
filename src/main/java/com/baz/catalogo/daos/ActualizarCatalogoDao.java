@@ -28,15 +28,16 @@ public class ActualizarCatalogoDao {
      * @param datosCatalogo - Datos a actualizar del catalogo
      * @return boolean True si la actualización fue exitosa
      */
-    public boolean actualizarCatalogo(Catalogo datosCatalogo) {
-        StoredProcedure fnActualizaCatalogo = new StoredProcedure("FNCATALOGOUPD", OperacionPsql.class);
-        fnActualizaCatalogo.addParameters(new ProceduredParameter(1, "v_CATEGORIAID", datosCatalogo.getIdCategoria(), Integer.class));
-        fnActualizaCatalogo.addParameters(new ProceduredParameter(2, "v_CATALOGOID", datosCatalogo.getIdCatalogo(), Integer.class));
-        fnActualizaCatalogo.addParameters(new ProceduredParameter(3, "v_TIPOCATID", datosCatalogo.getIdTipoCatalogo(), Integer.class));
-        fnActualizaCatalogo.addParameters(new ProceduredParameter(4, "v_DESCCATALOGO", datosCatalogo.getDescripcionCatalogo(), String.class));
-        fnActualizaCatalogo.addParameters(new ProceduredParameter(5, "v_CATALOBASEID", datosCatalogo.getIdCatalogoBase(), Integer.class));
-        fnActualizaCatalogo.addParameters(new ProceduredParameter(6, "v_STATUSID", datosCatalogo.getIdEstatus(), Integer.class));
-        fnActualizaCatalogo.addParameters(new ProceduredParameter(7, "v_USUARIO", datosCatalogo.getUsuarioPropietario(), String.class));
+    public boolean actualizarCatalogo(DatosActualizacion datosCatalogo) {
+        StoredProcedure fnActualizaCatalogo = new StoredProcedure("SC_CATREM.FNCATALOGOUPD", OperacionPsql.class);
+        fnActualizaCatalogo.addParameters(new ProceduredParameter(1, "PA_FICATEGORIAID", datosCatalogo.getIdCategoria(), Integer.class));
+        fnActualizaCatalogo.addParameters(new ProceduredParameter(2, "PA_FICATALOGOID", datosCatalogo.getIdCatalogo(), Integer.class));
+        fnActualizaCatalogo.addParameters(new ProceduredParameter(3, "PA_USUARIO", datosCatalogo.getUsuario(), String.class));
+        fnActualizaCatalogo.addParameters(new ProceduredParameter(4, "PA_FITIPOCATID", datosCatalogo.getIdTipoCatalogo(), Short.class));
+        fnActualizaCatalogo.addParameters(new ProceduredParameter(5, "PA_FCDESCCATALOGO", datosCatalogo.getNombreCatalogo(), String.class));
+        fnActualizaCatalogo.addParameters(new ProceduredParameter(6, "PA_FICATALOBASEID", datosCatalogo.getIdCatalogoBase(), Integer.class));
+        fnActualizaCatalogo.addParameters(new ProceduredParameter(7, "PA_FISTATUSID", datosCatalogo.getIdEstatus(), Short.class));
+        
         List<OperacionPsql> resultado = accesoDatos.<OperacionPsql>obtenerElementos(fnActualizaCatalogo);
         return !resultado.isEmpty() && resultado.get(0).estatus == 1;
     }

@@ -6,6 +6,7 @@ import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 
 import com.baz.catalogo.models.Catalogo;
+import com.baz.catalogo.models.DatosConsulta;
 import com.baz.utils.*;
 
 /**
@@ -27,12 +28,11 @@ public class ConsultarCatalogoDao {
      * @param datosCatalogo Datos de consulta
      * @return List<Catalogo> Lista de <b>Catálogos<b>
      */
-    public List<Catalogo> obtenerCatalogos(Catalogo datosCatalogo) {
-        StoredProcedure fnConsultaCatalogo = new StoredProcedure("FNCATALOGOSEL", Catalogo.class);
-        fnConsultaCatalogo.addParameters(new ProceduredParameter(1, "v_CATEGORIAID", datosCatalogo.getIdCategoria(), Integer.class));
-        fnConsultaCatalogo.addParameters(new ProceduredParameter(2, "v_CATALOGOID", datosCatalogo.getIdCatalogo(), Integer.class));
-        fnConsultaCatalogo.addParameters(new ProceduredParameter(3, "v_TIPOCATID", datosCatalogo.getIdTipoCatalogo(), Integer.class));
-        fnConsultaCatalogo.addParameters(new ProceduredParameter(4, "v_DESCCATALOGO", datosCatalogo.getDescripcionCatalogo(), String.class));
+    public List<Catalogo> obtenerCatalogos(DatosConsulta datosCatalogo) {
+        StoredProcedure fnConsultaCatalogo = new StoredProcedure("SC_CATREM.FNCATALOSEL", Catalogo.class);
+        fnConsultaCatalogo.addParameters(new ProceduredParameter(1, "PA_FICATEGORIAID", datosCatalogo.getIdCategoria(), Integer.class));
+        fnConsultaCatalogo.addParameters(new ProceduredParameter(2, "PA_FICATALOGOID", datosCatalogo.getIdCatalogo(), Integer.class));
+        fnConsultaCatalogo.addParameters(new ProceduredParameter(3, "PA_FCDESCTIPOCAT", datosCatalogo.getNombreCatalogo(), String.class));
         return accesoDatos.<Catalogo>obtenerElementos(fnConsultaCatalogo);
     }
 }

@@ -30,10 +30,10 @@ public class EliminarCatalogoDao {
      * @return boolean True si se elimino correctamente
      */
     public boolean eliminarCatalogo(Integer idCategoria, Integer idCatalogo, String usuario) {
-        StoredProcedure fnEliminaCatalogo = new StoredProcedure("FNCATALOGODEL", OperacionPsql.class);
-        fnEliminaCatalogo.addParameters(new ProceduredParameter(1, "v_CATEGORIAID", idCategoria, Integer.class));
-        fnEliminaCatalogo.addParameters(new ProceduredParameter(2, "v_CATALOGOID", idCatalogo, Integer.class));
-        fnEliminaCatalogo.addParameters(new ProceduredParameter(3, "v_USUARIO", usuario, String.class));
+        StoredProcedure fnEliminaCatalogo = new StoredProcedure("SC_CATREM.FNCATALOGODEL", OperacionPsql.class);
+        fnEliminaCatalogo.addParameters(new ProceduredParameter(1, "PA_FICATEGORIAID", idCategoria, Integer.class));
+        fnEliminaCatalogo.addParameters(new ProceduredParameter(2, "PA_FICATALOGOID", idCatalogo, Integer.class));
+        fnEliminaCatalogo.addParameters(new ProceduredParameter(3, "PA_USUARIO", usuario, String.class));
         var data = accesoDatos.<OperacionPsql>obtenerElementos(fnEliminaCatalogo);
         return !data.isEmpty() && data.get(0).estatus == 1;
     }

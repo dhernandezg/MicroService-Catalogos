@@ -7,6 +7,9 @@ import javax.inject.Inject;
 
 import com.baz.catalogo.daos.*;
 import com.baz.catalogo.models.Catalogo;
+import com.baz.catalogo.models.DatosActualizacion;
+import com.baz.catalogo.models.DatosAlta;
+import com.baz.catalogo.models.DatosConsulta;
 
 /**
  * <b>CatalogoFactory</b>
@@ -37,7 +40,7 @@ public class CatalogoFactory {
          * @param datosCatalogo Datos del catalogo a actualizar
          * @return boolean True su la actualización fue correcta
          */
-        public boolean actualizarCatalogo(Catalogo datosCatalogo) {
+        public boolean actualizarCatalogo(DatosActualizacion datosCatalogo) {
                 return actualizaCatalogo.actualizarCatalogo(datosCatalogo);
         }
 
@@ -46,7 +49,7 @@ public class CatalogoFactory {
          * @param datosCatalogo Datos del catalogo a registrar
          * @return boolean True si el registro fue exitoso
          */
-        public boolean agregarCatalogo(Catalogo datosCatalogo) {
+        public boolean agregarCatalogo(DatosAlta datosCatalogo) {
                 return altaCatalogo.agregarCatalogo(datosCatalogo);
         }
 
@@ -66,7 +69,7 @@ public class CatalogoFactory {
          * @param datosCatalogo Datos de consulta los datos nulos son parámetros opcionales de consulta
          * @return List<Catalogo> Lista de catálogos
          */
-        public List<Catalogo> obtenerCatalogos(Catalogo datosCatalogo) {
+        public List<Catalogo> obtenerCatalogos(DatosConsulta datosCatalogo) {
                 return consultaCatalogo.obtenerCatalogos(datosCatalogo);
         }
 }
