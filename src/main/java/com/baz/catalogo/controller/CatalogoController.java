@@ -14,7 +14,9 @@ import com.baz.utils.Constantes;
 
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.ParameterIn;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
+import org.eclipse.microprofile.openapi.models.examples.Example;
 
 /**
  * <b>CatalogoController</b>
@@ -41,10 +43,10 @@ public class CatalogoController {
      */
     @GET
     @Operation(summary = "Consulta la lista de catálogos con los parámetros especificados")
-    @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id")
+    @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001")
     public CatalogoResponseDto<Iterable<Catalogo>> consultar(
-            @Parameter(description = "Contiene el identificador de categoría a consultar") @QueryParam("idCategoria") Integer idCategoria,
-            @Parameter(description = "Contiene el identificador del catalogo a consultar") @QueryParam("idCatalogo") Integer idCatalogo,
+            @Parameter(description = "Contiene el identificador de categoría a consultar", example = "1") @QueryParam("idCategoria") Integer idCategoria,
+            @Parameter(description = "Contiene el identificador del catalogo a consultar", example = "1") @QueryParam("idCatalogo") Integer idCatalogo,
             @Parameter(description = "Contiene la descripción del catalogo a consultar") @QueryParam("descripcion") String descripcion) {
         DatosConsulta datosConsulta = new DatosConsulta(idCategoria, idCatalogo, descripcion);
         Iterable<Catalogo> catalogos = catalogoFactory.obtenerCatalogos(datosConsulta);
@@ -59,7 +61,7 @@ public class CatalogoController {
     @GET
     @Path("/{idCatalogo}")
     @Operation(summary = "Consulta la lista de catálogos por identificador de catalogo especificado")
-    @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id")
+    @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true)
     public CatalogoResponseDto<Iterable<Catalogo>> consultar(
             @Parameter(description = "Identificador catalogo") @PathParam("idCatalogo") int idCatalogo) {
         DatosConsulta datosConsulta = new DatosConsulta(idCatalogo);
@@ -74,8 +76,8 @@ public class CatalogoController {
      */
     @POST
     @Operation(summary = "Registra un nuevo catalogo")
-    @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id")
-    public CatalogoResponseDto<Boolean> registrar(@Parameter(description = "Datos del catalogo a insertar") DatosAlta datosInsercion) {
+    @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID000000000001", schema =  @org.eclipse.microprofile.openapi.annotations.media.Schema)
+    public CatalogoResponseDto<Boolean> registrar(@Parameter(description = "Datos del catalogo a insertar", required = true) DatosAlta datosInsercion) {
         boolean exitoAlta = catalogoFactory.agregarCatalogo(datosInsercion);
         return new CatalogoResponseDto<>(Constantes.HTTP_200, "Operación exitosa.", exitoAlta);
     }
@@ -90,7 +92,7 @@ public class CatalogoController {
     @DELETE
     @Path("/{idCatalogo}/categoria/{idCategoria}/usuario/{usuario}")
     @Operation(summary = "Elimina un catalogo a partir de un identificador")
-    @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id")
+    @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true)
     public CatalogoResponseDto<Boolean> eliminar(
             @Parameter(description = "Identificador de catalogo") @PathParam("idCatalogo") Integer idCatalogo,
             @Parameter(description = "Identificador de categoría") @PathParam("idCategoria") Integer idCategoria,
@@ -106,9 +108,9 @@ public class CatalogoController {
      */
     @PUT
     @Operation(summary = "Actualiza los datos especificados de un catalogo")
-    @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id")
+    @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID000000000001", schema =  @org.eclipse.microprofile.openapi.annotations.media.Schema)
     public CatalogoResponseDto<Boolean> actualizar(
-            @Parameter(description = "Datos de actualización") DatosActualizacion datosActualizacion) {
+            @Parameter(description = "Datos de actualización", required = true) DatosActualizacion datosActualizacion) {
         boolean exitoActualizar = catalogoFactory.actualizarCatalogo(datosActualizacion);
         return new CatalogoResponseDto<>(Constantes.HTTP_200, Constantes.MENSAJE_EXITO, exitoActualizar);
     }

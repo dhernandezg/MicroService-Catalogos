@@ -32,10 +32,15 @@ public class CatalogoFilter implements ContainerRequestFilter, ContainerResponse
 
     @Override
     public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext){
+       asignarFolio(requestContext, responseContext);
+    }
+
+    private void asignarFolio(ContainerRequestContext requestContext, ContainerResponseContext responseContext){
         var response = responseContext.getEntity();
         if (response instanceof MicroservicioResponseDto) {
-            var respEnt = (MicroservicioResponseDto) response;
-            respEnt.setFolio(requestContext.getHeaderString(UID_HEADER));
+            MicroservicioResponseDto respEnt = (MicroservicioResponseDto) response;
+            String folio = requestContext.getHeaderString(UID_HEADER);
+            respEnt.setFolio( folio == null ?respEnt.getFolio(): folio);
         }
     }
 
