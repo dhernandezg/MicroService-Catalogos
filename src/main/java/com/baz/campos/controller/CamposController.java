@@ -4,7 +4,6 @@ import com.baz.campos.models.CamposModel;
 import com.baz.campos.services.CamposService;
 import com.baz.categorias.dtos.GenericResponse;
 import com.baz.utils.Constantes;
-import io.vertx.core.cli.annotations.Summary;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
@@ -108,7 +107,7 @@ public class CamposController {
      * @param descripcionCampo Descripción del campo
      * @param idStatus Identificador del status
      * @param usuarioNombre Nombre del usuario
-     * @ultimaModificacion: 10/05/2022
+     * @ultimaModificacion: 23/05/2022
      */
 
     @PUT
@@ -155,7 +154,7 @@ public class CamposController {
     @Produces(MediaType.APPLICATION_JSON)
     public GenericResponse<Boolean> eliminarCampo(
             @Schema(example = "1", description = "Identificador del campo.")
-            @QueryParam("idCampo") Integer idCampo,
+            @QueryParam("idCampo") Short idCampo,
             @Schema(example = "Daniel Hernandez", description = "Nombre del usuario.")
             @QueryParam("usuarioNombre") String usuarioNombre){
 

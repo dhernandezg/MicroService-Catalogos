@@ -3,7 +3,7 @@ package com.baz.campos.services;
 import com.baz.campos.daos.ActualizarCampo;
 import com.baz.campos.daos.ConsultarCampo;
 import com.baz.campos.daos.CrearCampo;
-import com.baz.campos.daos.EliminarCampoDao;
+import com.baz.campos.daos.EliminarCampo;
 import com.baz.campos.models.CamposModel;
 import com.baz.utils.Constantes;
 
@@ -18,7 +18,7 @@ import java.util.List;
  * @descripcion: Servicio Campos, en el cual se encuentra la administración
  * de campos.
  * @autor: Diego Vázquez Pérez
- * @ultimaModificacion: 10/05/2022
+ * @ultimaModificacion: 23/05/2022
  */
 
 @Singleton
@@ -34,7 +34,7 @@ public class CamposService {
     ActualizarCampo actualizarCampo;
 
     @Inject
-    EliminarCampoDao eliminarCampoDao;
+    EliminarCampo eliminarCampo;
 
     /**
      * <b>listaOperacionesCampos</b>
@@ -100,7 +100,7 @@ public class CamposService {
      * @param descripcionCampo Descripción del campo
      * @param idStatus Identificador del status
      * @param usuarioNombre Nombre del usuario
-     * @ultimaModificacion: 10/05/2022
+     * @ultimaModificacion: 23/05/2022
      */
 
     public boolean actualizarCampo(Short idCampo,
@@ -125,10 +125,10 @@ public class CamposService {
      * @ultimaModificacion: 10/05/2022
      */
 
-    public boolean eliminarCampo(Integer idCampo,
+    public boolean eliminarCampo(Short idCampo,
                                  String usuarioNombre){
 
-        return eliminarCampoDao.eliminarCampo(idCampo,
+        return eliminarCampo.eliminarCampo(idCampo,
                 usuarioNombre);
 
     }

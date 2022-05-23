@@ -12,7 +12,7 @@ import javax.inject.Inject;
  * <b>ActualizarCampo</b>
  * @descripcion: Método Actualizar Campo para acceso a DB.
  * @autor: Diego Vázquez Pérez
- * @ultimaModificacion: 10/05/2022
+ * @ultimaModificacion: 23/05/2022
  */
 
 @ApplicationScoped
@@ -29,7 +29,7 @@ public class ActualizarCampo {
      * @param descripcionCampo Descripción del campo.
      * @param idStatus Identificador del status.
      * @param usuarioNombre Nombre del usuario.
-     * @ultimaModificacion: 10/05/2022
+     * @ultimaModificacion: 23/05/2022
      */
 
     public boolean actualizarCampo(Short idCampo,

@@ -9,14 +9,14 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 /**
- * <b>EliminarCampoDao</b>
+ * <b>EliminarCampo</b>
  * @descripcion: Clase ELiminarCampo para acceso a DB.
  * @autor: Diego Vázquez Pérez
- * @ultimaModificacion: 10/05/2022
+ * @ultimaModificacion: 23/05/2022
  */
 
 @ApplicationScoped
-public class EliminarCampoDao {
+public class EliminarCampo {
 
     @Inject
     BaseDeDatosService baseDeDatosService;
@@ -28,15 +28,15 @@ public class EliminarCampoDao {
      * @autor: Diego Vázquez Pérez
      * @param idCampo Identificador del campo.
      * @param usuarioNombre Nombre del usuario.
-     * @ultimaModificacion: 10/05/2022
+     * @ultimaModificacion: 23/05/2022
      */
 
-    public boolean eliminarCampo(Integer idCampo,
+    public boolean eliminarCampo(Short idCampo,
                                  String usuarioNombre){
 
-        StoredProcedure storedProcedure = new StoredProcedure("FNCAMPODEL", OperacionPsql.class);
-        storedProcedure.addParameters(new ProceduredParameter(1, "v_CAMPOID", idCampo, Integer.class));
-        storedProcedure.addParameters(new ProceduredParameter(2, "v_USUARIO", usuarioNombre, String.class));
+        StoredProcedure storedProcedure = new StoredProcedure("SC_CATREM.FNCAMPODEL", OperacionPsql.class);
+        storedProcedure.addParameters(new ProceduredParameter(1, "PA_FICAMPOID", idCampo, Short.class));
+        storedProcedure.addParameters(new ProceduredParameter(2, "PA_USUARIO", usuarioNombre, String.class));
 
         var data = baseDeDatosService.<OperacionPsql>obtenerElementos(storedProcedure);
 
