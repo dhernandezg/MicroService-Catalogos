@@ -1,6 +1,6 @@
 package com.baz.campos.services;
 
-import com.baz.campos.daos.ActualizarCampoDao;
+import com.baz.campos.daos.ActualizarCampo;
 import com.baz.campos.daos.ConsultarCampo;
 import com.baz.campos.daos.CrearCampo;
 import com.baz.campos.daos.EliminarCampoDao;
@@ -31,7 +31,7 @@ public class CamposService {
     ConsultarCampo consultarCampo;
 
     @Inject
-    ActualizarCampoDao actualizarCampoDao;
+    ActualizarCampo actualizarCampo;
 
     @Inject
     EliminarCampoDao eliminarCampoDao;
@@ -103,15 +103,17 @@ public class CamposService {
      * @ultimaModificacion: 10/05/2022
      */
 
-    public boolean actualizarCampo(Integer idCampo,
+    public boolean actualizarCampo(Short idCampo,
+                                   String usuarioNombre,
+                                   String nombreCampo,
                                    String descripcionCampo,
-                                   Integer idStatus,
-                                   String usuarioNombre){
+                                   Short idStatus){
 
-        return actualizarCampoDao.actualizarCampo(idCampo,
+        return actualizarCampo.actualizarCampo(idCampo,
+                usuarioNombre,
+                nombreCampo,
                 descripcionCampo,
-                idStatus,
-                usuarioNombre);
+                idStatus);
     }
 
     /**

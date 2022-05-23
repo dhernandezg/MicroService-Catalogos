@@ -4,6 +4,8 @@ import com.baz.campos.models.CamposModel;
 import com.baz.campos.services.CamposService;
 import com.baz.categorias.dtos.GenericResponse;
 import com.baz.utils.Constantes;
+import io.vertx.core.cli.annotations.Summary;
+import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import javax.inject.Inject;
@@ -27,6 +29,7 @@ public class CamposController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    @Operation(summary = "Consulta las operaciones disponibles en el servicio de campos.")
     public GenericResponse<ArrayList> listaOperaciones(){
 
         return new GenericResponse<>(
@@ -47,6 +50,7 @@ public class CamposController {
     @GET
     @Path("/ConsultaCampo")
     @Produces(MediaType.APPLICATION_JSON)
+    @Operation(summary = "Consulta los campos disponibles en el servicio de campos.")
     public GenericResponse<Iterable<CamposModel>> consultarCampo(
             @Schema(example = "1", description = "Identificador del campo.")
             @QueryParam("idCampo") Integer idCampo,
@@ -74,6 +78,7 @@ public class CamposController {
     @POST
     @Path("/CrearCampo")
     @Produces(MediaType.APPLICATION_JSON)
+    @Operation(summary = "Registra un nuevo campo.")
     public GenericResponse<Boolean> crearCampo(
             @Schema(example = "ID", description = "Nombre del campo.")
             @QueryParam("nombreCampo") String nombreCampo,
@@ -108,21 +113,25 @@ public class CamposController {
 
     @PUT
     @Path("/ActualizarCampo")
+    @Operation(summary = "Actualiza el registro de un campo existente.")
     @Produces(MediaType.APPLICATION_JSON)
     public GenericResponse<Boolean> actualizarCampo(
             @Schema(example = "1", description = "Identificador del campo.")
-            @QueryParam("idCampo") Integer idCampo,
-            @Schema(example = "NOMBRE_CORTO", description = "Descripción del campo.")
+            @QueryParam("idCampo") Short idCampo,
+            @Schema(example = "ID", description = "Nombre del campo.")
+            @QueryParam("nombreCampo") String nombreCampo,
+            @Schema(example = "Identificador", description = "Descripción del campo.")
             @QueryParam("descripcionCampo") String descripcionCampo,
             @Schema(example = "1", description = "Status del campo.")
-            @QueryParam("idStatus") Integer idStatus,
+            @QueryParam("idStatus") Short idStatus,
             @Schema(example = "Daniel Hernandez", description = "Nombre del usuario.")
             @QueryParam("usuarioNombre") String usuarioNombre){
 
         boolean response = camposService.actualizarCampo(idCampo,
+                usuarioNombre,
+                nombreCampo,
                 descripcionCampo,
-                idStatus,
-                usuarioNombre);
+                idStatus);
 
         return new GenericResponse<>(
                 Constantes.HTTP_200,
@@ -142,6 +151,7 @@ public class CamposController {
 
     @DELETE
     @Path("/EliminarCampo")
+    @Operation(summary = "Elimina un campo mediante su identificador.")
     @Produces(MediaType.APPLICATION_JSON)
     public GenericResponse<Boolean> eliminarCampo(
             @Schema(example = "1", description = "Identificador del campo.")

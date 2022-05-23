@@ -9,14 +9,14 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 /**
- * <b>ActualizarCampoDao</b>
+ * <b>ActualizarCampo</b>
  * @descripcion: Método Actualizar Campo para acceso a DB.
  * @autor: Diego Vázquez Pérez
  * @ultimaModificacion: 10/05/2022
  */
 
 @ApplicationScoped
-public class ActualizarCampoDao {
+public class ActualizarCampo {
 
     @Inject
     BaseDeDatosService baseDeDatosService;
@@ -32,16 +32,18 @@ public class ActualizarCampoDao {
      * @ultimaModificacion: 10/05/2022
      */
 
-    public boolean actualizarCampo(Integer idCampo,
+    public boolean actualizarCampo(Short idCampo,
+                                   String usuarioNombre,
+                                   String nombreCampo,
                                    String descripcionCampo,
-                                   Integer idStatus,
-                                   String usuarioNombre){
+                                   Short idStatus){
 
-        StoredProcedure storedProcedure = new StoredProcedure("FNCAMPOUPD", OperacionPsql.class);
-        storedProcedure.addParameters(new ProceduredParameter(1, "v_CAMPOID", idCampo, Integer.class));
-        storedProcedure.addParameters(new ProceduredParameter(2, "v_DESCCAMPO", descripcionCampo, String.class));
-        storedProcedure.addParameters(new ProceduredParameter(3, "v_STATUSID", idStatus, Integer.class));
-        storedProcedure.addParameters(new ProceduredParameter(4, "v_USUARIO", usuarioNombre, String.class));
+        StoredProcedure storedProcedure = new StoredProcedure("SC_CATREM.FNCAMPOUPD", OperacionPsql.class);
+        storedProcedure.addParameters(new ProceduredParameter(1, "PA_FICAMPOID", idCampo, Short.class));
+        storedProcedure.addParameters(new ProceduredParameter(2, "PA_USUARIO", usuarioNombre, String.class));
+        storedProcedure.addParameters(new ProceduredParameter(3, "PA_FCCAMPO", nombreCampo, String.class));
+        storedProcedure.addParameters(new ProceduredParameter(4, "PA_FCDESCCAMPO", descripcionCampo, String.class));
+        storedProcedure.addParameters(new ProceduredParameter(5, "PA_FISTATUSID", idStatus, Short.class));
 
         var data = baseDeDatosService.<OperacionPsql>obtenerElementos(storedProcedure);
 
