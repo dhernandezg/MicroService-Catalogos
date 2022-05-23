@@ -31,20 +31,6 @@ public class CategoriasService {
     @Inject
     EliminarCategoria eliminarCategoria;
 
-    public List<String> listaOperacionesCaterogias(){
-
-        ArrayList<String> lista = new ArrayList<>();
-
-        lista.add(Constantes.CREATE);
-        lista.add(Constantes.READ);
-        lista.add(Constantes.UPDATE);
-        lista.add(Constantes.DELETE);
-        lista.add(Constantes.SEQUENCE);
-        lista.add(Constantes.EXISTENCE);
-
-        return lista;
-    }
-
     /**
      * <b>crearCategoria</b>
      * @descripcion: Método para crear una o varias categorías
@@ -88,7 +74,6 @@ public class CategoriasService {
      * @param usuarioNombre NOmbre del usuario que actualiza la categoría.
      * @ultimaModificacion: 09/05/2022
      */
-
     public boolean actualizarCategoria(Integer idCategoria,
                                        String descripcionCategoria,
                                        Integer idStatus,
@@ -109,7 +94,6 @@ public class CategoriasService {
      * @param usuarioNombre Nombre del usuario.
      * @ultimaModificacion: 10/05/2022
      */
-
     public boolean eliminarCategoria(Integer idCategoria,
                                      String usuarioNombre){
 

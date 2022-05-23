@@ -26,24 +26,6 @@ public class CategoriasController {
     @Inject
     CategoriasService categoriasService;
 
-
-    /**
-     * <b>listaOperaciones</b>
-     * @descripcion: Método para consultar los tipo de operaciones
-     * para el CategoriasService (Se utiliza el nombre como PathParam).
-     * @autor: Diego Vázquez Pérez
-     * @ultimaModificacion: 01/05/2022
-     */
-
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Operation(summary = "Consulta las operaciones disponibles en el servicio de categorías.")
-    public List<String> listaOperaciones(){
-
-        return categoriasService.listaOperacionesCaterogias();
-    }
-
-
     /**
      * <b>consultarCategoria</b>
      * @descripcion: Método GET para consulta por categoría.
