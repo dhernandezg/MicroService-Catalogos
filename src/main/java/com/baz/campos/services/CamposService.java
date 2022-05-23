@@ -98,7 +98,7 @@ public class CamposService {
      * @autor: Diego Vázquez Pérez
      * @param idCampo Identificador del campo
      * @param descripcionCampo Descripción del campo
-     * @param idStatus Identificador del status
+     * @param idEstatus Identificador del estatus
      * @param usuarioNombre Nombre del usuario
      * @ultimaModificacion: 23/05/2022
      */
@@ -107,13 +107,13 @@ public class CamposService {
                                    String usuarioNombre,
                                    String nombreCampo,
                                    String descripcionCampo,
-                                   Short idStatus){
+                                   Short idEstatus){
 
         return actualizarCampo.actualizarCampo(idCampo,
                 usuarioNombre,
                 nombreCampo,
                 descripcionCampo,
-                idStatus);
+                idEstatus);
     }
 
     /**

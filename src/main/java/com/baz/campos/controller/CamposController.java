@@ -1,41 +1,29 @@
 package com.baz.campos.controller;
 
+import com.baz.campos.models.ActualizarCampoModel;
 import com.baz.campos.models.CamposModel;
+import com.baz.campos.models.CrearCampoModel;
 import com.baz.campos.services.CamposService;
 import com.baz.categorias.dtos.GenericResponse;
 import com.baz.utils.Constantes;
 import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.enums.ParameterIn;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
 
-@Path("/CamposService")
+@Path("/campos")
 public class CamposController {
 
+    /**
+     * Inyecta dependencia del servicio de campos
+     */
     @Inject
     CamposService camposService;
-
-    /**
-     * <b>listaOperaciones</b>
-     * @descripcion: Método para mostrar lista de operaciones que
-     * el usuario puede ejecutar en Campos.
-     * @autor: Diego Vázquez Pérez
-     * @ultimaModificacion: 19/05/2022
-     */
-
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Operation(summary = "Consulta las operaciones disponibles en el servicio de campos.")
-    public GenericResponse<ArrayList> listaOperaciones(){
-
-        return new GenericResponse<>(
-                Constantes.HTTP_200,
-                Constantes.MENSAJE_EXITO,
-                camposService.listaOperacionesCampos());
-    }
 
     /**
      * <b>consultarCampo</b>
@@ -43,17 +31,17 @@ public class CamposController {
      * @autor: Diego Vázquez Pérez
      * @param idCampo Identificador del campo
      * @param descripcionCampo Descripción del campo
-     * @ultimaModificacion: ${date}
+     * @ultimaModificacion: 23/05/2022
      */
 
     @GET
-    @Path("/ConsultaCampo")
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "Consulta los campos disponibles en el servicio de campos.")
+    @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001")
     public GenericResponse<Iterable<CamposModel>> consultarCampo(
-            @Schema(example = "1", description = "Identificador del campo.")
+            @Parameter(example = "1", description = "Identificador del campo.")
             @QueryParam("idCampo") Integer idCampo,
-            @Schema(example = "CLAVE", description = "Descripción del campo.")
+            @Parameter(example = "CLAVE", description = "Descripción del campo.")
             @QueryParam("descripcionCategoria") String descripcionCampo){
 
         Iterable<CamposModel> camposModels = camposService.consultarCampo(idCampo,
@@ -69,29 +57,23 @@ public class CamposController {
      * <b>crearCampo</b>
      * @descripcion: Método POST para crear campo
      * @autor: Diego Vázquez Pérez
-     * @param descripcionCampo Descripcion del campo.
-     * @param usuarioNombre Nombre del usuario
-     * @ultimaModificacion: 19/05/2022
+     * @param crearCampoModel Datos requeridos para registrar campo
+     * @ultimaModificacion: 23/05/2022
      */
 
     @POST
-    @Path("/CrearCampo")
+    @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001", schema = @Schema)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "Registra un nuevo campo.")
     public GenericResponse<Boolean> crearCampo(
-            @Schema(example = "ID", description = "Nombre del campo.")
-            @QueryParam("nombreCampo") String nombreCampo,
-
-            @Schema(example = "NOMBRE_CORTO", description = "Descripción del campo.")
-            @QueryParam("descripcionCampo") String descripcionCampo,
-
-            @Schema(example = "Daniel Hernandez", description = "Nombre del usuario.")
-            @QueryParam("usuarioNombre") String usuarioNombre){
+            CrearCampoModel crearCampoModel
+    ){
 
         boolean response = camposService.crearCampo(
-                nombreCampo,
-                descripcionCampo,
-                usuarioNombre);
+                crearCampoModel.getNombreCampo(),
+                crearCampoModel.getDescripcionCampo(),
+                crearCampoModel.getUsuarioNombre());
 
         return new GenericResponse<>(Constantes.HTTP_200,
                 Constantes.MENSAJE_EXITO,
@@ -103,34 +85,25 @@ public class CamposController {
      * <b>actualizarCampo</b>
      * @descripcion: Método PUT para actualizar campo
      * @autor: Diego Vázquez Pérez
-     * @param idCampo Identificador del campo
-     * @param descripcionCampo Descripción del campo
-     * @param idStatus Identificador del status
-     * @param usuarioNombre Nombre del usuario
+     * @param actualizarCampoModel Datos requeridos para actualizar campo mediante su identificador
      * @ultimaModificacion: 23/05/2022
      */
 
     @PUT
-    @Path("/ActualizarCampo")
     @Operation(summary = "Actualiza el registro de un campo existente.")
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001", schema = @Schema)
     public GenericResponse<Boolean> actualizarCampo(
-            @Schema(example = "1", description = "Identificador del campo.")
-            @QueryParam("idCampo") Short idCampo,
-            @Schema(example = "ID", description = "Nombre del campo.")
-            @QueryParam("nombreCampo") String nombreCampo,
-            @Schema(example = "Identificador", description = "Descripción del campo.")
-            @QueryParam("descripcionCampo") String descripcionCampo,
-            @Schema(example = "1", description = "Status del campo.")
-            @QueryParam("idStatus") Short idStatus,
-            @Schema(example = "Daniel Hernandez", description = "Nombre del usuario.")
-            @QueryParam("usuarioNombre") String usuarioNombre){
+            ActualizarCampoModel actualizarCampoModel
+    ){
 
-        boolean response = camposService.actualizarCampo(idCampo,
-                usuarioNombre,
-                nombreCampo,
-                descripcionCampo,
-                idStatus);
+        boolean response = camposService.actualizarCampo(
+                actualizarCampoModel.getIdCampo(),
+                actualizarCampoModel.getUsuarioNombre(),
+                actualizarCampoModel.getNombreCampo(),
+                actualizarCampoModel.getDescripcionCampo(),
+                actualizarCampoModel.getIdEstatus());
 
         return new GenericResponse<>(
                 Constantes.HTTP_200,
@@ -145,17 +118,18 @@ public class CamposController {
      * @autor: Diego Vázquez Pérez
      * @param idCampo Identificador del campo
      * @param usuarioNombre Nombre del usuario
-     * @ultimaModificacion: 10/05/2022
+     * @ultimaModificacion: 23/05/2022
      */
 
     @DELETE
-    @Path("/EliminarCampo")
+    @Path("/{idCampo}/usuario/{usuarioNombre}")
     @Operation(summary = "Elimina un campo mediante su identificador.")
     @Produces(MediaType.APPLICATION_JSON)
+    @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001", schema = @Schema)
     public GenericResponse<Boolean> eliminarCampo(
-            @Schema(example = "1", description = "Identificador del campo.")
+            @Parameter(example = "1", description = "Identificador del campo.")
             @QueryParam("idCampo") Short idCampo,
-            @Schema(example = "Daniel Hernandez", description = "Nombre del usuario.")
+            @Parameter(example = "Daniel Hernandez", description = "Nombre del usuario.")
             @QueryParam("usuarioNombre") String usuarioNombre){
 
         boolean response = camposService.eliminarCampo(
