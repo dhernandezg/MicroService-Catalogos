@@ -1,6 +1,6 @@
 package com.baz.origen.daos;
 
-import com.baz.categorias.models.OperacionPsql;
+import com.baz.utils.OperacionPsql;
 import com.baz.utils.BaseDeDatosService;
 import com.baz.utils.ProceduredParameter;
 import com.baz.utils.StoredProcedure;
@@ -9,14 +9,14 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 /**
- * <b>CrearOrigen</b>
+ * <b>CrearOrigenDao</b>
  * @descripcion: Clase crear Origen para acceso a DB
  * @autor: Diego Vázquez Pérez
  * @ultimaModificacion: 10/05/2022
  */
 
 @ApplicationScoped
-public class CrearOrigen {
+public class CrearOrigenDao {
 
     @Inject
     BaseDeDatosService baseDeDatosService;
@@ -35,14 +35,14 @@ public class CrearOrigen {
                                String claveOrigen,
                                String usuarioNombre){
 
-        StoredProcedure storedProcedure = new StoredProcedure("FNORIGENINS", OperacionPsql.class);
-        storedProcedure.addParameters(new ProceduredParameter(1, "v_DESCORIGEN", descripcionOrigen, String.class));
-        storedProcedure.addParameters(new ProceduredParameter(2, "v_CLAVEORIGEN", claveOrigen, String.class));
-        storedProcedure.addParameters(new ProceduredParameter(3, "v_USUARIO", usuarioNombre, String.class));
+        StoredProcedure storedProcedure = new StoredProcedure("SC_CATREM.FNORIGENINS", OperacionPsql.class);
+        storedProcedure.addParameters(new ProceduredParameter(1, "PA_FCDESCORIGEN", descripcionOrigen, String.class));
+        storedProcedure.addParameters(new ProceduredParameter(2, "PA_FCCLAVEORIGEN", claveOrigen, String.class));
+        storedProcedure.addParameters(new ProceduredParameter(3, "PA_USUARIO", usuarioNombre, String.class));
 
         var data = baseDeDatosService.<OperacionPsql>obtenerElementos(storedProcedure);
 
-        return data.size() > 0 && data.get(0).estatus == 1;
+        return !data.isEmpty() && data.get(0).estatus == 1;
 
     }
 }

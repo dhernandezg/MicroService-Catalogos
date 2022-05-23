@@ -1,4 +1,4 @@
-package com.baz.categorias.models;
+package com.baz.utils;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

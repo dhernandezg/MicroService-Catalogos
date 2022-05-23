@@ -1,16 +1,14 @@
 package com.baz.origen.services;
 
-import com.baz.origen.daos.ActualizarOrigen;
-import com.baz.origen.daos.ConsultarOrigen;
-import com.baz.origen.daos.CrearOrigen;
-import com.baz.origen.daos.EliminarOrigen;
+import com.baz.origen.daos.ActualizarOrigenDao;
+import com.baz.origen.daos.ConsultarOrigenDao;
+import com.baz.origen.daos.CrearOrigenDao;
+import com.baz.origen.daos.EliminarOrigenDao;
 import com.baz.origen.models.OrigenModel;
 import com.baz.utils.Constantes;
-import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import javax.ws.rs.QueryParam;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,16 +24,16 @@ import java.util.List;
 public class OrigenService {
 
     @Inject
-    CrearOrigen crearOrigen;
+    CrearOrigenDao crearOrigenDao;
 
     @Inject
-    ConsultarOrigen consultarOrigen;
+    ConsultarOrigenDao consultarOrigenDao;
 
     @Inject
-    ActualizarOrigen actualizarOrigen;
+    ActualizarOrigenDao actualizarOrigenDao;
 
     @Inject
-    EliminarOrigen eliminarOrigen;
+    EliminarOrigenDao eliminarOrigenDao;
 
     /**
      * <b>listaOperacionesOrigen</b>
@@ -58,7 +56,7 @@ public class OrigenService {
     }
 
     /**
-     * <b>crearOrigen</b>
+     * <b>crearOrigenDao</b>
      * @descripcion: Método para invocar crear origen.
      * @autor: Diego Vázquez Pérez
      * @param descripcionOrigen Descripción del origen
@@ -70,58 +68,55 @@ public class OrigenService {
     public boolean crearOrigen(String descripcionOrigen,
                                String claveOrigen,
                                String usuarioNombre){
-        return crearOrigen.crearOrigen(descripcionOrigen,
+        return crearOrigenDao.crearOrigen(descripcionOrigen,
                 claveOrigen,
                 usuarioNombre);
     }
 
     /**
-     * <b>consultarOrigen</b>
+     * <b>consultarOrigenDao</b>
      * @descripcion: Método para invocar consultar origen
      * @autor: Diego Vázquez Pérez
      * @param idOrigen Identificador del origen
-     * @param descripcionOrigen Descripción del origen
      * @param claveOrigen Clave del origen
      * @ultimaModificacion: 12/05/2022
      */
 
-    public List<OrigenModel> consultarOrigen(Integer idOrigen,
-                                             String descripcionOrigen,
+    public List<OrigenModel> consultarOrigen(Short idOrigen,
                                              String claveOrigen){
 
-        return consultarOrigen.consultarOrigen(idOrigen,
-                descripcionOrigen,
+        return consultarOrigenDao.consultarOrigen(idOrigen,
                 claveOrigen);
     }
 
     /**
-     * <b>actualizarOrigen</b>
+     * <b>actualizarOrigenDao</b>
      * @descripcion: Método para invocar actualizar origen
      * @autor: Diego Vázquez Pérez
      * @param idOrigen Identificador del origen a actualizar
      * @param descripcionOrigen Nueva descripción del origen
      * @param claveOrigen Nueva clave del origen
-     * @param idStatus Nuevo status del origen
+     * @param idEstatus Nuevo estatus del origen
      * @param usuarioNombre Nombre del usuario que actualiza
      * @ultimaModificacion: 16/05/2022
      */
 
     public boolean actualizarOrigen(
-            Integer idOrigen,
+            Short idOrigen,
             String descripcionOrigen,
             String claveOrigen,
-            Integer idStatus,
+            Short idEstatus,
             String usuarioNombre){
-        return actualizarOrigen.actualizarOrigen(
+        return actualizarOrigenDao.actualizarOrigen(
                 idOrigen,
                 descripcionOrigen,
                 claveOrigen,
-                idStatus,
+                idEstatus,
                 usuarioNombre);
     }
 
     /**
-     * <b>eliminarOrigen
+     * <b>eliminarOrigenDao
      * @descripcion: Método para invocar eliminar origen
      * @autor: Diego Vázquez Pérez
      * @param idOrigen Identificador del origen a eliminar
@@ -129,9 +124,9 @@ public class OrigenService {
      * @ultimaModificacion: 16/05/2022
      */
 
-    public boolean eliminarOrigen(Integer idOrigen,
+    public boolean eliminarOrigen(Short idOrigen,
                                   String usuarioNombre){
 
-        return eliminarOrigen.eliminarOrigen(idOrigen, usuarioNombre);
+        return eliminarOrigenDao.eliminarOrigen(idOrigen, usuarioNombre);
     }
 }

@@ -1,39 +1,57 @@
 package com.baz.origen.controller;
 
-import com.baz.categorias.dtos.GenericResponse;
+import com.baz.origen.dtos.GenericResponse;
+import com.baz.origen.models.ActualizarOrigenModel;
 import com.baz.origen.models.OrigenModel;
 import com.baz.origen.services.OrigenService;
 import com.baz.utils.Constantes;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.enums.ParameterIn;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
-import org.hibernate.annotations.GenericGenerator;
+import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.util.ArrayList;
 
-@Path("/OrigenService")
+@Path("/origen")
 public class OrigenController {
 
+    /**
+     * Inyecta dependencia del servicio origen
+     */
     @Inject
     OrigenService origenService;
 
+
     /**
-     * <b>listaOperaciones</b>
-     * @descripcion: Método GET para consultar operaciones
-     * que se pueden ejecutar en OrigenService.
+     * <b>consultarOrigen</b>
+     * @descripcion: Método GET para consulta de orígenes disponibles
      * @autor: Diego Vázquez Pérez
-     * @ultimaModificacion: 12/05/2022
+     * @param idOrigen Identificador del origen
+     * @param claveOrigen Clave del origen
+     * @ultimaModificacion: 23/05/2022
      */
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public GenericResponse<ArrayList> listaOperaciones(){
+    @Operation(summary = "Consulta el listado de orígenes disponibles.")
+    @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001")
+    public GenericResponse<Iterable<OrigenModel>> consultarOrigen(
+            @Parameter(example = "1", description = "Identificador del origen.")
+            @QueryParam("idOrigen") Short idOrigen,
+
+            @Parameter(example = "IDI", description = "Clave del campo.")
+            @QueryParam("claveOrigen") String claveOrigen){
+
+        Iterable<OrigenModel> origenModels = origenService.consultarOrigen(
+                idOrigen,
+                claveOrigen);
 
         return new GenericResponse<>(
                 Constantes.HTTP_200,
                 Constantes.MENSAJE_EXITO,
-                origenService.listaOperacionesOrigen());
+                origenModels);
     }
 
     /**
@@ -43,12 +61,13 @@ public class OrigenController {
      * @param descripcionOrigen Descripción del origen
      * @param claveOrigen CLva del origen
      * @param usuarioNombre Nombre del usuario que registra
-     * @ultimaModificacion: 12/05/2022
+     * @ultimaModificacion: 23/05/2022
      */
 
     @POST
-    @Path("/CrearOrigen")
     @Produces(MediaType.APPLICATION_JSON)
+    @Operation(summary = "Registra un nuevo origen.")
+    @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001", schema = @Schema)
     public GenericResponse<Boolean> crearOrigen(
             @Schema(example = "Inteligencia de Datos e Innovación", description = "Nombre del área de origen")
             @QueryParam("descripcionOrigen") String descripcionOrigen,
@@ -70,77 +89,29 @@ public class OrigenController {
     }
 
     /**
-     * <b>consultarOrigen</b>
-     * @descripcion: Método GET para consulta de origen
-     * @autor: Diego Vázquez Pérez
-     * @param idOrigen Identificador del origen
-     * @param descripcionOrigen Descripción del origen
-     * @param claveOrigen Clave del origen
-     * @ultimaModificacion: 16/05/2022
-     */
-
-    @GET
-    @Path("/ConsultarOrigen")
-    @Produces(MediaType.APPLICATION_JSON)
-    public GenericResponse<Iterable<OrigenModel>> consultarOrigen(
-            @Schema(example = "1", description = "Identificador del origen.")
-            @QueryParam("idOrigen") Integer idOrigen,
-
-            @Schema(example = "Inteligencia de Datos e Innovación", description = "Descripción del origen.")
-            @QueryParam("descripcionOrigen") String descripcionOrigen,
-
-            @Schema(example = "IDI", description = "Clave del campo.")
-            @QueryParam("claveOrigen") String claveOrigen){
-
-        Iterable<OrigenModel> origenModels = origenService.consultarOrigen(
-                idOrigen,
-                descripcionOrigen,
-                claveOrigen);
-
-        return new GenericResponse<>(
-                Constantes.HTTP_200,
-                Constantes.MENSAJE_EXITO,
-                origenModels);
-    }
-
-    /**
      * <b>actualizarOrigen</b>
      * @descripcion: Método PUT para actualizar origen
      * @autor: Diego Vázquez Pérez
-     * @param idOrigen Identificador del origen a actualizar
-     * @param descripcionOrigen Nueva descripción del origen
-     * @param claveOrigen Nueva clave del origen
-     * @param idStatus Nuevo status del origen
-     * @param usuarioNombre Nombre del usuario que actualiza
-     * @ultimaModificacion: 16/05/2022
+     * @param actualizarOrigenModel Datos requeridos para actualizar origen
+     * @ultimaModificacion: 23/05/2022
      */
 
     @PUT
-    @Path("/ActualizarOrigen")
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @Operation(summary = "Actualiza el registro de un origen existente.")
+    @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001", schema = @Schema)
     public GenericResponse<Boolean> actualizarOrigen(
-            @Schema(example = "1", description = "Identificador del origen.")
-            @QueryParam("idOrigen") Integer idOrigen,
-
-            @Schema(example = "Inteligencia de Datos e Innovación", description = "Descripción del origen.")
-            @QueryParam("descripcionOrigen") String descripcionOrigen,
-
-            @Schema(example = "IDI", description = "Clave del campo.")
-            @QueryParam("claveOrigen") String claveOrigen,
-
-            @Schema(example = "1", description = "Status del origen.")
-            @QueryParam("idStatus") Integer idStatus,
-
-            @Schema(example = "Daniel Hernandez", description = "Nombre del usuario que actualiza.")
-            @QueryParam("usuarioNombre") String usuarioNombre
+            @Parameter(description = "Datos requeridos para actualizar origen.")
+            ActualizarOrigenModel actualizarOrigenModel
     ){
 
         boolean response = origenService.actualizarOrigen(
-                idOrigen,
-                descripcionOrigen,
-                claveOrigen,
-                idStatus,
-                usuarioNombre);
+                actualizarOrigenModel.getIdOrigen(),
+                actualizarOrigenModel.getDescripcionOrigen(),
+                actualizarOrigenModel.getClaveOrigen(),
+                actualizarOrigenModel.getIdEstatus(),
+                actualizarOrigenModel.getUsuarioNombre());
 
         return new GenericResponse<>(
                 Constantes.HTTP_200,
@@ -159,13 +130,15 @@ public class OrigenController {
      */
 
     @DELETE
-    @Path("/EliminarOrigen")
+    @Path("/{idOrigen}/usuario/{usuarioNombre}")
     @Produces(MediaType.APPLICATION_JSON)
+    @Operation(summary = "Elimina origen mediante su identificador.")
+    @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001", schema = @Schema)
     public GenericResponse<Boolean> eliminarOrigen(
-            @Schema(example = "1", description = "Identificador del origen a eliinar.")
-            @QueryParam("idOrigen") Integer idOrigen,
+            @Parameter(example = "1", description = "Identificador del origen a eliinar.")
+            @QueryParam("idOrigen") Short idOrigen,
 
-            @Schema(example = "Diego Vázquez", description = "Nombre del usuario que elimina.")
+            @Parameter(example = "Diego Vázquez", description = "Nombre del usuario que elimina.")
             @QueryParam("usuarioNombre") String usuarioNombre
     ){
 

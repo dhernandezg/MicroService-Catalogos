@@ -1,6 +1,6 @@
 package com.baz.origen.daos;
 
-import com.baz.categorias.models.OperacionPsql;
+import com.baz.utils.OperacionPsql;
 import com.baz.utils.BaseDeDatosService;
 import com.baz.utils.ProceduredParameter;
 import com.baz.utils.StoredProcedure;
@@ -9,14 +9,14 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 /**
- * <b>EliminarOrigen</b>
+ * <b>EliminarOrigenDao</b>
  * @descripcion: Clase eliminar origen para acceso a DB
  * @autor: Diego Vázquez Pérez
  * @ultimaModificacion: 12/05/2022
  */
 
 @ApplicationScoped
-public class EliminarOrigen {
+public class EliminarOrigenDao {
 
     @Inject
     BaseDeDatosService baseDeDatosService;
@@ -31,12 +31,12 @@ public class EliminarOrigen {
      */
 
     public boolean eliminarOrigen(
-            Integer idOrigen,
+            Short idOrigen,
             String usuarioNombre){
 
-        StoredProcedure eliminar = new StoredProcedure("FNORIGENDEL", OperacionPsql.class);
-        eliminar.addParameters(new ProceduredParameter(1, "v_ORIGENID", idOrigen, Integer.class));
-        eliminar.addParameters(new ProceduredParameter(2, "v_USUARIO", usuarioNombre, String.class));
+        StoredProcedure eliminar = new StoredProcedure("SC_CATREM.FNORIGENDEL", OperacionPsql.class);
+        eliminar.addParameters(new ProceduredParameter(1, "PA_FIORIGENID", idOrigen, Short.class));
+        eliminar.addParameters(new ProceduredParameter(2, "PA_USUARIO", usuarioNombre, String.class));
 
         var data = baseDeDatosService.<OperacionPsql>obtenerElementos(eliminar);
 

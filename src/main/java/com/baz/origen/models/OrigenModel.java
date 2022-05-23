@@ -32,11 +32,19 @@ public class OrigenModel implements Serializable {
     @Column(name = "statusid")
     private Integer idStatus;
 
+    @Schema(example = "2022-12-12 12:12:12.123", description = "Fecha de creación del campo.")
+    @Column(name = "fechacrea")
+    private LocalDateTime fechaCreacion;
+
     @Schema(example = "2022-12-12 12:12:12.123", description = "Fecha de última modificaciñon del campo.")
-    @Column(name = "modificacion")
+    @Column(name = "fechamod")
     private LocalDateTime fechaModificacion;
 
-    @Schema(example = "Diego Vázquez", description = "NOmbre del usuario.")
-    @Column(name = "usuario")
-    private String usuarioNombre;
+    @Schema(example = "Diego Vázquez", description = "Nombre del usuario que registra.")
+    @Column(name = "usuariocrea")
+    private String usuarioCreacion;
+
+    @Schema(example = "Dani Hndz", description = "Nombre del usuario que modifica.")
+    @Column(name = "usuariomod")
+    private String usuarioModificacion;
 }

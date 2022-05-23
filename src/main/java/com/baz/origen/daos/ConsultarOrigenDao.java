@@ -10,14 +10,14 @@ import javax.inject.Inject;
 import java.util.List;
 
 /**
- * <b>ConsultarOrigen</b>
+ * <b>ConsultarOrigenDao</b>
  * @descripcion: Clase consultar origen para acceso a DB
  * @autor: Diego Vázquez Pérez
- * @ultimaModificacion: 10/05/2022
+ * @ultimaModificacion: 23/05/2022
  */
 
 @ApplicationScoped
-public class ConsultarOrigen {
+public class ConsultarOrigenDao {
 
     @Inject
     BaseDeDatosService baseDeDatosService;
@@ -27,20 +27,17 @@ public class ConsultarOrigen {
      * @descripcion: Método para consultar origen
      * @autor: Diego Vázquez Pérez
      * @param idOrigen Identificador del origen
-     * @param descripcionOrigen Descripcion del tipo de catálogo
      * @param claveOrigen Clave del origen
-     * @ultimaModificacion: 10/05/2022
+     * @ultimaModificacion: 23/05/2022
      */
 
     public List<OrigenModel> consultarOrigen(
-            Integer idOrigen,
-            String descripcionOrigen,
+            Short idOrigen,
             String claveOrigen){
 
-        StoredProcedure storedProcedure = new StoredProcedure("FNORIGENSEL", OrigenModel.class);
-        storedProcedure.addParameters(new ProceduredParameter(1, "v_ORIGENID", idOrigen, Integer.class));
-        storedProcedure.addParameters(new ProceduredParameter(2, "v_DESCORIGEN", descripcionOrigen, String.class));
-        storedProcedure.addParameters(new ProceduredParameter(3, "v_CLAVEORIGEN", claveOrigen, String.class));
+        StoredProcedure storedProcedure = new StoredProcedure("SC_CATREM.FNORIGENSEL", OrigenModel.class);
+        storedProcedure.addParameters(new ProceduredParameter(1, "PA_FIORIGENID", idOrigen, Short.class));
+        storedProcedure.addParameters(new ProceduredParameter(2, "PA_FCCLAVEORIGEN", claveOrigen, String.class));
 
         return baseDeDatosService.<OrigenModel>obtenerElementos(storedProcedure);
 

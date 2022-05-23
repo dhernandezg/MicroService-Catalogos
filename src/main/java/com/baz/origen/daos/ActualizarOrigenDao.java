@@ -1,7 +1,6 @@
 package com.baz.origen.daos;
 
-import com.baz.categorias.models.OperacionPsql;
-import com.baz.origen.models.OrigenModel;
+import com.baz.utils.OperacionPsql;
 import com.baz.utils.BaseDeDatosService;
 import com.baz.utils.ProceduredParameter;
 import com.baz.utils.StoredProcedure;
@@ -10,14 +9,14 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 /**
- * <b>ActualizarOrigen</b>
+ * <b>ActualizarOrigenDao</b>
  * @descripcion: Clase de acceso a DB para actualizar origen.
  * @autor: Diego Vázquez Pérez
  * @ultimaModificacion: 12/05/2022
  */
 
 @ApplicationScoped
-public class ActualizarOrigen {
+public class ActualizarOrigenDao {
 
     @Inject
     BaseDeDatosService baseDeDatosService;
@@ -29,24 +28,24 @@ public class ActualizarOrigen {
      * @param idOrigen Identificador del origen a actualizar
      * @param descripcionOrigen Nueva descripción del origen
      * @param claveOrigen Nueva clave del origen
-     * @param idStatus Nuevo status del origen
+     * @param idEstatus Nuevo status del origen
      * @param usuarioNombre Nombre del usuario que actualiza
      * @ultimaModificacion: 16/05/2022
      */
 
     public boolean actualizarOrigen(
-            Integer idOrigen,
+            Short idOrigen,
             String descripcionOrigen,
             String claveOrigen,
-            Integer idStatus,
+            Short idEstatus,
             String usuarioNombre){
 
-        StoredProcedure actualizarOrigenFuncion = new StoredProcedure("FNORIGENUPD", OperacionPsql.class);
-        actualizarOrigenFuncion.addParameters(new ProceduredParameter(1, "v_ORIGENID", idOrigen, Integer.class));
-        actualizarOrigenFuncion.addParameters(new ProceduredParameter(2, "v_DESCORIGEN", descripcionOrigen, String.class));
-        actualizarOrigenFuncion.addParameters(new ProceduredParameter(3, "v_CLAVEORIGEN", claveOrigen, String.class));
-        actualizarOrigenFuncion.addParameters(new ProceduredParameter(4, "v_STATUSID", idStatus, Integer.class));
-        actualizarOrigenFuncion.addParameters(new ProceduredParameter(5, "v_USUARIO", usuarioNombre, String.class));
+        StoredProcedure actualizarOrigenFuncion = new StoredProcedure("SC_CATREM.FNCATORIGENUPD", OperacionPsql.class);
+        actualizarOrigenFuncion.addParameters(new ProceduredParameter(1, "PA_FIORIGENID", idOrigen, Short.class));
+        actualizarOrigenFuncion.addParameters(new ProceduredParameter(2, "PA_USUARIO", usuarioNombre, String.class));
+        actualizarOrigenFuncion.addParameters(new ProceduredParameter(3, "PA_FCDESCORIGEN", descripcionOrigen, String.class));
+        actualizarOrigenFuncion.addParameters(new ProceduredParameter(4, "PA_FCCLAVEORIGEN", claveOrigen, String.class));
+        actualizarOrigenFuncion.addParameters(new ProceduredParameter(5, "PA_FISTATUSID", idEstatus, Short.class));
 
         var data = baseDeDatosService.<OperacionPsql>obtenerElementos(actualizarOrigenFuncion);
 
