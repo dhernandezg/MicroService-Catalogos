@@ -22,6 +22,7 @@ import javax.ws.rs.core.MediaType;
  * @autor: Diego Vázquez Pérez
  * @ultimaModificacion: 05/05/2022
  */
+
 @Path("/categorias")
 public class CategoriasController {
 
@@ -30,6 +31,7 @@ public class CategoriasController {
      */
     @Inject
     CategoriasService categoriasService;
+
 
     /**
      * <b>consultarCategoria</b>
