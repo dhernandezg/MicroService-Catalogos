@@ -1,6 +1,6 @@
 package com.baz.categorias.daos;
 
-import com.baz.categorias.models.OperacionPsql;
+import com.baz.models.OperacionPsql;
 import com.baz.utils.BaseDeDatosService;
 import com.baz.utils.ProceduredParameter;
 import com.baz.utils.StoredProcedure;
@@ -9,14 +9,14 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 /**
- * <b>CrearCategoria</b>
+ * <b>CrearCategoriaDao</b>
  * @descripcion: Clase DAO para acceso a DB.
  * @autor: Diego Vázquez Pérez
  * @ultimaModificacion: 09/05/2022
  */
 
 @ApplicationScoped
-public class CrearCategoria {
+public class CrearCategoriaDao {
 
     @Inject
     BaseDeDatosService baseDeDatosService;

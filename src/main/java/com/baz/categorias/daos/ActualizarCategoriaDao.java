@@ -1,6 +1,6 @@
 package com.baz.categorias.daos;
 
-import com.baz.categorias.models.OperacionPsql;
+import com.baz.models.OperacionPsql;
 import com.baz.utils.BaseDeDatosService;
 import com.baz.utils.ProceduredParameter;
 import com.baz.utils.StoredProcedure;
@@ -9,36 +9,33 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 /**
- * <b>EliminarCategoria</b>
- * @descripcion: Método ELiminar Categorías DAO para acceso a DB.
+ * <b>ActualizarCategoriaDao</b>
+ * @descripcion: Método ActualizarCategoriaDAO para acceso a DB.
  * @autor: Diego Vázquez Pérez
  * @ultimaModificacion: 19/05/2022
  */
 
 @ApplicationScoped
-public class EliminarCategoria {
+public class ActualizarCategoriaDao {
 
     @Inject
     BaseDeDatosService baseDeDatosService;
 
-    /**
-     * <b>${nombreClase}</b>
-     * @descripcion: Método que permite eliminar una categoría mediante parámetros.
-     * @autor: Diego Vázquez Pérez
-     * @param idCategoria Identificador de la categoría.
-     * @param usuarioNombre Nombre del usuario.
-     * @ultimaModificacion: 19/05/2022
-     */
+    public boolean actualizarCategoria(Integer idCategoria,
+                                       String descripcionCategoria,
+                                       Integer idStatus,
+                                       String usuarioNombre){
 
-    public boolean eliminarCategoria(Integer idCategoria,
-                                     String usuarioNombre){
-
-        StoredProcedure storedProcedure = new StoredProcedure("SC_CATREM.FNCATEGODEL", OperacionPsql.class);
+        StoredProcedure storedProcedure = new StoredProcedure("SC_CATREM.FNCATEGOUPD", OperacionPsql.class);
         storedProcedure.addParameters(new ProceduredParameter(1, "PA_FICATEGORIAID", idCategoria, Integer.class));
         storedProcedure.addParameters(new ProceduredParameter(2, "PA_USUARIO", usuarioNombre, String.class));
+        storedProcedure.addParameters(new ProceduredParameter(3, "PA_FCDESCCATEG", descripcionCategoria, String.class));
+        storedProcedure.addParameters(new ProceduredParameter(4, "PA_FISTATUSID", idStatus, Integer.class));
+
 
         var data = baseDeDatosService.<OperacionPsql>obtenerElementos(storedProcedure);
 
         return data.size() > 0 && data.get(0).estatus == 1;
+
     }
 }

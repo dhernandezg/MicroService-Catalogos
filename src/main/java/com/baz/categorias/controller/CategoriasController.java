@@ -1,17 +1,19 @@
 package com.baz.categorias.controller;
 
 import com.baz.categorias.dtos.GenericResponse;
+import com.baz.categorias.models.ActualizarCategoriaModel;
 import com.baz.categorias.models.CategoriasModel;
+import com.baz.categorias.models.CrearCategoriaModel;
 import com.baz.categorias.services.CategoriasService;
 import com.baz.utils.Constantes;
 import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.enums.ParameterIn;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import java.util.List;
 
 /**
  * <b>CategoriasController</b>
@@ -20,9 +22,12 @@ import java.util.List;
  * @autor: Diego Vázquez Pérez
  * @ultimaModificacion: 05/05/2022
  */
-@Path("/CategoriasService")
+@Path("/categorias")
 public class CategoriasController {
 
+    /**
+     * Objecto de acceso al servicio de categorías
+     */
     @Inject
     CategoriasService categoriasService;
 
@@ -36,13 +41,13 @@ public class CategoriasController {
      */
 
     @GET
-    @Path("/ConsultarCategoria")
     @Produces(MediaType.APPLICATION_JSON)
-    @Operation(summary = "Consulta una categoría particular o todas las categorías.")
+    @Operation(summary = "Consulta una categoría particular por identificador o descripción o todas las categorías con parámetros vacíos.")
+    @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001")
     public GenericResponse<Iterable<CategoriasModel>> consultarCategoria(
-            @Schema(example = "1", description = "Identificador de la categoria")
+            @Parameter(example = "1", description = "Identificador de la categoria")
             @QueryParam("idCategoria") Integer idCategoria,
-            @Schema(example = "GEOGRAFIA", description = "Nombre de la categoria")
+            @Parameter(example = "GEOGRAFIA", description = "Nombre de la categoria")
             @QueryParam("descripcionCategoria") String descripcionCategoria
     ){
 
@@ -55,23 +60,21 @@ public class CategoriasController {
      * <b>crearCategoria</b>
      * @descripcion: Método PUT para crear categoría.
      * @autor: Diego Vázquez Pérez
-     * @param descripcionCategoria Descripcion/nombre de la categoría.
-     * @param usuario Nombre del usuario quien da de alta la categoría.
-     * @ultimaModificacion: 09/05/2022
+     * @param crearCategoriaModel Datos necesarios para registrar categoria
+     * @ultimaModificacion: 23/05/2022
      */
 
     @POST
-    @Path("/CrearCategoria")
-    @Operation(summary = "Registra una nueva categoría..")
+    @Operation(summary = "Registra una nueva categoría.")
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001", schema = @Schema)
     public GenericResponse<Boolean> crearCategoria(
-            @Schema(example = "PAISES", description = "Nombre de la categoria")
-            @QueryParam("descripcionCategoria") String descripcionCategoria,
-            @Schema(example = "Diego Vazquez Perez", description = "Nombre del usuario")
-            @QueryParam("usuario") String usuario
-    ){
+            @Parameter(description = "Datos de la categoria a registrar", required = true)
+            CrearCategoriaModel crearCategoriaModel){
 
-        boolean response = categoriasService.crearCategoria(descripcionCategoria, usuario);
+        boolean response = categoriasService.crearCategoria(crearCategoriaModel.getDescripcionCategoria(),
+                crearCategoriaModel.getNombreUsuario());
 
         return new GenericResponse<>(Constantes.HTTP_200, Constantes.MENSAJE_EXITO, response);
     }
@@ -81,35 +84,24 @@ public class CategoriasController {
      * <b>actualizarCategoria</b>
      * @descripcion: Método para invocar actualización de catergoría.
      * @autor: Diego Vázquez Pérez
-     * @param idCategoria Identificador de la categoria
-     * @param descripcionCategoria Nombre de la categoría.
-     * @param idStatus Identificador del estatus
-     * @param usuarioNombre Nombre del usuario
+     * @param actualizarCategoriaModel Datos de la categoria a actualizar
      * @ultimaModificacion: 10/05/2022
      */
 
     @PUT
-    @Path("/ActualizarCategoria")
     @Operation(summary = "Actualiza los datos especificados de una categoría.")
     @Produces(MediaType.APPLICATION_JSON)
+    @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001", schema = @Schema)
     public GenericResponse<Boolean> actualizarCategoria(
-            @Schema(example = "1", description = "Identificador de la categoria")
-            @QueryParam("idCategoria") Integer idCategoria,
-
-            @Schema(example = "DIVISAS", description = "Nombre de la categoría.")
-            @QueryParam("descripcionCategoria") String descripcionCategoria,
-
-            @Schema(example = "1", description = "Identificador del estatus.")
-            @QueryParam("idStatus") Integer idStatus,
-
-            @Schema(example = "Diego Vazquez Perez", description = "Nombre del usuario")
-            @QueryParam("usuarioNombre") String usuarioNombre
+            @Parameter(description = "Datos de la categoria a actualizar")
+            ActualizarCategoriaModel actualizarCategoriaModel
     ){
 
-        boolean response = categoriasService.actualizarCategoria(idCategoria,
-                descripcionCategoria,
-                idStatus,
-                usuarioNombre);
+        boolean response = categoriasService.actualizarCategoria(
+                actualizarCategoriaModel.getIdCategoria(),
+                actualizarCategoriaModel.getDescripcionCategoria(),
+                actualizarCategoriaModel.getIdEstatus(),
+                actualizarCategoriaModel.getUsuarioNombre());
         return new GenericResponse<>(Constantes.HTTP_200, Constantes.MENSAJE_EXITO, response);
     }
 
@@ -125,14 +117,15 @@ public class CategoriasController {
 
 
     @DELETE
-    @Path("/EliminarCategoria")
+    @Path("/{idCategoria}/usuario/{usuario}")
     @Operation(summary = "Elimina una categoría mediante su identificador.")
     @Produces(MediaType.APPLICATION_JSON)
+    @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001")
     public GenericResponse<Boolean> eliminarCategoria(
-            @Schema(example = "1", description = "Identificador de la categoria")
+            @Parameter(example = "1", description = "Identificador de la categoria", required = true)
             @QueryParam("idCategoria") Integer idCategoria,
 
-            @Schema(example = "Diego Vazquez Perez", description = "Nombre del usuario")
+            @Parameter(example = "Diego Vazquez Perez", description = "Nombre del usuario", required = true)
             @QueryParam("usuarioNombre") String usuarioNombre
     ){
 

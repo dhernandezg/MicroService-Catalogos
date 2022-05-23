@@ -2,7 +2,6 @@ package com.baz.categorias.services;
 
 import com.baz.categorias.daos.*;
 import com.baz.categorias.models.CategoriasModel;
-import com.baz.utils.Constantes;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -20,19 +19,19 @@ import java.util.*;
 public class CategoriasService {
 
     @Inject
-    CrearCategoria crearCategoria;
+    CrearCategoriaDao crearCategoriaDao;
 
     @Inject
-    ConsultarCategoria consultarCategoria;
+    ConsultarCategoriaDao consultarCategoriaDao;
 
     @Inject
-    ActualizarCategoria actualizarCategoria;
+    ActualizarCategoriaDao actualizarCategoriaDao;
 
     @Inject
-    EliminarCategoria eliminarCategoria;
+    EliminarCategoriaDao eliminarCategoriaDao;
 
     /**
-     * <b>crearCategoria</b>
+     * <b>crearCategoriaDao</b>
      * @descripcion: Método para crear una o varias categorías
      * en la entidad.
      * @autor: Diego Vázquez Pérez
@@ -43,13 +42,13 @@ public class CategoriasService {
             String descripcionCategoria,
             String usuario){
 
-        return crearCategoria.crearCategoria(
+        return crearCategoriaDao.crearCategoria(
                 descripcionCategoria,
                 usuario);
     }
 
     /**
-     * <b>consultarCategoria</b>
+     * <b>consultarCategoriaDao</b>
      * @descripcion: Método para consular una o varias categorías
      * de la entidad.
      * @autor: Diego Vázquez Pérez
@@ -59,12 +58,12 @@ public class CategoriasService {
     public List<CategoriasModel> consultarCategoria(Integer idCategoria,
                                                     String descripcionCategoria){
 
-        return consultarCategoria.consultarCategoria(idCategoria, descripcionCategoria);
+        return consultarCategoriaDao.consultarCategoria(idCategoria, descripcionCategoria);
     }
 
 
     /**
-     * <b>actualizarCategoria</b>
+     * <b>actualizarCategoriaDao</b>
      * @descripcion: Método para actualizar categorías mediante idCategoria,
      * descripcionCategoria, idStatus, usuarioNombre.
      * @autor: Diego Vázquez Pérez
@@ -79,7 +78,7 @@ public class CategoriasService {
                                        Integer idStatus,
                                        String usuarioNombre){
 
-        return actualizarCategoria.actualizarCategoria(idCategoria,
+        return actualizarCategoriaDao.actualizarCategoria(idCategoria,
                 descripcionCategoria,
                 idStatus,
                 usuarioNombre);
@@ -87,7 +86,7 @@ public class CategoriasService {
 
 
     /**
-     * <b>eliminarCategoria</b>
+     * <b>eliminarCategoriaDao</b>
      * @descripcion: Método para invocar la eliminación de categoría.
      * @autor: Diego Vázquez Pérez
      * @param idCategoria Identificador de la categoria.
@@ -97,7 +96,7 @@ public class CategoriasService {
     public boolean eliminarCategoria(Integer idCategoria,
                                      String usuarioNombre){
 
-        return eliminarCategoria.eliminarCategoria(idCategoria,
+        return eliminarCategoriaDao.eliminarCategoria(idCategoria,
                 usuarioNombre);
     }
 
