@@ -90,4 +90,19 @@ public class ElementosBaseService {
 
         return actualizarElementosBaseDao.actualizarElementoBase(elemento);
     }
+
+    /**
+     * <b>eliminarElementoBase</b>
+     * @descripcion: Método para eliminar un elemento base
+     * @autor: Diego Vázquez Pérez
+     * @param elemento Modelo de datos requeridos para eliminar un elemento base
+     * @ultimaModificacion: 24/05/2022
+     */
+
+    public boolean eliminarElementoBase(
+            EliminarElementoBaseModel elemento
+    ){
+
+        return eliminarElementoBaseDao.eliminarElementoBase(elemento);
+    }
 }
