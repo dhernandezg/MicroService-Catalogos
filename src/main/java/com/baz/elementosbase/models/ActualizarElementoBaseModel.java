@@ -10,7 +10,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 @NoArgsConstructor
 public class ActualizarElementoBaseModel {
 
-    @Schema(description = "Identificador de la categoría.")
+    @Schema(description = "Identificador de la categoría.", required = true)
     private Integer idCategoria;
 
     @Schema(description = "Identificador del catálogo.")
@@ -19,7 +19,7 @@ public class ActualizarElementoBaseModel {
     @Schema(description = "Identificador del elemento base.")
     private Integer idElementoBase;
 
-    @Schema(description = "Nombre del usuario que modifica el registro.")
+    @Schema(description = "Nombre del usuario que modifica el registro.", required = true)
     private String nombreUsuario;
 
     @Schema(description = "Valor del elemento que se registra.")

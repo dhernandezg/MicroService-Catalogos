@@ -10,21 +10,21 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 @NoArgsConstructor
 public class CrearElementoBaseModel {
 
-    @Schema(description = "Identificador de la categoría a la que pertenece el catálogo.")
+    @Schema(description = "Identificador de la categoría a la que pertenece el catálogo.", required = true)
     private Integer idCategoria;
 
-    @Schema(description = "Identificador del catálogo al que pertenece el elemento.")
+    @Schema(description = "Identificador del catálogo al que pertenece el elemento.", required = true)
     private Integer idCatalogo;
 
-    @Schema(description = "Valor del elemento dentro del catálogo.")
+    @Schema(description = "Valor del elemento dentro del catálogo.", required = true)
     private String valor;
 
-    @Schema(description = "Identificado del campo.")
+    @Schema(description = "Identificado del campo.", required = true)
     private Short idCampo;
 
-    @Schema(description = "Orden del elemento dentro del catálogo.")
+    @Schema(description = "Orden del elemento dentro del catálogo.", required = true)
     private Short orden;
 
-    @Schema(description = "Nombre del usuario que realiza el registro.")
+    @Schema(description = "Nombre del usuario que realiza el registro.", required = true)
     private String nombreUsuario;
 }

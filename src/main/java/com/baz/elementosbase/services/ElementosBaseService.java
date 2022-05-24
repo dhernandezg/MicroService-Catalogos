@@ -76,4 +76,18 @@ public class ElementosBaseService {
                 idCatalogo,
                 idElementoBase);
     }
+
+    /**
+     * <b>actualizarElementoBase</b>
+     * @descripcion: Método para actualización de elemento base
+     * @autor: Diego Vázquez Pérez
+     * @param elemento Modelo de datos requeridos para actualización de elemento base
+     * @ultimaModificacion: 24/05/2022
+     */
+    public boolean actualizarElementoBase(
+            ActualizarElementoBaseModel elemento
+    ){
+
+        return actualizarElementosBaseDao.actualizarElementoBase(elemento);
+    }
 }

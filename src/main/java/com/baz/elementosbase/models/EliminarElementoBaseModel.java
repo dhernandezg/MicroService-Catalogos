@@ -10,15 +10,15 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 @NoArgsConstructor
 public class EliminarElementoBaseModel {
 
-    @Schema(description = "Identificador de la categoría a la que pertenece el catálogo.")
+    @Schema(description = "Identificador de la categoría a la que pertenece el catálogo.", required = true)
     private Integer idCategoria;
 
-    @Schema(description = "Identificador del catálogo al que pertenece el elemento base.")
+    @Schema(description = "Identificador del catálogo al que pertenece el elemento base.", required = true)
     private Integer idCatalogo;
 
-    @Schema(description = "Identificador del elemento base.")
+    @Schema(description = "Identificador del elemento base.", required = true)
     private Integer idElementoBase;
 
-    @Schema(description = "Nombre del usuario que realizar la eliminación del registro.")
+    @Schema(description = "Nombre del usuario que realizar la eliminación del registro.", required = true)
     private String usuarioNombre;
 }
