@@ -30,4 +30,5 @@ public class Constantes {
     private Constantes(){
         throw new UnsupportedOperationException("Esta clase no debe ser inicializada");
     }
+
 }

@@ -4,7 +4,7 @@ import com.baz.campos.models.ActualizarCampoModel;
 import com.baz.campos.models.CamposModel;
 import com.baz.campos.models.CrearCampoModel;
 import com.baz.campos.services.CamposService;
-import com.baz.categorias.dtos.GenericResponse;
+import com.baz.dtos.CatalogoResponseDto;
 import com.baz.utils.Constantes;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.ParameterIn;
@@ -14,7 +14,6 @@ import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.util.ArrayList;
 
 @Path("/campos")
 public class CamposController {
@@ -38,7 +37,7 @@ public class CamposController {
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "Consulta los campos disponibles en el servicio de campos.")
     @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001")
-    public GenericResponse<Iterable<CamposModel>> consultarCampo(
+    public CatalogoResponseDto<Iterable<CamposModel>> consultarCampo(
             @Parameter(example = "1", description = "Identificador del campo.")
             @QueryParam("idCampo") Integer idCampo,
             @Parameter(example = "CLAVE", description = "Descripción del campo.")
@@ -47,7 +46,7 @@ public class CamposController {
         Iterable<CamposModel> camposModels = camposService.consultarCampo(idCampo,
                 descripcionCampo);
 
-        return new GenericResponse<>(
+        return new CatalogoResponseDto<>(
                 Constantes.HTTP_200,
                 Constantes.MENSAJE_EXITO,
                 camposModels);
@@ -66,7 +65,7 @@ public class CamposController {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "Registra un nuevo campo.")
-    public GenericResponse<Boolean> crearCampo(
+    public CatalogoResponseDto<Boolean> crearCampo(
             CrearCampoModel crearCampoModel
     ){
 
@@ -75,7 +74,7 @@ public class CamposController {
                 crearCampoModel.getDescripcionCampo(),
                 crearCampoModel.getUsuarioNombre());
 
-        return new GenericResponse<>(Constantes.HTTP_200,
+        return new CatalogoResponseDto<>(Constantes.HTTP_200,
                 Constantes.MENSAJE_EXITO,
                 response);
 
@@ -94,7 +93,7 @@ public class CamposController {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001", schema = @Schema)
-    public GenericResponse<Boolean> actualizarCampo(
+    public CatalogoResponseDto<Boolean> actualizarCampo(
             ActualizarCampoModel actualizarCampoModel
     ){
 
@@ -105,7 +104,7 @@ public class CamposController {
                 actualizarCampoModel.getDescripcionCampo(),
                 actualizarCampoModel.getIdEstatus());
 
-        return new GenericResponse<>(
+        return new CatalogoResponseDto<>(
                 Constantes.HTTP_200,
                 Constantes.MENSAJE_EXITO,
                 response);
@@ -126,7 +125,7 @@ public class CamposController {
     @Operation(summary = "Elimina un campo mediante su identificador.")
     @Produces(MediaType.APPLICATION_JSON)
     @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001", schema = @Schema)
-    public GenericResponse<Boolean> eliminarCampo(
+    public CatalogoResponseDto<Boolean> eliminarCampo(
             @Parameter(example = "1", description = "Identificador del campo.")
             @QueryParam("idCampo") Short idCampo,
             @Parameter(example = "Daniel Hernandez", description = "Nombre del usuario.")
@@ -136,7 +135,7 @@ public class CamposController {
                 idCampo,
                 usuarioNombre);
 
-        return new GenericResponse<>(
+        return new CatalogoResponseDto<>(
                 Constantes.HTTP_200,
                 Constantes.MENSAJE_EXITO,
                 response);

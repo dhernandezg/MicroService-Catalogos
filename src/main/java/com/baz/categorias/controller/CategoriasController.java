@@ -1,15 +1,16 @@
 package com.baz.categorias.controller;
 
-import com.baz.categorias.dtos.GenericResponse;
 import com.baz.categorias.models.ActualizarCategoriaModel;
 import com.baz.categorias.models.CategoriasModel;
 import com.baz.categorias.models.CrearCategoriaModel;
 import com.baz.categorias.services.CategoriasService;
+import com.baz.dtos.CatalogoResponseDto;
 import com.baz.utils.Constantes;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.ParameterIn;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
+import java.lang.Iterable;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -46,7 +47,7 @@ public class CategoriasController {
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "Consulta una categoría particular por identificador o descripción o todas las categorías con parámetros vacíos.")
     @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001")
-    public GenericResponse<Iterable<CategoriasModel>> consultarCategoria(
+    public CatalogoResponseDto<Iterable<CategoriasModel>> consultarCategoria(
             @Parameter(example = "1", description = "Identificador de la categoria")
             @QueryParam("idCategoria") Integer idCategoria,
             @Parameter(example = "GEOGRAFIA", description = "Nombre de la categoria")
@@ -55,7 +56,7 @@ public class CategoriasController {
 
         Iterable<CategoriasModel> categoriasModel = categoriasService.consultarCategoria(idCategoria, descripcionCategoria);
 
-        return new GenericResponse<Iterable<CategoriasModel>>(Constantes.HTTP_200, Constantes.MENSAJE_EXITO, categoriasModel) ;
+        return new CatalogoResponseDto<>(Constantes.HTTP_200, Constantes.MENSAJE_EXITO, categoriasModel) ;
     }
 
     /**
@@ -71,14 +72,14 @@ public class CategoriasController {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001", schema = @Schema)
-    public GenericResponse<Boolean> crearCategoria(
+    public CatalogoResponseDto<Boolean> crearCategoria(
             @Parameter(description = "Datos de la categoria a registrar", required = true)
             CrearCategoriaModel crearCategoriaModel){
 
         boolean response = categoriasService.crearCategoria(crearCategoriaModel.getDescripcionCategoria(),
                 crearCategoriaModel.getNombreUsuario());
 
-        return new GenericResponse<>(Constantes.HTTP_200, Constantes.MENSAJE_EXITO, response);
+        return new CatalogoResponseDto<>(Constantes.HTTP_200, Constantes.MENSAJE_EXITO, response);
     }
 
 
@@ -94,7 +95,7 @@ public class CategoriasController {
     @Operation(summary = "Actualiza los datos especificados de una categoría.")
     @Produces(MediaType.APPLICATION_JSON)
     @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001", schema = @Schema)
-    public GenericResponse<Boolean> actualizarCategoria(
+    public CatalogoResponseDto<Boolean> actualizarCategoria(
             @Parameter(description = "Datos de la categoria a actualizar")
             ActualizarCategoriaModel actualizarCategoriaModel
     ){
@@ -104,7 +105,7 @@ public class CategoriasController {
                 actualizarCategoriaModel.getDescripcionCategoria(),
                 actualizarCategoriaModel.getIdEstatus(),
                 actualizarCategoriaModel.getUsuarioNombre());
-        return new GenericResponse<>(Constantes.HTTP_200, Constantes.MENSAJE_EXITO, response);
+        return new CatalogoResponseDto<>(Constantes.HTTP_200, Constantes.MENSAJE_EXITO, response);
     }
 
 
@@ -123,7 +124,7 @@ public class CategoriasController {
     @Operation(summary = "Elimina una categoría mediante su identificador.")
     @Produces(MediaType.APPLICATION_JSON)
     @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001")
-    public GenericResponse<Boolean> eliminarCategoria(
+    public CatalogoResponseDto<Boolean> eliminarCategoria(
             @Parameter(example = "1", description = "Identificador de la categoria", required = true)
             @QueryParam("idCategoria") Integer idCategoria,
 
@@ -135,7 +136,7 @@ public class CategoriasController {
                 idCategoria,
                 usuarioNombre);
 
-        return new GenericResponse<>(Constantes.HTTP_200, Constantes.MENSAJE_EXITO, response);
+        return new CatalogoResponseDto<>(Constantes.HTTP_200, Constantes.MENSAJE_EXITO, response);
     }
 
 }
