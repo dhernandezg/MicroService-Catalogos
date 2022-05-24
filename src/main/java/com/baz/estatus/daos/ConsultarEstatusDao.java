@@ -10,6 +10,13 @@ import java.util.List;
 import com.baz.utils.ProceduredParameter;
 import com.baz.utils.StoredProcedure;
 
+/**
+ * <b>ConsultarEstatusDao</b>
+ * @descripcion: Clase de acceso a DB
+ * @autor: Diego Vázquez Pérez
+ * @ultimaModificacion: 24/05/2022
+ */
+
 @ApplicationScoped
 public class ConsultarEstatusDao {
 
