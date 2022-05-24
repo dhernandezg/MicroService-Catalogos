@@ -6,11 +6,13 @@ import lombok.NoArgsConstructor;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity(name = "TASTATUS")
 public class EstatusModel {
 
     @Schema(description = "Identificador del estatus.")
