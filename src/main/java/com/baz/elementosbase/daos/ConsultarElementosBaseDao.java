@@ -26,8 +26,7 @@ public class ConsultarElementosBaseDao {
     public List<ElementosBaseModel> consultarElementosBase(
             Integer idCategoria,
             Integer idCatalogo,
-            Integer idElementoBase
-    ){
+            Integer idElementoBase){
 
         StoredProcedure consultarElementos = new StoredProcedure("SC_CATREM.FNELEMBASESEL", ElementosBaseModel.class);
         consultarElementos.addParameters(new ProceduredParameter(1, "PA_FICATEGORIAID", idCategoria, Integer.class));
