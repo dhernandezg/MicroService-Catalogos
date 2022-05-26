@@ -9,6 +9,12 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.AccessLevel;
 
+/**
+ * <b>ErrorResponseDto<T></b>
+ * @descripcion: Contiene la respuesta con error para el Microservicio
+ * @autor: Daniel Hernandez Garcia
+ * @ultimaModificacion: 11/05/2022
+ */
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class ErrorResponseDto extends MicroservicioResponseDto {
