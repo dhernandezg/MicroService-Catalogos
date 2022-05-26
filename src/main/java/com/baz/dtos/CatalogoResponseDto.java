@@ -6,7 +6,6 @@ import lombok.EqualsAndHashCode;
 
 /**
  * <b>CatalogoResponseDto<T></b>
- * 
  * @descripcion: RespuestaDto para micro-servicio de catálogos
  * @autor: Daniel Hernandez Garcia
  * @ultimaModificacion: 11/05/2022
