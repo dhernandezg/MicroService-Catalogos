@@ -13,7 +13,7 @@ public class ActualizarElementoBaseModel {
     @Schema(description = "Identificador de la categoría.", required = true)
     private Integer idCategoria;
 
-    @Schema(description = "Identificador del catálogo.")
+    @Schema(description = "Identificador del catálogo.", required = true)
     private Integer idCatalogo;
 
     @Schema(description = "Identificador del elemento base.")
