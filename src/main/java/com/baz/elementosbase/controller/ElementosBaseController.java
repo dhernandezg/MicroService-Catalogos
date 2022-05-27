@@ -1,6 +1,7 @@
 package com.baz.elementosbase.controller;
 
 import com.baz.dtos.CatalogoResponseDto;
+import com.baz.elementosbase.models.ActualizarElementoBaseModel;
 import com.baz.elementosbase.models.CrearElementoBaseModel;
 import com.baz.elementosbase.models.ElementosBaseModel;
 import com.baz.elementosbase.services.ElementosBaseService;
@@ -83,5 +84,29 @@ public class ElementosBaseController {
                 Constantes.MENSAJE_EXITO,
                 response);
 
+    }
+
+    /**
+     * <b>actualizarElementoBase</b>
+     * @descripcion: Método PUT para actualizar campos específicos de un elemento base.
+     * @autor: Diego Vázquez Pérez
+     * @param actualizarElementoBaseModel Actualiza los datos especificados de un elemento base mediante su identificado
+     * @ultimaModificacion: 27/05/2022
+     */
+
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001", schema = @Schema)
+    public CatalogoResponseDto<Boolean> actualizarElementoBase(
+            @Parameter(description = "Actualiza los datos especificados de un elemento base mediante su identificador")
+            ActualizarElementoBaseModel actualizarElementoBaseModel){
+
+        boolean response = elementosBaseService.actualizarElementoBase(actualizarElementoBaseModel);
+
+        return new CatalogoResponseDto<>(
+                Constantes.HTTP_200,
+                Constantes.MENSAJE_EXITO,
+                response);
     }
 }
