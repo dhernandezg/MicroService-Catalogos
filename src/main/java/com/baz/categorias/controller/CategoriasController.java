@@ -61,7 +61,7 @@ public class CategoriasController {
 
     /**
      * <b>crearCategoria</b>
-     * @descripcion: Método PUT para crear categoría.
+     * @descripcion: Método POST para crear categoría.
      * @autor: Diego Vázquez Pérez
      * @param crearCategoriaModel Datos necesarios para registrar categoria
      * @ultimaModificacion: 23/05/2022

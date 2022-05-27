@@ -1,18 +1,17 @@
 package com.baz.elementosbase.controller;
 
 import com.baz.dtos.CatalogoResponseDto;
+import com.baz.elementosbase.models.CrearElementoBaseModel;
 import com.baz.elementosbase.models.ElementosBaseModel;
 import com.baz.elementosbase.services.ElementosBaseService;
 import com.baz.utils.Constantes;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.ParameterIn;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 @Path("/elementosbase")
@@ -59,5 +58,30 @@ public class ElementosBaseController {
                 Constantes.HTTP_200,
                 Constantes.MENSAJE_EXITO,
                 elementosBaseModels);
+    }
+
+    /**
+     * <b>crearElementoBase</b>
+     * @descripcion: Método POST para crear registro de elemento base
+     * @autor: Diego Vázquez Pérez
+     * @param crearElementoBaseModel Datos requeridos del elemento base a registrar.
+     * @ultimaModificacion: 27/05/2022
+     */
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001", schema = @Schema)
+    public CatalogoResponseDto<Boolean> crearElementoBase(
+            @Parameter(description = "Datos requeridos del elemento base a registrar.")
+                    CrearElementoBaseModel crearElementoBaseModel){
+
+        boolean response = elementosBaseService.crearElementoBase(crearElementoBaseModel);
+
+        return new CatalogoResponseDto<>(
+                Constantes.HTTP_200,
+                Constantes.MENSAJE_EXITO,
+                response);
+
     }
 }
