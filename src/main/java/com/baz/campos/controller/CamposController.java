@@ -41,7 +41,7 @@ public class CamposController {
             @Parameter(example = "1", description = "Identificador del campo.")
             @QueryParam("idCampo") Integer idCampo,
             @Parameter(example = "CLAVE", description = "Descripción del campo.")
-            @QueryParam("descripcionCategoria") String descripcionCampo){
+            @QueryParam("descripcionCampo") String descripcionCampo){
 
         Iterable<CamposModel> camposModels = camposService.consultarCampo(idCampo,
                 descripcionCampo);
