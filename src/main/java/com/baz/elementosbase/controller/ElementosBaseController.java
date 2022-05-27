@@ -126,7 +126,7 @@ public class ElementosBaseController {
     @Operation(summary = "Elimina un elemento base.")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001")
+    @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001", schema = @Schema)
     public CatalogoResponseDto<Boolean> eliminarElementoBase(
             @Parameter(description = "Elimina un elemento base mediante los datos requeridos")
             EliminarElementoBaseModel eliminarElementoBaseModel
