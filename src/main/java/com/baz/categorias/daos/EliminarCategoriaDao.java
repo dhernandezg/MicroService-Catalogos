@@ -22,7 +22,7 @@ public class EliminarCategoriaDao {
     BaseDeDatosService baseDeDatosService;
 
     /**
-     * <b>${nombreClase}</b>
+     * <b>$eliminarCategoria</b>
      * @descripcion: Método que permite eliminar una categoría mediante parámetros.
      * @autor: Diego Vázquez Pérez
      * @param idCategoria Identificador de la categoría.

@@ -41,7 +41,7 @@ public class ElementosBaseService {
     EliminarElementoBaseDao eliminarElementoBaseDao;
 
     /**
-     * <b>${nombreClase}</b>
+     * <b>$crearElementoBase</b>
      * @descripcion: Método para crear un elemento base
      * @autor: Diego Vázquez Pérez
      * @param elemento Modelo de datos requeridos para crear un elemento base
