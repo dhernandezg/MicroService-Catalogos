@@ -23,14 +23,25 @@ public class ConsultarElementoTraduccionDAO {
     BaseDeDatosService baseDeDatosService;
 
     /**
-     * <b>${nombreClase}</b>
-     * @descripcion: breve descripción del contenido
-     * @autor: ${user}, Desarrollador
-     * @param String Descripcion
-     * @ultimaModificacion: ${date}
+     * <b>consultarElementosTraduccion</b>
+     * @descripcion: Método para consultar elementos traduccion
+     * @autor: Diego Vázquez Pérez
+     * @param idCategoria Identificador de la categoría del catálogo a consultar
+     * @param idCatalogo Identificador del catálogo a consultar
+     * @param idElementoTrad Identificador del elemento traducción a consultar
+     * @ultimaModificacion: 30/05/2022
      */
 
-    public List<ElementosTraduccionModel> consultarElementosTraduccion(){
+    public List<ElementosTraduccionModel> consultarElementosTraduccion(
+            Integer idCategoria,
+            Integer idCatalogo,
+            Integer idElementoTrad){
 
+        StoredProcedure consultaTraduccion = new StoredProcedure("SC_CATREM.FNELEMTRADSEL", ElementosTraduccionModel.class);
+        consultaTraduccion.addParameters(new ProceduredParameter(1, "PA_FICATEGORIAID", idCategoria , Integer.class));
+        consultaTraduccion.addParameters(new ProceduredParameter(1, "PA_FICATALOGOID", idCatalogo, Integer.class));
+        consultaTraduccion.addParameters(new ProceduredParameter(1, "PA_FIELEMTRADID", idElementoTrad, Integer.class));
+
+        return baseDeDatosService.obtenerElementos(consultaTraduccion);
     }
 }
