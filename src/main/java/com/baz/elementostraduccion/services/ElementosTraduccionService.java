@@ -6,9 +6,11 @@ import com.baz.elementostraduccion.daos.CrearElementoTraduccionDAO;
 import com.baz.elementostraduccion.daos.EliminarElementoTraduccionDAO;
 import com.baz.elementostraduccion.models.ActualizarElementoTraduccionModel;
 import com.baz.elementostraduccion.models.CrearElementoTraduccionModel;
+import com.baz.elementostraduccion.models.ElementosTraduccionModel;
 
 import javax.ejb.Singleton;
 import javax.inject.Inject;
+import java.util.List;
 
 @Singleton
 public class ElementosTraduccionService {
@@ -40,5 +42,26 @@ public class ElementosTraduccionService {
             CrearElementoTraduccionModel crearTraduccion){
 
         return crearElemento.crearElementoTraduccion(crearTraduccion);
+    }
+
+    /**
+         * <b>consultarElementosTrad</b>
+         * @descripcion: Método para consultar elementos traduccion
+         * @autor: Diego Vázquez Pérez
+         * @param idCategoria Identificador de la categoria a consultar
+         * @param idCatalogo Identificador del catalogo a consultar
+         * @param idElementoTrad Identificador del elemento traduccion a consultar
+         * @ultimaModificacion: 30/05/2022
+         */
+
+    public List<ElementosTraduccionModel> consultarElementosTrad(
+            Integer idCategoria,
+            Integer idCatalogo,
+            Integer idElementoTrad){
+
+        return consultarElemento.consultarElementosTraduccion(
+                idCategoria,
+                idCatalogo,
+                idElementoTrad);
     }
 }
