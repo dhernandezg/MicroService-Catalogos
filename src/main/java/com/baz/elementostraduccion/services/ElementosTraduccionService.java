@@ -7,6 +7,7 @@ import com.baz.elementostraduccion.daos.EliminarElementoTraduccionDAO;
 import com.baz.elementostraduccion.models.ActualizarElementoTraduccionModel;
 import com.baz.elementostraduccion.models.CrearElementoTraduccionModel;
 import com.baz.elementostraduccion.models.ElementosTraduccionModel;
+import com.baz.elementostraduccion.models.EliminarElementoTraduccionModel;
 
 import javax.ejb.Singleton;
 import javax.inject.Inject;
@@ -78,5 +79,19 @@ public class ElementosTraduccionService {
     ){
 
         return actualziarElemento.actualizarElementoTrad(actualizarTraduccion);
+    }
+
+    /**
+         * <b>eliminarElementoTrad</b>
+         * @descripcion: Método para eliminar elementos traduccion
+         * @autor: Diego Vázquez Pérez
+         * @param eliminarTraduccion Modelo de datos requeridos para eliminar un elemento traducción
+         * @ultimaModificacion: 30/05/2022
+         */
+
+    public boolean eliminarElementoTrad(
+            EliminarElementoTraduccionModel eliminarTraduccion){
+
+        return eliminarElementos.eliminarElementoTrad(eliminarTraduccion);
     }
 }
