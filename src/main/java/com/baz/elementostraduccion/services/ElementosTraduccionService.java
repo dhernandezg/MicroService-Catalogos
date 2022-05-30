@@ -64,4 +64,19 @@ public class ElementosTraduccionService {
                 idCatalogo,
                 idElementoTrad);
     }
+
+    /**
+         * <b>actualizarElementoTrad</b>
+         * @descripcion: Método para actualizar elementos traduccion
+         * @autor: Diego Vázquez Pérez
+         * @param actualizarTraduccion Modelo de datos requeridos para actualizar un elemento traduccion
+         * @ultimaModificacion: 30/05/2022
+         */
+
+    public boolean actualizarElementoTrad(
+            ActualizarElementoTraduccionModel actualizarTraduccion
+    ){
+
+        return actualziarElemento.actualizarElementoTrad(actualizarTraduccion);
+    }
 }
