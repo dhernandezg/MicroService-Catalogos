@@ -14,7 +14,7 @@ public class EliminarElementoTraduccionModel {
     private Integer idCategoria;
 
     @Schema(description = "Identificador del catálogo", required = true)
-    private Integer IdCatalogo;
+    private Integer idCatalogo;
 
     @Schema(description = "Identificador del elemento traducción", required = true)
     private Integer idElementoTrad;
