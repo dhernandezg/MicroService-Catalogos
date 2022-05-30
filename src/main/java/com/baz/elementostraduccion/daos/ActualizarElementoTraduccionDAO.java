@@ -7,6 +7,7 @@ import com.baz.utils.BaseDeDatosService;
 import com.baz.utils.ProceduredParameter;
 import com.baz.utils.StoredProcedure;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 /**
@@ -15,6 +16,8 @@ import javax.inject.Inject;
      * @autor: Diego Vázquez Pérez
      * @ultimaModificacion: 30/05/2022
      */
+
+@ApplicationScoped
 public class ActualizarElementoTraduccionDAO {
 
     /**

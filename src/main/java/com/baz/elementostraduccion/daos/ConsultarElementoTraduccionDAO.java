@@ -1,6 +1,7 @@
 package com.baz.elementostraduccion.daos;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 
 import com.baz.elementostraduccion.models.ElementosTraduccionModel;
 import com.baz.utils.*;
@@ -20,6 +21,8 @@ public class ConsultarElementoTraduccionDAO {
     /**
      * Inyección de dependencia para acceso a DB
      */
+
+    @Inject
     BaseDeDatosService baseDeDatosService;
 
     /**
@@ -39,8 +42,8 @@ public class ConsultarElementoTraduccionDAO {
 
         StoredProcedure consultaTraduccion = new StoredProcedure("SC_CATREM.FNELEMTRADSEL", ElementosTraduccionModel.class);
         consultaTraduccion.addParameters(new ProceduredParameter(1, "PA_FICATEGORIAID", idCategoria , Integer.class));
-        consultaTraduccion.addParameters(new ProceduredParameter(1, "PA_FICATALOGOID", idCatalogo, Integer.class));
-        consultaTraduccion.addParameters(new ProceduredParameter(1, "PA_FIELEMTRADID", idElementoTrad, Integer.class));
+        consultaTraduccion.addParameters(new ProceduredParameter(2, "PA_FICATALOGOID", idCatalogo, Integer.class));
+        consultaTraduccion.addParameters(new ProceduredParameter(3, "PA_FIELEMTRADID", idElementoTrad, Integer.class));
 
         return baseDeDatosService.obtenerElementos(consultaTraduccion);
     }

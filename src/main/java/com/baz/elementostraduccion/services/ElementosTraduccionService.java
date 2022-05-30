@@ -9,8 +9,8 @@ import com.baz.elementostraduccion.models.CrearElementoTraduccionModel;
 import com.baz.elementostraduccion.models.ElementosTraduccionModel;
 import com.baz.elementostraduccion.models.EliminarElementoTraduccionModel;
 
-import javax.ejb.Singleton;
 import javax.inject.Inject;
+import javax.inject.Singleton;
 import java.util.List;
 
 @Singleton
