@@ -10,14 +10,14 @@ import javax.inject.Inject;
 import java.util.List;
 
 /**
- * <b>ConsultarCampo</b>
+ * <b>ConsultarCampoDao</b>
  * @descripcion: Método consultarCampoDao para acceso a DB.
  * @autor: Diego Vázquez Pérez
  * @ultimaModificacion: 10/05/2022
  */
 
 @ApplicationScoped
-public class ConsultarCampo {
+public class ConsultarCampoDao {
 
     @Inject
     BaseDeDatosService baseDeDatosService;

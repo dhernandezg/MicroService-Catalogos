@@ -37,6 +37,7 @@ public class CamposController {
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "Consulta los campos disponibles en el servicio de campos.")
     @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001")
+    @Parameter(in = ParameterIn.HEADER, description = "Token - Código de acceso", name = "token", required = true, example = "MITOKEN", schema = @Schema)
     public CatalogoResponseDto<Iterable<CamposModel>> consultarCampo(
             @Parameter(example = "1", description = "Identificador del campo.")
             @QueryParam("idCampo") Integer idCampo,
@@ -65,6 +66,7 @@ public class CamposController {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "Registra un nuevo campo.")
+    @Parameter(in = ParameterIn.HEADER, description = "Token - Código de acceso", name = "token", required = true, example = "MITOKEN", schema = @Schema)
     public CatalogoResponseDto<Boolean> crearCampo(
             CrearCampoModel crearCampoModel
     ){
@@ -93,6 +95,7 @@ public class CamposController {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001", schema = @Schema)
+    @Parameter(in = ParameterIn.HEADER, description = "Token - Código de acceso", name = "token", required = true, example = "MITOKEN", schema = @Schema)
     public CatalogoResponseDto<Boolean> actualizarCampo(
             ActualizarCampoModel actualizarCampoModel
     ){
@@ -125,6 +128,7 @@ public class CamposController {
     @Operation(summary = "Elimina un campo mediante su identificador.")
     @Produces(MediaType.APPLICATION_JSON)
     @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001", schema = @Schema)
+    @Parameter(in = ParameterIn.HEADER, description = "Token - Código de acceso", name = "token", required = true, example = "MITOKEN", schema = @Schema)
     public CatalogoResponseDto<Boolean> eliminarCampo(
             @Parameter(example = "1", description = "Identificador del campo.")
             @QueryParam("idCampo") Short idCampo,

@@ -38,7 +38,7 @@ public class CamposModel implements Serializable {
     private String descripcionCampo;
 
     @Schema(example = "1", description = "Identificador del estatus del campo.")
-    @Column(name = "STATUSID")
+    @Column(name = "ESTATUSID")
     private Integer idStatus;
 
     @Schema(example = "2022-05-18 19:00:00-000", description = "Fecha de creación del campo.")

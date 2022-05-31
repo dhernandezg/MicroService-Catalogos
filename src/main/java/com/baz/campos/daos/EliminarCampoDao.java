@@ -9,14 +9,14 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 /**
- * <b>EliminarCampo</b>
+ * <b>EliminarCampoDao</b>
  * @descripcion: Clase ELiminarCampo para acceso a DB.
  * @autor: Diego Vázquez Pérez
  * @ultimaModificacion: 23/05/2022
  */
 
 @ApplicationScoped
-public class EliminarCampo {
+public class EliminarCampoDao {
 
     @Inject
     BaseDeDatosService baseDeDatosService;

@@ -9,14 +9,14 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 /**
- * <b>CrearCampo</b>
+ * <b>CrearCampoDao</b>
  * @descripcion: Clase crearCampoDao para acceso a DB
  * @autor: Diego Vázquez Pérez
  * @ultimaModificacion: 19/05/2022
  */
 
 @ApplicationScoped
-public class CrearCampo {
+public class CrearCampoDao {
 
     @Inject
     BaseDeDatosService baseDeDatosService;

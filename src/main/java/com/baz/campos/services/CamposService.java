@@ -1,9 +1,9 @@
 package com.baz.campos.services;
 
-import com.baz.campos.daos.ActualizarCampo;
-import com.baz.campos.daos.ConsultarCampo;
-import com.baz.campos.daos.CrearCampo;
-import com.baz.campos.daos.EliminarCampo;
+import com.baz.campos.daos.ActualizarCampoDao;
+import com.baz.campos.daos.ConsultarCampoDao;
+import com.baz.campos.daos.CrearCampoDao;
+import com.baz.campos.daos.EliminarCampoDao;
 import com.baz.campos.models.CamposModel;
 
 import javax.inject.Inject;
@@ -23,19 +23,19 @@ import java.util.List;
 public class CamposService {
 
     @Inject
-    CrearCampo crearCampo;
+    CrearCampoDao crearCampoDao;
 
     @Inject
-    ConsultarCampo consultarCampo;
+    ConsultarCampoDao consultarCampo;
 
     @Inject
-    ActualizarCampo actualizarCampo;
+    ActualizarCampoDao actualizarCampo;
 
     @Inject
-    EliminarCampo eliminarCampo;
+    EliminarCampoDao eliminarCampoDao;
 
     /**
-     * <b>crearCampo</b>
+     * <b>crearCampoDao</b>
      * @descripcion: Método para invocar crear campo.
      * @autor: Diego Vázquez Pérez
      * @param descripcionCampo Descripcion del campo
@@ -47,7 +47,7 @@ public class CamposService {
                               String descripcionCampo,
                               String usuarioNombre){
 
-        return crearCampo.crearCampo(nombreCampo,
+        return crearCampoDao.crearCampo(nombreCampo,
                 descripcionCampo,
                 usuarioNombre);
 
@@ -95,7 +95,7 @@ public class CamposService {
     }
 
     /**
-     * <b>eliminarCampo</b>
+     * <b>eliminarCampoDao</b>
      * @descripcion: Método para invocar eliminar campo.
      * @autor: Diego Vázquez Pérez
      * @param idCampo Identificador del campo
@@ -106,7 +106,7 @@ public class CamposService {
     public boolean eliminarCampo(Short idCampo,
                                  String usuarioNombre){
 
-        return eliminarCampo.eliminarCampo(idCampo,
+        return eliminarCampoDao.eliminarCampo(idCampo,
                 usuarioNombre);
 
     }
