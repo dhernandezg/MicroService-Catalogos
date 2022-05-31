@@ -47,6 +47,7 @@ public class CategoriasController {
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "Consulta una categoría particular por identificador o descripción o todas las categorías con parámetros vacíos.")
     @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001")
+    @Parameter(in = ParameterIn.HEADER, description = "Token - Código de acceso", name = "token", required = true, example = "MITOKEN", schema = @Schema)
     public CatalogoResponseDto<Iterable<CategoriasModel>> consultarCategoria(
             @Parameter(example = "1", description = "Identificador de la categoria")
             @QueryParam("idCategoria") Integer idCategoria,
@@ -72,6 +73,7 @@ public class CategoriasController {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001", schema = @Schema)
+    @Parameter(in = ParameterIn.HEADER, description = "Token - Código de acceso", name = "token", required = true, example = "MITOKEN", schema = @Schema)
     public CatalogoResponseDto<Boolean> crearCategoria(
             @Parameter(description = "Datos de la categoria a registrar", required = true)
             CrearCategoriaModel crearCategoriaModel){
@@ -95,6 +97,7 @@ public class CategoriasController {
     @Operation(summary = "Actualiza los datos especificados de una categoría.")
     @Produces(MediaType.APPLICATION_JSON)
     @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001", schema = @Schema)
+    @Parameter(in = ParameterIn.HEADER, description = "Token - Código de acceso", name = "token", required = true, example = "MITOKEN", schema = @Schema)
     public CatalogoResponseDto<Boolean> actualizarCategoria(
             @Parameter(description = "Datos de la categoria a actualizar")
             ActualizarCategoriaModel actualizarCategoriaModel
@@ -124,6 +127,7 @@ public class CategoriasController {
     @Operation(summary = "Elimina una categoría mediante su identificador.")
     @Produces(MediaType.APPLICATION_JSON)
     @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001")
+    @Parameter(in = ParameterIn.HEADER, description = "Token - Código de acceso", name = "token", required = true, example = "MITOKEN", schema = @Schema)
     public CatalogoResponseDto<Boolean> eliminarCategoria(
             @Parameter(example = "1", description = "Identificador de la categoria", required = true)
             @QueryParam("idCategoria") Integer idCategoria,

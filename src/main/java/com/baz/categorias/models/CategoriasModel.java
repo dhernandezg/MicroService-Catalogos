@@ -1,5 +1,6 @@
 package com.baz.categorias.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
@@ -21,8 +22,8 @@ import java.time.LocalDateTime;
 
 
 @Data
+@AllArgsConstructor
 @Entity(name = "TACATEGORIA")
-@Table(name = "TACATEGORIA")
 @NoArgsConstructor
 public class CategoriasModel implements Serializable {
 
@@ -36,8 +37,8 @@ public class CategoriasModel implements Serializable {
     private String descripcionCategoria;
 
     @Schema(example = "1", description = "ACTIVO")
-    @Column(name = "STATUSID")
-    private Integer idStatus;
+    @Column(name = "ESTATUSID")
+    private Integer idEstatus;
 
     @Schema(example = "2022-05-02 16:03:52.245", description = "Fecha de creación")
     @Column(name = "FECHACREA")

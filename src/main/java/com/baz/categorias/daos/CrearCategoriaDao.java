@@ -33,7 +33,7 @@ public class CrearCategoriaDao {
             String descripcionCategoria,
             String usuarioNombre) {
 
-        StoredProcedure storedProcedure = new StoredProcedure("SC_CATREM.FNCATEGOINS", OperacionPsql.class);
+        StoredProcedure storedProcedure = new StoredProcedure("SC_CATREM.FNCATEGORIAINS", OperacionPsql.class);
         storedProcedure.addParameters(new ProceduredParameter(1, "PA_FCDESCCATEG", descripcionCategoria, String.class));
         storedProcedure.addParameters(new ProceduredParameter(2, "PA_USUARIO", usuarioNombre, String.class));
 

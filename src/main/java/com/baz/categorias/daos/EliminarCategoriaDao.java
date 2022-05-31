@@ -33,7 +33,7 @@ public class EliminarCategoriaDao {
     public boolean eliminarCategoria(Integer idCategoria,
                                      String usuarioNombre){
 
-        StoredProcedure storedProcedure = new StoredProcedure("SC_CATREM.FNCATEGODEL", OperacionPsql.class);
+        StoredProcedure storedProcedure = new StoredProcedure("SC_CATREM.FNCATEGORIADEL", OperacionPsql.class);
         storedProcedure.addParameters(new ProceduredParameter(1, "PA_FICATEGORIAID", idCategoria, Integer.class));
         storedProcedure.addParameters(new ProceduredParameter(2, "PA_USUARIO", usuarioNombre, String.class));
 

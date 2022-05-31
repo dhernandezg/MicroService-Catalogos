@@ -69,18 +69,18 @@ public class CategoriasService {
      * @autor: Diego Vázquez Pérez
      * @param idCategoria Identificador de la categoría.
      * @param descripcionCategoria NOmbre de la categoría.
-     * @param idStatus Identificador del estado de la categoría.
+     * @param idEstatus Identificador del estado de la categoría.
      * @param usuarioNombre NOmbre del usuario que actualiza la categoría.
      * @ultimaModificacion: 09/05/2022
      */
     public boolean actualizarCategoria(Integer idCategoria,
                                        String descripcionCategoria,
-                                       Integer idStatus,
+                                       Integer idEstatus,
                                        String usuarioNombre){
 
         return actualizarCategoriaDao.actualizarCategoria(idCategoria,
                 descripcionCategoria,
-                idStatus,
+                idEstatus,
                 usuarioNombre);
     }
 

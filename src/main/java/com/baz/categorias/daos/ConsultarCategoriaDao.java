@@ -26,7 +26,7 @@ public class ConsultarCategoriaDao {
             Integer idCategoria,
             String descripcionCategoria){
 
-        StoredProcedure storedProcedure = new StoredProcedure("SC_CATREM.FNCATEGOSEL", CategoriasModel.class);
+        StoredProcedure storedProcedure = new StoredProcedure("SC_CATREM.FNCATEGORIASEL", CategoriasModel.class);
         storedProcedure.addParameters(new ProceduredParameter(1,"PA_FICATEGORIAID", idCategoria, Integer.class));
         storedProcedure.addParameters(new ProceduredParameter(2,"PA_FCDESCCATEG", descripcionCategoria, String.class));
 

@@ -23,14 +23,14 @@ public class ActualizarCategoriaDao {
 
     public boolean actualizarCategoria(Integer idCategoria,
                                        String descripcionCategoria,
-                                       Integer idStatus,
+                                       Integer idEstatus,
                                        String usuarioNombre){
 
-        StoredProcedure storedProcedure = new StoredProcedure("SC_CATREM.FNCATEGOUPD", OperacionPsql.class);
+        StoredProcedure storedProcedure = new StoredProcedure("SC_CATREM.FNCATEGORIAUPD", OperacionPsql.class);
         storedProcedure.addParameters(new ProceduredParameter(1, "PA_FICATEGORIAID", idCategoria, Integer.class));
         storedProcedure.addParameters(new ProceduredParameter(2, "PA_USUARIO", usuarioNombre, String.class));
         storedProcedure.addParameters(new ProceduredParameter(3, "PA_FCDESCCATEG", descripcionCategoria, String.class));
-        storedProcedure.addParameters(new ProceduredParameter(4, "PA_FISTATUSID", idStatus, Integer.class));
+        storedProcedure.addParameters(new ProceduredParameter(4, "PA_FIESTATUSID", idEstatus, Integer.class));
 
 
         var data = baseDeDatosService.<OperacionPsql>obtenerElementos(storedProcedure);
