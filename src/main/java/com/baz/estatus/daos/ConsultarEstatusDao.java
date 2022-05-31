@@ -30,9 +30,9 @@ public class ConsultarEstatusDao {
             Short idEstatus,
             String descripcionEstatus){
 
-        StoredProcedure consultaEstatus = new StoredProcedure("SC_CATREM.FNSTATUSSEL", EstatusModel.class);
-        consultaEstatus.addParameters(new ProceduredParameter(1, "PA_FISTATUSID", idEstatus, Short.class));
-        consultaEstatus.addParameters(new ProceduredParameter(2, "PA_FCDESCSTATUS", descripcionEstatus, String.class));
+        StoredProcedure consultaEstatus = new StoredProcedure("SC_CATREM.FNESTATUSSEL", EstatusModel.class);
+        consultaEstatus.addParameters(new ProceduredParameter(1, "PA_FIESTATUSID", idEstatus, Short.class));
+        consultaEstatus.addParameters(new ProceduredParameter(2, "PA_FCDESCESTATUS", descripcionEstatus, String.class));
 
         return baseDeDatosService.obtenerElementos(consultaEstatus);
     }

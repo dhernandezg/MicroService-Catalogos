@@ -37,6 +37,7 @@ public class OrigenController {
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "Consulta el listado de orígenes disponibles.")
     @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001")
+    @Parameter(in = ParameterIn.HEADER, description = "Token - Código de acceso", name = "token", required = true, example = "MITOKEN", schema = @Schema)
     public CatalogoResponseDto<Iterable<OrigenModel>> consultarOrigen(
             @Parameter(example = "1", description = "Identificador del origen.")
             @QueryParam("idOrigen") Short idOrigen,
@@ -68,6 +69,7 @@ public class OrigenController {
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "Registra un nuevo origen.")
     @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001", schema = @Schema)
+    @Parameter(in = ParameterIn.HEADER, description = "Token - Código de acceso", name = "token", required = true, example = "MITOKEN", schema = @Schema)
     public CatalogoResponseDto<Boolean> crearOrigen(
             @Schema(example = "Inteligencia de Datos e Innovación", description = "Nombre del área de origen")
             @QueryParam("descripcionOrigen") String descripcionOrigen,
@@ -101,6 +103,7 @@ public class OrigenController {
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "Actualiza el registro de un origen existente.")
     @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001", schema = @Schema)
+    @Parameter(in = ParameterIn.HEADER, description = "Token - Código de acceso", name = "token", required = true, example = "MITOKEN", schema = @Schema)
     public CatalogoResponseDto<Boolean> actualizarOrigen(
             @Parameter(description = "Datos requeridos para actualizar origen.")
             ActualizarOrigenModel actualizarOrigenModel
@@ -134,6 +137,7 @@ public class OrigenController {
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "Elimina origen mediante su identificador.")
     @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001", schema = @Schema)
+    @Parameter(in = ParameterIn.HEADER, description = "Token - Código de acceso", name = "token", required = true, example = "MITOKEN", schema = @Schema)
     public CatalogoResponseDto<Boolean> eliminarOrigen(
             @Parameter(example = "1", description = "Identificador del origen a eliinar.")
             @QueryParam("idOrigen") Short idOrigen,

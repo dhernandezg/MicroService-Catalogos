@@ -28,9 +28,9 @@ public class OrigenModel implements Serializable {
     @Column(name = "claveorigen")
     private String claveOrigen;
 
-    @Schema(example = "1", description = "Identificador del status del origen.")
-    @Column(name = "statusid")
-    private Integer idStatus;
+    @Schema(example = "1", description = "Identificador del estatus del origen.")
+    @Column(name = "estatusid")
+    private Integer idEstatus;
 
     @Schema(example = "2022-12-12 12:12:12.123", description = "Fecha de creación del campo.")
     @Column(name = "fechacrea")

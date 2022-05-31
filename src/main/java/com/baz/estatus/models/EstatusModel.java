@@ -12,16 +12,16 @@ import javax.persistence.Id;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "TASTATUS")
+@Entity(name = "TAESTATUS")
 public class EstatusModel {
 
     @Schema(description = "Identificador del estatus.")
-    @Column(name = "statusid")
+    @Column(name = "estatusid")
     @Id
     private Integer idEstatus;
 
     @Schema(description = "Descripción del estatus.")
-    @Column(name = "descstatus")
+    @Column(name = "descestatus")
     private String descripcionEstatus;
 
     @Schema(description = "Fecha de creación del estatus.")

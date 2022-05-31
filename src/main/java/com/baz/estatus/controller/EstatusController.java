@@ -6,6 +6,7 @@ import com.baz.estatus.services.EstatusService;
 import com.baz.utils.Constantes;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.ParameterIn;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 
 import javax.inject.Inject;
@@ -43,10 +44,11 @@ public class EstatusController {
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "Consulta un estatus particular por identificador o descripción o todos los estatus con parámetros vacíos.")
     @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001")
+    @Parameter(in = ParameterIn.HEADER, description = "Token - Código de acceso", name = "token", required = true, example = "MITOKEN", schema = @Schema)
     public CatalogoResponseDto<Iterable<EstatusModel>> consultarEstatus(
             @Parameter(example = "1", description = "Identificador del estatus")
             @QueryParam("idEstatus") Short idEstatus,
-            @Parameter(example = "ACTIVO", description = "Nombre de la categoria")
+            @Parameter(example = "ACTIVO", description = "Nombre del estatus")
             @QueryParam("descripcionEstatus") String descripcionEstatus
     ){
 

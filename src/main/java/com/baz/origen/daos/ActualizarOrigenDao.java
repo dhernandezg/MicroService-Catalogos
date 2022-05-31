@@ -40,12 +40,12 @@ public class ActualizarOrigenDao {
             Short idEstatus,
             String usuarioNombre){
 
-        StoredProcedure actualizarOrigenFuncion = new StoredProcedure("SC_CATREM.FNCATORIGENUPD", OperacionPsql.class);
+        StoredProcedure actualizarOrigenFuncion = new StoredProcedure("SC_CATREM.FNORIGENUPD", OperacionPsql.class);
         actualizarOrigenFuncion.addParameters(new ProceduredParameter(1, "PA_FIORIGENID", idOrigen, Short.class));
         actualizarOrigenFuncion.addParameters(new ProceduredParameter(2, "PA_USUARIO", usuarioNombre, String.class));
         actualizarOrigenFuncion.addParameters(new ProceduredParameter(3, "PA_FCDESCORIGEN", descripcionOrigen, String.class));
         actualizarOrigenFuncion.addParameters(new ProceduredParameter(4, "PA_FCCLAVEORIGEN", claveOrigen, String.class));
-        actualizarOrigenFuncion.addParameters(new ProceduredParameter(5, "PA_FISTATUSID", idEstatus, Short.class));
+        actualizarOrigenFuncion.addParameters(new ProceduredParameter(5, "PA_FIESTATUSID", idEstatus, Short.class));
 
         var data = baseDeDatosService.<OperacionPsql>obtenerElementos(actualizarOrigenFuncion);
 
