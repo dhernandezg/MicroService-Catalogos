@@ -12,19 +12,19 @@ import javax.ws.rs.QueryParam;
 @NoArgsConstructor
 public class ActualizarOrigenModel {
 
-    @Schema(description = "Identificador del origen a actualizar.", required = true)
-    @QueryParam("idOrigen") Short idOrigen;
+    @Schema(description = "Identificador del origen.", required = true)
+    @QueryParam("id") Short id;
 
     @Schema(description = "Descripción del origen.")
-    @QueryParam("descripcionOrigen") String descripcionOrigen;
+    @QueryParam("descripcion") String descripcion;
 
-    @Schema(description = "Clave del campo.")
-    @QueryParam("claveOrigen") String claveOrigen;
+    @Schema(description = "Clave del origen.")
+    @QueryParam("clave") String clave;
 
-    @Schema(description = "Status del origen.")
-    @QueryParam("idStatus") Short idEstatus;
+    @Schema(description = "Estatus del origen.")
+    @QueryParam("estatus") Short estatus;
 
-    @Schema(description = "Nombre del usuario que actualiza.", required = true)
-    @QueryParam("usuarioNombre") String usuarioNombre;
+    @Schema(description = "Nombre del usuario.", required = true)
+    @QueryParam("usuario") String usuario;
 
 }

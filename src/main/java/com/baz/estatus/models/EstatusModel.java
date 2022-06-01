@@ -18,11 +18,11 @@ public class EstatusModel {
     @Schema(description = "Identificador del estatus.")
     @Column(name = "estatusid")
     @Id
-    private Integer idEstatus;
+    private Integer id;
 
     @Schema(description = "Descripción del estatus.")
     @Column(name = "descestatus")
-    private String descripcionEstatus;
+    private String descripcion;
 
     @Schema(description = "Fecha de creación del estatus.")
     @Column(name = "fechacrea")

@@ -47,9 +47,9 @@ public class EstatusController {
     @Parameter(in = ParameterIn.HEADER, description = "Token - Código de acceso", name = "token", required = true, example = "MITOKEN", schema = @Schema)
     public CatalogoResponseDto<Iterable<EstatusModel>> consultarEstatus(
             @Parameter(example = "1", description = "Identificador del estatus")
-            @QueryParam("idEstatus") Short idEstatus,
+            @QueryParam("id") Short idEstatus,
             @Parameter(example = "ACTIVO", description = "Nombre del estatus")
-            @QueryParam("descripcionEstatus") String descripcionEstatus
+            @QueryParam("descripcion") String descripcionEstatus
     ){
 
         Iterable<EstatusModel> estatusModels = estatusService.consultarEstatus(

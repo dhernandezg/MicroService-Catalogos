@@ -40,10 +40,10 @@ public class OrigenController {
     @Parameter(in = ParameterIn.HEADER, description = "Token - Código de acceso", name = "token", required = true, example = "MITOKEN", schema = @Schema)
     public CatalogoResponseDto<Iterable<OrigenModel>> consultarOrigen(
             @Parameter(example = "1", description = "Identificador del origen.")
-            @QueryParam("idOrigen") Short idOrigen,
+            @QueryParam("id") Short idOrigen,
 
             @Parameter(example = "IDI", description = "Clave del campo.")
-            @QueryParam("claveOrigen") String claveOrigen){
+            @QueryParam("clave") String claveOrigen){
 
         Iterable<OrigenModel> origenModels = origenService.consultarOrigen(
                 idOrigen,
@@ -71,14 +71,14 @@ public class OrigenController {
     @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001", schema = @Schema)
     @Parameter(in = ParameterIn.HEADER, description = "Token - Código de acceso", name = "token", required = true, example = "MITOKEN", schema = @Schema)
     public CatalogoResponseDto<Boolean> crearOrigen(
-            @Schema(example = "Inteligencia de Datos e Innovación", description = "Nombre del área de origen")
-            @QueryParam("descripcionOrigen") String descripcionOrigen,
+            @Schema(example = "Inteligencia de Datos e Innovación", description = "Nombre del área de origen.")
+            @QueryParam("descripcion") String descripcionOrigen,
 
-            @Schema(example = "IDI", description = "Clave del área de origen")
-            @QueryParam("claveOrigen") String claveOrigen,
+            @Schema(example = "IDI", description = "Clave del área de origen.")
+            @QueryParam("clave") String claveOrigen,
 
-            @Schema(example = "Nombre Apellido1 Apellido2", description = "Nombre del usuario que registra")
-            @QueryParam("usuarioNombre") String usuarioNombre){
+            @Schema(example = "Nombre Apellido1 Apellido2", description = "Nombre del usuario.")
+            @QueryParam("usuario") String usuarioNombre){
 
         boolean response = origenService.crearOrigen(descripcionOrigen,
                 claveOrigen,
@@ -110,11 +110,11 @@ public class OrigenController {
     ){
 
         boolean response = origenService.actualizarOrigen(
-                actualizarOrigenModel.getIdOrigen(),
-                actualizarOrigenModel.getDescripcionOrigen(),
-                actualizarOrigenModel.getClaveOrigen(),
-                actualizarOrigenModel.getIdEstatus(),
-                actualizarOrigenModel.getUsuarioNombre());
+                actualizarOrigenModel.getId(),
+                actualizarOrigenModel.getDescripcion(),
+                actualizarOrigenModel.getClave(),
+                actualizarOrigenModel.getEstatus(),
+                actualizarOrigenModel.getUsuario());
 
         return new CatalogoResponseDto<>(
                 Constantes.HTTP_200,
@@ -140,10 +140,10 @@ public class OrigenController {
     @Parameter(in = ParameterIn.HEADER, description = "Token - Código de acceso", name = "token", required = true, example = "MITOKEN", schema = @Schema)
     public CatalogoResponseDto<Boolean> eliminarOrigen(
             @Parameter(example = "1", description = "Identificador del origen a eliinar.")
-            @QueryParam("idOrigen") Short idOrigen,
+            @QueryParam("id") Short idOrigen,
 
             @Parameter(example = "Diego Vázquez", description = "Nombre del usuario que elimina.")
-            @QueryParam("usuarioNombre") String usuarioNombre
+            @QueryParam("usuario") String usuarioNombre
     ){
 
         boolean response = origenService.eliminarOrigen(idOrigen, usuarioNombre);

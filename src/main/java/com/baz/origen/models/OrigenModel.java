@@ -18,19 +18,19 @@ public class OrigenModel implements Serializable {
     @Schema(example = "1", description = "Identificador del origen.")
     @Column(name = "origenid")
     @Id
-    private Integer idOrigen;
+    private Integer id;
 
     @Schema(example = "Inteligencia de Datos e Innovación", description = "Descripción del origen.")
     @Column(name = "descorigen")
-    private String descripcionOrigen;
+    private String descripciion;
 
     @Schema(example = "IDI", description = "Clave del origen.")
     @Column(name = "claveorigen")
-    private String claveOrigen;
+    private String clave;
 
     @Schema(example = "1", description = "Identificador del estatus del origen.")
     @Column(name = "estatusid")
-    private Integer idEstatus;
+    private Integer estatus;
 
     @Schema(example = "2022-12-12 12:12:12.123", description = "Fecha de creación del campo.")
     @Column(name = "fechacrea")
