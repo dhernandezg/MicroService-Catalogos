@@ -29,11 +29,11 @@ public class ConsultarCampoDao {
      * @ultimaModificacion: 19/05/2022
      */
 
-    public List<CamposModel> consultarCampos(Integer idCampo,
+    public List<CamposModel> consultarCampos(Short idCampo,
                                              String descripcionCampo){
 
         StoredProcedure storedProcedure = new StoredProcedure("SC_CATREM.FNCAMPOSEL", CamposModel.class);
-        storedProcedure.addParameters(new ProceduredParameter(1, "PA_FICAMPOID", idCampo, Integer.class));
+        storedProcedure.addParameters(new ProceduredParameter(1, "PA_FICAMPOID", idCampo, Short.class));
         storedProcedure.addParameters(new ProceduredParameter(2, "PA_FCCAMPO", descripcionCampo, String.class));
 
         return baseDeDatosService.obtenerElementos(storedProcedure);

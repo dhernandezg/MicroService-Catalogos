@@ -27,27 +27,27 @@ public class CamposModel implements Serializable {
     @Schema(example = "1", description = "Identificador de campo.")
     @Column(name = "CAMPOID")
     @Id
-    private Integer idCampo;
+    private Integer id;
 
     @Schema(example = "ID", description = "Nombre del campo.")
     @Column(name = "CAMPO")
-    private String nombreCampo;
+    private String nombre;
 
     @Schema(example = "IDENTIFICADOR", description = "Descripción del campo.")
     @Column(name = "desccampo")
-    private String descripcionCampo;
+    private String descripcion;
 
     @Schema(example = "1", description = "Identificador del estatus del campo.")
     @Column(name = "ESTATUSID")
-    private Integer idStatus;
+    private Integer estatus;
 
     @Schema(example = "2022-05-18 19:00:00-000", description = "Fecha de creación del campo.")
     @Column(name = "FECHACREA")
-    private LocalDateTime fechaCrea;
+    private LocalDateTime fechaCreacion;
 
     @Schema(example = "2022-05-19 19:00:00-000", description = "Fecha de última modificaciñon del campo.")
     @Column(name = "FECHAMOD")
-    private LocalDateTime fechaMod;
+    private LocalDateTime fechaModificacion;
 
     @Schema(example = "Daniel Hernandez", description = "Nombre del usuario que generó el registro.")
     @Column(name = "USUARIOCREA")

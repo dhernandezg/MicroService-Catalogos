@@ -62,7 +62,7 @@ public class CamposService {
      * @ultimaModificacion: ${date}
      */
 
-    public List<CamposModel> consultarCampo(Integer idCampo,
+    public List<CamposModel> consultarCampo(Short idCampo,
                                             String descripcionCampo){
 
         return consultarCampo.consultarCampos(idCampo,

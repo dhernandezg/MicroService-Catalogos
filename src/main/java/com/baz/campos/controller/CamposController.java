@@ -40,9 +40,9 @@ public class CamposController {
     @Parameter(in = ParameterIn.HEADER, description = "Token - Código de acceso", name = "token", required = true, example = "MITOKEN", schema = @Schema)
     public CatalogoResponseDto<Iterable<CamposModel>> consultarCampo(
             @Parameter(example = "1", description = "Identificador del campo.")
-            @QueryParam("idCampo") Integer idCampo,
+            @QueryParam("id") Short idCampo,
             @Parameter(example = "CLAVE", description = "Descripción del campo.")
-            @QueryParam("descripcionCampo") String descripcionCampo){
+            @QueryParam("descripcion") String descripcionCampo){
 
         Iterable<CamposModel> camposModels = camposService.consultarCampo(idCampo,
                 descripcionCampo);
@@ -72,9 +72,9 @@ public class CamposController {
     ){
 
         boolean response = camposService.crearCampo(
-                crearCampoModel.getNombreCampo(),
-                crearCampoModel.getDescripcionCampo(),
-                crearCampoModel.getUsuarioNombre());
+                crearCampoModel.getNombre(),
+                crearCampoModel.getDescripcion(),
+                crearCampoModel.getUsuario());
 
         return new CatalogoResponseDto<>(Constantes.HTTP_200,
                 Constantes.MENSAJE_EXITO,
@@ -101,11 +101,11 @@ public class CamposController {
     ){
 
         boolean response = camposService.actualizarCampo(
-                actualizarCampoModel.getIdCampo(),
-                actualizarCampoModel.getUsuarioNombre(),
-                actualizarCampoModel.getNombreCampo(),
-                actualizarCampoModel.getDescripcionCampo(),
-                actualizarCampoModel.getIdEstatus());
+                actualizarCampoModel.getId(),
+                actualizarCampoModel.getUsuario(),
+                actualizarCampoModel.getCampo(),
+                actualizarCampoModel.getDescripcion(),
+                actualizarCampoModel.getEstatus());
 
         return new CatalogoResponseDto<>(
                 Constantes.HTTP_200,
@@ -131,9 +131,9 @@ public class CamposController {
     @Parameter(in = ParameterIn.HEADER, description = "Token - Código de acceso", name = "token", required = true, example = "MITOKEN", schema = @Schema)
     public CatalogoResponseDto<Boolean> eliminarCampo(
             @Parameter(example = "1", description = "Identificador del campo.")
-            @QueryParam("idCampo") Short idCampo,
+            @QueryParam("id") Short idCampo,
             @Parameter(example = "Daniel Hernandez", description = "Nombre del usuario.")
-            @QueryParam("usuarioNombre") String usuarioNombre){
+            @QueryParam("usuario") String usuarioNombre){
 
         boolean response = camposService.eliminarCampo(
                 idCampo,

@@ -13,11 +13,11 @@ import javax.ws.rs.QueryParam;
 public class CrearCampoModel {
 
     @Schema(description = "Nombre del campo.", required = true)
-    private String nombreCampo;
+    private String nombre;
 
     @Schema(description = "Descripción del campo.", required = true)
-    private String descripcionCampo;
+    private String descripcion;
 
-    @Schema(description = "Nombre del usuario que realiza el registro.", required = true)
-    private String usuarioNombre;
+    @Schema(description = "Nombre del usuario.", required = true)
+    private String usuario;
 }

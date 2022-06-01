@@ -12,18 +12,18 @@ import javax.ws.rs.QueryParam;
 @NoArgsConstructor
 public class ActualizarCampoModel {
 
-    @Schema(description = "Identificador del campo a actualizar.", required = true)
-    private Short idCampo;
+    @Schema(description = "Identificador del campo", required = true)
+    private Short id;
 
     @Schema(description = "Nombre del campo.")
-    private String nombreCampo;
+    private String campo;
 
     @Schema(description = "Descripción del campo.")
-    private String descripcionCampo;
+    private String descripcion;
 
     @Schema(description = "Estatus del campo.")
-    private Short idEstatus;
+    private Short estatus;
 
-    @Schema(description = "Nombre del usuario que actualiza.", required = true)
-    private String usuarioNombre;
+    @Schema(description = "Nombre del usuario.", required = true)
+    private String usuario;
 }
