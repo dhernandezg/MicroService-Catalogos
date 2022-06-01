@@ -46,7 +46,7 @@ public class ActualizarElementoTraduccionDAO {
         actualizaSp.addParameters(new ProceduredParameter(6, "PA_FICAMPOID", actualiza.getIdCampo(), Short.class));
         actualizaSp.addParameters(new ProceduredParameter(7, "PA_FIORDEN", actualiza.getOrden(), Short.class));
         actualizaSp.addParameters(new ProceduredParameter(8, "PA_FCVALORBASE", actualiza.getValorBase(), String.class));
-        actualizaSp.addParameters(new ProceduredParameter(9, "PA_FISTATUSID", actualiza.getIdEstatus(), Short.class));
+        actualizaSp.addParameters(new ProceduredParameter(9, "PA_FIESTATUSID", actualiza.getIdEstatus(), Short.class));
 
         var data = baseDeDatosService.<OperacionPsql>obtenerElementos(actualizaSp);
 
