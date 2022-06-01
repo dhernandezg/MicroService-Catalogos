@@ -139,10 +139,10 @@ public class OrigenController {
     @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001", schema = @Schema)
     @Parameter(in = ParameterIn.HEADER, description = "Token - Código de acceso", name = "token", required = true, example = "MITOKEN", schema = @Schema)
     public CatalogoResponseDto<Boolean> eliminarOrigen(
-            @Parameter(example = "1", description = "Identificador del origen a eliinar.")
+            @Parameter(example = "1", description = "Identificador del origen.")
             @QueryParam("id") Short idOrigen,
 
-            @Parameter(example = "Diego Vázquez", description = "Nombre del usuario que elimina.")
+            @Parameter(example = "Diego Vázquez", description = "Nombre del usuario.")
             @QueryParam("usuario") String usuarioNombre
     ){
 
