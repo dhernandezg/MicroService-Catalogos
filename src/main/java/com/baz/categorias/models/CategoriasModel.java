@@ -30,15 +30,15 @@ public class CategoriasModel implements Serializable {
     @Schema(example = "1", description = "Identificador de la categoria.")
     @Column(name = "CATEGORIAID")
     @Id
-    private Integer idCategoria;
+    private Integer id;
 
     @Schema(example = "GEOGRAFIA", description = "Nombre de la categoria.")
     @Column(name = "DESCCATEG")
-    private String descripcionCategoria;
+    private String nombre;
 
     @Schema(example = "1", description = "ACTIVO")
     @Column(name = "ESTATUSID")
-    private Integer idEstatus;
+    private Integer estatus;
 
     @Schema(example = "2022-05-02 16:03:52.245", description = "Fecha de creación")
     @Column(name = "FECHACREA")

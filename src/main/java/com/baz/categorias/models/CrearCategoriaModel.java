@@ -13,12 +13,12 @@ public class CrearCategoriaModel {
     /**
      * Nombre de la categoria
      * */
-    @Schema(required = true, description = "Nombre de la categoria a registrar.")
-    private String descripcionCategoria;
+    @Schema(required = true, description = "Nombre de la categoria.")
+    private String descripcion;
 
     /**
      * Nombre del usuario que registra la categoria
      * */
-    @Schema(required = true, description = "Nombre del usuario que registra.")
-    private String nombreUsuario;
+    @Schema(required = true, description = "Nombre del usuario.")
+    private String usuario;
 }

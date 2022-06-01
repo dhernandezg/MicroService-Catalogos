@@ -10,16 +10,16 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 @NoArgsConstructor
 public class ActualizarCategoriaModel {
 
-    @Schema(description = "Identificador de la categoria a actualizar", required = true)
-    private Integer idCategoria;
+    @Schema(description = "Identificador de la categoria.", required = true)
+    private Integer id;
 
     @Schema(description = "Nombre de la categoría.")
-    private String descripcionCategoria;
+    private String descripcion;
 
     @Schema(description = "Identificador del estatus.")
-    private Integer idEstatus;
+    private Integer estatus;
 
-    @Schema(description = "Nombre del usuario")
-    private String usuarioNombre;
+    @Schema(description = "Nombre del usuario.", required = true)
+    private String usuario;
 
 }

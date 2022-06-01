@@ -50,9 +50,9 @@ public class CategoriasController {
     @Parameter(in = ParameterIn.HEADER, description = "Token - Código de acceso", name = "token", required = true, example = "MITOKEN", schema = @Schema)
     public CatalogoResponseDto<Iterable<CategoriasModel>> consultarCategoria(
             @Parameter(example = "1", description = "Identificador de la categoria")
-            @QueryParam("idCategoria") Integer idCategoria,
+            @QueryParam("id") Integer idCategoria,
             @Parameter(example = "GEOGRAFIA", description = "Nombre de la categoria")
-            @QueryParam("descripcionCategoria") String descripcionCategoria
+            @QueryParam("descripcion") String descripcionCategoria
     ){
 
         Iterable<CategoriasModel> categoriasModel = categoriasService.consultarCategoria(idCategoria, descripcionCategoria);
@@ -78,8 +78,8 @@ public class CategoriasController {
             @Parameter(description = "Datos de la categoria a registrar", required = true)
             CrearCategoriaModel crearCategoriaModel){
 
-        boolean response = categoriasService.crearCategoria(crearCategoriaModel.getDescripcionCategoria(),
-                crearCategoriaModel.getNombreUsuario());
+        boolean response = categoriasService.crearCategoria(crearCategoriaModel.getDescripcion(),
+                crearCategoriaModel.getUsuario());
 
         return new CatalogoResponseDto<>(Constantes.HTTP_200, Constantes.MENSAJE_EXITO, response);
     }
@@ -104,10 +104,10 @@ public class CategoriasController {
     ){
 
         boolean response = categoriasService.actualizarCategoria(
-                actualizarCategoriaModel.getIdCategoria(),
-                actualizarCategoriaModel.getDescripcionCategoria(),
-                actualizarCategoriaModel.getIdEstatus(),
-                actualizarCategoriaModel.getUsuarioNombre());
+                actualizarCategoriaModel.getId(),
+                actualizarCategoriaModel.getDescripcion(),
+                actualizarCategoriaModel.getEstatus(),
+                actualizarCategoriaModel.getUsuario());
         return new CatalogoResponseDto<>(Constantes.HTTP_200, Constantes.MENSAJE_EXITO, response);
     }
 
@@ -130,10 +130,10 @@ public class CategoriasController {
     @Parameter(in = ParameterIn.HEADER, description = "Token - Código de acceso", name = "token", required = true, example = "MITOKEN", schema = @Schema)
     public CatalogoResponseDto<Boolean> eliminarCategoria(
             @Parameter(example = "1", description = "Identificador de la categoria", required = true)
-            @QueryParam("idCategoria") Integer idCategoria,
+            @QueryParam("id") Integer idCategoria,
 
             @Parameter(example = "Diego Vazquez Perez", description = "Nombre del usuario", required = true)
-            @QueryParam("usuarioNombre") String usuarioNombre
+            @QueryParam("usuario") String usuarioNombre
     ){
 
         boolean response = categoriasService.eliminarCategoria(
