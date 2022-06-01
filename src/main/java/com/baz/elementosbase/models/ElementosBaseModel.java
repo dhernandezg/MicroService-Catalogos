@@ -40,7 +40,7 @@ public class ElementosBaseModel {
     @Schema(description = "Orden de los elementos en la entidad")
     private Integer orden;
 
-    @Column(name = "statusid")
+    @Column(name = "estatusid")
     @Schema(description = "Identificador del estatus")
     private Integer idEstatus;
 
