@@ -41,6 +41,7 @@ public class ElementosBaseController {
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "Consulta un elemento base por categoria, catalogo e identificador o todos los elementos base mediante categoria y catalogo.")
     @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001")
+    @Parameter(in = ParameterIn.HEADER, description = "Token - Código de acceso", name = "token", required = true, example = "MITOKEN", schema = @Schema)
     public CatalogoResponseDto<Iterable<ElementosBaseModel>> consultarElementosBase(
             @Parameter(example = "1", description = "Identificador de la categoría a la que pertenece el catálogo.")
             @QueryParam("idCategoria") Integer idCategoria,
@@ -75,6 +76,7 @@ public class ElementosBaseController {
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "Registra un elemento base.")
     @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001", schema = @Schema)
+    @Parameter(in = ParameterIn.HEADER, description = "Token - Código de acceso", name = "token", required = true, example = "MITOKEN", schema = @Schema)
     public CatalogoResponseDto<Boolean> crearElementoBase(
             @Parameter(description = "Datos requeridos del elemento base a registrar.")
                     CrearElementoBaseModel crearElementoBaseModel){
@@ -101,6 +103,7 @@ public class ElementosBaseController {
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "Actualiza un elemento base mediante identificador de la categoria, catalogo y nombre de usuario.")
     @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001", schema = @Schema)
+    @Parameter(in = ParameterIn.HEADER, description = "Token - Código de acceso", name = "token", required = true, example = "MITOKEN", schema = @Schema)
     public CatalogoResponseDto<Boolean> actualizarElementoBase(
             @Parameter(description = "Actualiza los datos especificados de un elemento base mediante su identificador")
             ActualizarElementoBaseModel actualizarElementoBaseModel){
@@ -127,6 +130,7 @@ public class ElementosBaseController {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001", schema = @Schema)
+    @Parameter(in = ParameterIn.HEADER, description = "Token - Código de acceso", name = "token", required = true, example = "MITOKEN", schema = @Schema)
     public CatalogoResponseDto<Boolean> eliminarElementoBase(
             @Parameter(description = "Elimina un elemento base mediante los datos requeridos")
             EliminarElementoBaseModel eliminarElementoBaseModel

@@ -36,7 +36,7 @@ public class ActualizarElementosBaseDao {
         actualizarElemento.addParameters(new ProceduredParameter(5, "PA_FCVALOR", actualizarElementoBaseModel.getValor(), String.class));
         actualizarElemento.addParameters(new ProceduredParameter(6, "PA_FICAMPOID", actualizarElementoBaseModel.getIdCampo(), Short.class));
         actualizarElemento.addParameters(new ProceduredParameter(7, "PA_FIORDEN", actualizarElementoBaseModel.getOrden(), Short.class));
-        actualizarElemento.addParameters(new ProceduredParameter(8, "PA_FISTATUSID", actualizarElementoBaseModel.getIdEstatus(), Short.class));
+        actualizarElemento.addParameters(new ProceduredParameter(8, "PA_FIESTATUSID", actualizarElementoBaseModel.getIdEstatus(), Short.class));
 
         var data = baseDeDatosService.<OperacionPsql>obtenerElementos(actualizarElemento);
 
