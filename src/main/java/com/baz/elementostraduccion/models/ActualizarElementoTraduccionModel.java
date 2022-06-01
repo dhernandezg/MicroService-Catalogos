@@ -35,5 +35,5 @@ public class ActualizarElementoTraduccionModel {
     private String valorBase;
 
     @Schema(description = "Indentificador del estatus.")
-    private Short idEstatus;
+    private Short estatus;
 }

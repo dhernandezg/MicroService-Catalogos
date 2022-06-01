@@ -28,6 +28,6 @@ public class CrearElementoTraduccionModel {
     @Schema(description = "Valor del elemento base al que hace referencia.", required = true)
     private String valorBase;
 
-    @Schema(description = "Nombre del usuario que realiza el registro.", required = true)
-    private String usuarioNombre;
+    @Schema(description = "Nombre del usuario.", required = true)
+    private String usuario;
 }

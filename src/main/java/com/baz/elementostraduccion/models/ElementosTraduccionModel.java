@@ -46,7 +46,7 @@ public class ElementosTraduccionModel {
 
     @Schema(description = "Identificador del estatus del registro.")
     @Column(name = "estatusid")
-    private Integer idEstatus;
+    private Integer estatus;
 
     @Schema(description = "Fecha de creación del registro.")
     @Column(name = "fechacrea")
