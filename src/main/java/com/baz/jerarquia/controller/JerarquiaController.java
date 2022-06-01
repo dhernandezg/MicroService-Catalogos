@@ -15,6 +15,7 @@ import com.baz.utils.Constantes;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.ParameterIn;
 import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
+import org.jboss.resteasy.reactive.ResponseStatus;
  
 /**
  * <b>JerarquiaController</b>
@@ -57,11 +58,12 @@ public class JerarquiaController {
      * @return CatalogoResponse<Boolean> Respuesta con valor true si se registro correctamente
      */
     @POST
+    @ResponseStatus(201)
     @Operation(summary = "Registra un nuevo catalogo")
     @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID000000000001", schema =  @org.eclipse.microprofile.openapi.annotations.media.Schema)
     public CatalogoResponseDto<Boolean> registrar(@Parameter(description = "Datos del catalogo a insertar", required = true) DatosAlta datosInsercion) {
         boolean exitoAlta = jerarquiaFactory.agregarJerarquia(datosInsercion);
-        return new CatalogoResponseDto<>(Constantes.HTTP_200, "Operación exitosa.", exitoAlta);
+        return new CatalogoResponseDto<>(Constantes.HTTP_201, "Operación exitosa.", exitoAlta);
     }
 
     /**

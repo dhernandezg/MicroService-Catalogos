@@ -10,6 +10,8 @@ import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.ParameterIn;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
+import org.jboss.resteasy.reactive.ResponseStatus;
+
 import java.lang.Iterable;
 
 import javax.inject.Inject;
@@ -69,6 +71,7 @@ public class CategoriasController {
      */
 
     @POST
+    @ResponseStatus(201)
     @Operation(summary = "Registra una nueva categoría.")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -81,7 +84,7 @@ public class CategoriasController {
         boolean response = categoriasService.crearCategoria(crearCategoriaModel.getDescripcion(),
                 crearCategoriaModel.getUsuario());
 
-        return new CatalogoResponseDto<>(Constantes.HTTP_200, Constantes.MENSAJE_EXITO, response);
+        return new CatalogoResponseDto<>(Constantes.HTTP_201, Constantes.MENSAJE_EXITO, response);
     }
 
 

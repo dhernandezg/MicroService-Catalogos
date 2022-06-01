@@ -10,6 +10,7 @@ import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.ParameterIn;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
+import org.jboss.resteasy.reactive.ResponseStatus;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -62,6 +63,7 @@ public class CamposController {
      */
 
     @POST
+    @ResponseStatus(201)
     @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001", schema = @Schema)
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -76,7 +78,7 @@ public class CamposController {
                 crearCampoModel.getDescripcion(),
                 crearCampoModel.getUsuario());
 
-        return new CatalogoResponseDto<>(Constantes.HTTP_200,
+        return new CatalogoResponseDto<>(Constantes.HTTP_201,
                 Constantes.MENSAJE_EXITO,
                 response);
 

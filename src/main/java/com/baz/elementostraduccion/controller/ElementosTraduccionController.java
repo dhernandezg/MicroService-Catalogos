@@ -11,6 +11,7 @@ import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.ParameterIn;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
+import org.jboss.resteasy.reactive.ResponseStatus;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -73,6 +74,7 @@ public class ElementosTraduccionController {
          */
 
     @POST
+    @ResponseStatus(201)
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "Registra un elemento traducción.")
@@ -85,7 +87,7 @@ public class ElementosTraduccionController {
         boolean response = traduccionService.crearElementoTrad(crearTraduccion);
 
         return new CatalogoResponseDto<>(
-                Constantes.HTTP_200,
+                Constantes.HTTP_201,
                 Constantes.MENSAJE_EXITO,
                 response);
     }
