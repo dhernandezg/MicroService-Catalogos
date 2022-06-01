@@ -36,7 +36,6 @@ public class CatalogoFilter implements ContainerRequestFilter {
     static final String MENSAJE_SIN_TOKEN = "Es necesario proporcionar un token para esta operación";
     static final String MENSAJE_SIN_AUTORIZACION = "No se cuenta con la autorización al sistema";
 
-    static final String URL_AYUDA = "https://baz-developer.bancoazteca.com.mx/info#";
     static final String FOLIO_REGEX = "^UID[0-9]{12}$";
 
     @Context
@@ -73,7 +72,7 @@ public class CatalogoFilter implements ContainerRequestFilter {
             boolean sinToken = token == null || token.length() == 0;
             ErrorResponseDto errorUid = new ErrorResponseDto();
             errorUid.setMensaje(MENSAJE_SIN_TOKEN);
-            errorUid.setInfo(URL_AYUDA);
+            errorUid.setInfo(Constantes.URL_AYUDA);
             errorUid.setCodigo(sinToken ? Constantes.HTTP_401 : Constantes.HTTP_403);
             errorUid.agregarDetalles(sinToken ? MENSAJE_SIN_AUTORIZACION : MENSAJE_SIN_ACCESO);
             asignarError(requestContext, sinToken ? Status.UNAUTHORIZED : Status.FORBIDDEN, errorUid);
@@ -91,7 +90,7 @@ public class CatalogoFilter implements ContainerRequestFilter {
             ErrorResponseDto errorUid = new ErrorResponseDto();
             errorUid.setCodigo(Constantes.HTTP_400);
             errorUid.setMensaje(MENSAJE_SIN_FOLIO);
-            errorUid.setInfo(URL_AYUDA);
+            errorUid.setInfo(Constantes.URL_AYUDA);
             errorUid.agregarDetalles(folio != null ? MENSAJE_UID_INVALIDO : MENSAJE_SIN_UID);
             asignarError(requestContext, Status.BAD_REQUEST, errorUid);
         }

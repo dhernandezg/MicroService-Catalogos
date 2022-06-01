@@ -1,6 +1,8 @@
 package com.baz.catalogo.controller;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
@@ -75,7 +77,7 @@ public class CatalogoController {
     @POST
     @Operation(summary = "Registra un nuevo catalogo")
     @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID000000000001", schema =  @org.eclipse.microprofile.openapi.annotations.media.Schema)
-    public CatalogoResponseDto<Boolean> registrar(@Parameter(description = "Datos del catalogo a insertar", required = true) DatosAlta datosInsercion) {
+    public CatalogoResponseDto<Boolean> registrar(@Valid @NotNull @Parameter(description = "Datos del catalogo a insertar", required = true) DatosAlta datosInsercion) {
         boolean exitoAlta = catalogoFactory.agregarCatalogo(datosInsercion);
         return new CatalogoResponseDto<>(Constantes.HTTP_200, "Operación exitosa.", exitoAlta);
     }

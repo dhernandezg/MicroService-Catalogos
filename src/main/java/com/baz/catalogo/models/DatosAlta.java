@@ -1,5 +1,7 @@
 package com.baz.catalogo.models;
 
+import javax.validation.constraints.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -15,6 +17,7 @@ public class DatosAlta {
     /**
      * Identificador de categoría
      * */
+    @NotNull
     private Integer idCategoria;
     
     /**
@@ -25,6 +28,7 @@ public class DatosAlta {
     /**
      * Nombre del catalogo
      * */
+    @NotNull
     private String nombreCatalogo;
 
     /**

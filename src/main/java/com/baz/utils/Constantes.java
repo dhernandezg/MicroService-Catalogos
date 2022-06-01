@@ -32,6 +32,9 @@ public class Constantes {
     public static final String UID_HEADER = "x-request-id";
     public static final String TOKEN_HEADER = "token";
 
+    //URL de ayuda
+    public static final String URL_AYUDA = "https://baz-developer.bancoazteca.com.mx/info#";
+
     private Constantes(){
         throw new UnsupportedOperationException("Esta clase no debe ser inicializada");
     }
