@@ -32,11 +32,11 @@ public class ActualizarElementosBaseDao {
         actualizarElemento.addParameters(new ProceduredParameter(1, "PA_FICATEGORIAID", actualizarElementoBaseModel.getIdCategoria(), Integer.class));
         actualizarElemento.addParameters(new ProceduredParameter(2, "PA_FICATALOGOID", actualizarElementoBaseModel.getIdCatalogo(), Integer.class));
         actualizarElemento.addParameters(new ProceduredParameter(3, "PA_FIELEMBASEID", actualizarElementoBaseModel.getIdElementoBase(), Integer.class));
-        actualizarElemento.addParameters(new ProceduredParameter(4, "PA_USUARIO", actualizarElementoBaseModel.getNombreUsuario(), String.class));
+        actualizarElemento.addParameters(new ProceduredParameter(4, "PA_USUARIO", actualizarElementoBaseModel.getUsuario(), String.class));
         actualizarElemento.addParameters(new ProceduredParameter(5, "PA_FCVALOR", actualizarElementoBaseModel.getValor(), String.class));
         actualizarElemento.addParameters(new ProceduredParameter(6, "PA_FICAMPOID", actualizarElementoBaseModel.getIdCampo(), Short.class));
         actualizarElemento.addParameters(new ProceduredParameter(7, "PA_FIORDEN", actualizarElementoBaseModel.getOrden(), Short.class));
-        actualizarElemento.addParameters(new ProceduredParameter(8, "PA_FIESTATUSID", actualizarElementoBaseModel.getIdEstatus(), Short.class));
+        actualizarElemento.addParameters(new ProceduredParameter(8, "PA_FIESTATUSID", actualizarElementoBaseModel.getEstatus(), Short.class));
 
         var data = baseDeDatosService.<OperacionPsql>obtenerElementos(actualizarElemento);
 

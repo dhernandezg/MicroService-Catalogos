@@ -20,7 +20,7 @@ public class ActualizarElementoBaseModel {
     private Integer idElementoBase;
 
     @Schema(description = "Nombre del usuario que modifica el registro.", required = true)
-    private String nombreUsuario;
+    private String usuario;
 
     @Schema(description = "Valor del elemento que se registra.")
     private String valor;
@@ -32,5 +32,5 @@ public class ActualizarElementoBaseModel {
     private Short orden;
 
     @Schema(description = "Identificador del estatus del elemento.")
-    private Short idEstatus;
+    private Short estatus;
 }

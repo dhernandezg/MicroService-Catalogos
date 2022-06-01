@@ -20,5 +20,5 @@ public class EliminarElementoBaseModel {
     private Integer idElementoBase;
 
     @Schema(description = "Nombre del usuario que realizar la eliminación del registro.", required = true)
-    private String usuarioNombre;
+    private String usuario;
 }

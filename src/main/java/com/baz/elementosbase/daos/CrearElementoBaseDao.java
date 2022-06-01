@@ -43,7 +43,7 @@ public class CrearElementoBaseDao {
         crearElemento.addParameters(new ProceduredParameter(3, "PA_FCVALOR", elemento.getValor(), String.class));
         crearElemento.addParameters(new ProceduredParameter(4, "PA_FICAMPOID", elemento.getIdCampo(), Short.class));
         crearElemento.addParameters(new ProceduredParameter(5, "PA_FIORDEN", elemento.getOrden(), Short.class));
-        crearElemento.addParameters(new ProceduredParameter(6, "PA_USUARIO", elemento.getNombreUsuario(), String.class));
+        crearElemento.addParameters(new ProceduredParameter(6, "PA_USUARIO", elemento.getUsuario(), String.class));
 
         var data = baseDeDatosService.<OperacionPsql>obtenerElementos(crearElemento);
 

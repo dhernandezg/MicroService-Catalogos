@@ -42,7 +42,7 @@ public class ElementosBaseModel {
 
     @Column(name = "estatusid")
     @Schema(description = "Identificador del estatus")
-    private Integer idEstatus;
+    private Integer estatus;
 
     @Column(name = "fechacrea")
     @Schema(description = "Fecha de creación del elemento base")

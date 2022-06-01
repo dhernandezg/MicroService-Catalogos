@@ -25,6 +25,6 @@ public class CrearElementoBaseModel {
     @Schema(description = "Orden del elemento dentro del catálogo.", required = true)
     private Short orden;
 
-    @Schema(description = "Nombre del usuario que realiza el registro.", required = true)
-    private String nombreUsuario;
+    @Schema(description = "Nombre del usuario.", required = true)
+    private String usuario;
 }

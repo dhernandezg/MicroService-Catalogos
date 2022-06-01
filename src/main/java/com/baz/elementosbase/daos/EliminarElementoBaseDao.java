@@ -31,7 +31,7 @@ public class EliminarElementoBaseDao {
         eliminarElemento.addParameters(new ProceduredParameter(1, "PA_FICATEGORIAID", elemento.getIdCategoria(), Integer.class));
         eliminarElemento.addParameters(new ProceduredParameter(2, "PA_FICATALOGOID", elemento.getIdCatalogo(), Integer.class));
         eliminarElemento.addParameters(new ProceduredParameter(3, "PA_FIELEMBASEID", elemento.getIdElementoBase(), Integer.class));
-        eliminarElemento.addParameters(new ProceduredParameter(4, "PA_USUARIO", elemento.getUsuarioNombre(), String.class));
+        eliminarElemento.addParameters(new ProceduredParameter(4, "PA_USUARIO", elemento.getUsuario(), String.class));
 
         var data = baseDeDatosService.<OperacionPsql>obtenerElementos(eliminarElemento);
 
