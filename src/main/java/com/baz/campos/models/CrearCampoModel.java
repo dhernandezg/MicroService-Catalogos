@@ -5,8 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
-import javax.ws.rs.QueryParam;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

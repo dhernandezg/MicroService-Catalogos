@@ -3,6 +3,7 @@ package com.baz.dtos;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * <b>CatalogoResponseDto<T></b>
@@ -12,6 +13,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
+@NoArgsConstructor
 public class CatalogoResponseDto<T> extends MicroservicioResponseDto {
     /**
      * Contiene la respuesta genérica de la operación sobre el modulo catálogos
