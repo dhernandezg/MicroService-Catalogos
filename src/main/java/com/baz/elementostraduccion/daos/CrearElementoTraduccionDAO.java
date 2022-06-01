@@ -41,7 +41,7 @@ public class CrearElementoTraduccionDAO {
         crearElementoTrad.addParameters(new ProceduredParameter(4, "PA_FICAMPOID", crearElementoTraduccionModel.getIdCampo(), Short.class));
         crearElementoTrad.addParameters(new ProceduredParameter(5, "PA_FIORDEN", crearElementoTraduccionModel.getOrden(), Short.class));
         crearElementoTrad.addParameters(new ProceduredParameter(6, "PA_FCVALORBASE", crearElementoTraduccionModel.getValorBase(), String.class));
-        crearElementoTrad.addParameters(new ProceduredParameter(7, "PA_USUARIO", crearElementoTraduccionModel.getUsuarioNombre(), String.class));
+        crearElementoTrad.addParameters(new ProceduredParameter(7, "PA_USUARIO", crearElementoTraduccionModel.getUsuario(), String.class));
 
         var data = baseDeDatosService.<OperacionPsql>obtenerElementos(crearElementoTrad);
 
