@@ -16,7 +16,7 @@ public class DatosActualizacion {
     /**
      * Identificador del tipo de catalogo
      * */
-    private Integer idTipoCatalogo;
+    private Short idTipoCatalogo;
 
     /**
      * Descripción del tipo de catalogo

@@ -2,13 +2,13 @@ package com.baz;
 
 import com.baz.dtos.CatalogoResponseDto;
 import com.baz.tipocatalogo.controller.TipoCatalogoController;
-import com.baz.tipocatalogo.models.DatosAlta;
-import com.baz.tipocatalogo.models.TipoCatalogo;
+import com.baz.tipocatalogo.models.*;
 import com.baz.utils.Constantes;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.base.Predicate;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.google.common.collect.Iterables;
 
 import javax.inject.Inject;
@@ -23,10 +23,11 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+import java.util.List;
 
 import static io.restassured.RestAssured.*;
-
-
 
 @QuarkusTest
 public class TipoCatalogoTest {
@@ -40,10 +41,13 @@ public class TipoCatalogoTest {
     private String TOKEN;
     private String UID;
     private DatosAlta datosAlta = null;
-    private Iterable<TipoCatalogo> tiposCatalogos;
+    private DatosActualizacion datosActualizacion = null;
+    private List<TipoCatalogo> tiposCatalogos;
 
     public TipoCatalogoTest() throws NoSuchAlgorithmException{
         datosAlta = new DatosAlta("Mi tipo personalizado", generarAleatorio("USR%1$5s", '0'));
+        datosActualizacion = new DatosActualizacion((short)-1,"Mi tipo actualizado",generarAleatorio("USR%1$5s", '0'),(short)2);
+
         TOKEN = generarAleatorio("T%1$8s", '0');
         UID = generarAleatorio("UID%1$12s", '0');
     }
@@ -69,8 +73,9 @@ public class TipoCatalogoTest {
 
         //Validamos contenido de la respuesta
         String data = response.getBody().asString();
-        CatalogoResponseDto<Iterable<TipoCatalogo>> contenidoRespuesta = mapper.readValue(data, CatalogoResponseDto.class);
-        this.tiposCatalogos = contenidoRespuesta.getRespuesta();
+        mapper.registerModule(new JavaTimeModule());
+        CatalogoResponseDto<Iterable<TipoCatalogo>> contenidoRespuesta = mapper.readValue(data,new TypeReference<CatalogoResponseDto<Iterable<TipoCatalogo>>>(){});
+        this.tiposCatalogos = StreamSupport.stream(contenidoRespuesta.getRespuesta().spliterator(),false).collect(Collectors.toList());
     }
 
     @Test
@@ -96,7 +101,7 @@ public class TipoCatalogoTest {
     public void TestAlta() throws JsonProcessingException{
         //Consultamos todos los tipos catalogos y registramos cuantos existen
         TestConsulta();
-        Integer registrosAntesDeRegistro  = Iterables.size(tiposCatalogos);
+        Integer contadorAntesDeRegistro  = Iterables.size(tiposCatalogos);
 
         //Registramos un nuevo tipo catalogo
         given()
@@ -110,17 +115,44 @@ public class TipoCatalogoTest {
 
         //Volvemos a consultar los tipos catálogos y validamos que exista uno mas
         TestConsulta();
-        Integer registrosDespuesDeRegistro  = Iterables.size(tiposCatalogos);
-        assertSame(registrosDespuesDeRegistro , registrosAntesDeRegistro +1);
+        Integer contadorDespuesDeRegistro  = Iterables.size(tiposCatalogos);
+        assertSame(contadorDespuesDeRegistro , contadorAntesDeRegistro +1);
 
         //Buscamos en la lista de tipos catálogos el nuevo registro que se dio de alta
-        Predicate<TipoCatalogo> buscarTipoCat = tCat -> 
-        tCat.getNombre().compareTo(datosAlta.getTipoCatalogo()) == 0 &&
-        tCat.getUsuarioCreacion().compareTo(datosAlta.getUsuario()) ==0;
+        var items = tiposCatalogos.stream()
+        .filter(tCat-> tCat.getNombre().compareTo(datosAlta.getTipoCatalogo()) == 0 &&
+                        tCat.getUsuarioCreacion().compareTo(datosAlta.getUsuario()) ==0)
+        .count();
+        assert(items==1);
     }
 
-    public void TestActualizacion(){
+    @Test
+    public void TestActualizacion() throws JsonMappingException, JsonProcessingException{
+         //Consultamos todos los tipos catálogos y obtenemos el ultimo
+         TestConsulta();
+         int tamañoLista = tiposCatalogos.size();
+         assert(tamañoLista>0);
+         TipoCatalogo ultimoRegistro = tiposCatalogos.get(tamañoLista-1);
+         this.datosActualizacion.setIdTipoCatalogo(ultimoRegistro.getIdTipoCatalogo());
 
+        //Registramos un nuevo tipo catalogo
+        given()
+        .body(mapper.writeValueAsString(this.datosActualizacion))
+        .header(Constantes.TOKEN_HEADER,TOKEN)
+        .header(Constantes.UID_HEADER,UID)
+        .header(TOKEN_CONTENT_TYPE, CONTENT_TYPE)
+        .when().put(SERVICIO)
+        .then().statusCode(200)
+        .body(TOKEN_CODIGO, is(Constantes.HTTP_200));
+
+          //Volvemos a consultar los tipos catálogos y validamos el ultimo
+        TestConsulta();
+        TipoCatalogo registroActualizado = tiposCatalogos.get(tamañoLista-1);
+
+        assert(ultimoRegistro.getIdTipoCatalogo().compareTo(registroActualizado.getIdTipoCatalogo())==0 &&
+            ultimoRegistro.getNombre().compareTo(datosActualizacion.getTipoCatalogo()) == 0 &&
+            ultimoRegistro.getFechaModificacion().compareTo(registroActualizado.getFechaModificacion()) != 0
+        );
     }
 
     public void TestEliminacion(){

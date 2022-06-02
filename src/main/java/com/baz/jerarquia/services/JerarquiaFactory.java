@@ -23,13 +23,13 @@ public class JerarquiaFactory {
     //Objeto con acceso a datos para registrar catálogos
     @Inject
     RegistrarJerarquiaDao altaJerarquia;
-    @Inject
 
     //Objeto con acceso a datos para consultar catálogos
-    ConsultarJerarquiaDao consultaJerarquia;
     @Inject
+    ConsultarJerarquiaDao consultaJerarquia;
 
     //Objeto con acceso a datos para eliminar catálogos
+    @Inject
     EliminarJerarquiaDao eliminaJerarquia;
 
     /**

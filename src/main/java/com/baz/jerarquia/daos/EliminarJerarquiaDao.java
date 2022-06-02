@@ -1,5 +1,6 @@
 package com.baz.jerarquia.daos;
 
+import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 
 import com.baz.models.OperacionPsql;
@@ -13,6 +14,7 @@ import com.baz.utils.StoredProcedure;
  * @autor: Daniel Hernandez Garcia
  * @ultimaModificacion: 11/05/2022
  */
+@Model
 public class EliminarJerarquiaDao {
     /**
      * Objeto de acceso a base de datos

@@ -30,7 +30,7 @@ public class ActualizarTipoCatalogoDao {
      */
     public boolean actualizarTipoCatalogo(DatosActualizacion datosCatalogo) {
         StoredProcedure fnActualizaTipoCatalogo = new StoredProcedure("SC_CATREM.FNTIPOCATALUPD", OperacionPsql.class);
-        fnActualizaTipoCatalogo.addParameters(new ProceduredParameter(1, "PA_FITIPOCATID", datosCatalogo.getIdTipoCatalogo(), Integer.class));
+        fnActualizaTipoCatalogo.addParameters(new ProceduredParameter(1, "PA_FITIPOCATID", datosCatalogo.getIdTipoCatalogo(), Short.class));
         fnActualizaTipoCatalogo.addParameters(new ProceduredParameter(2, "PA_USUARIO", datosCatalogo.getUsuario(), String.class));
         fnActualizaTipoCatalogo.addParameters(new ProceduredParameter(4, "PA_FCDESCTIPOCAT", datosCatalogo.getTipoCatalogo(), String.class));
         fnActualizaTipoCatalogo.addParameters(new ProceduredParameter(5, "PA_FISTATUSID", datosCatalogo.getIdEstatus(), Short.class));
