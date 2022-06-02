@@ -35,24 +35,23 @@ public class TipoCatalogoController {
 
     /**
      * Consulta la lista de catálogos con los parámetros especificados
-     * @param @QueryParam("idCategoria") - Contiene el identificador de categoría a consultar
-     * @param @QueryParam("idCatalogo")  - Contiene el identificador del catalogo a consultar
-     * @param @QueryParam("descripcion") - Contiene la descripción del catalogo a consultar
+     * @param @QueryParam("idTipoCatalogo") - Contiene el identificador del tipo catalogo a consultar
+     * @param @QueryParam("nombreTipoCatalogo") - Contiene la descripción del tipo catalogo a consultar
      * @return CatalogoResponse<Iterable<Catalogo>> Respuesta con la lista de catálogos
      */
     @GET
     @Operation(summary = "Consulta la lista de tipos de catálogos con los parámetros especificados")
     @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true, example = "UID202220050001")
     public CatalogoResponseDto<Iterable<TipoCatalogo>> consultar(
-            @Parameter(description = "Contiene el identificador del tipo de catalogo a consultar", example = "1") @QueryParam("idTipoCatalogo") Short idTipoCatalogo,
-            @Parameter(description = "Contiene la descripción del tipo de catalogo a consultar") @QueryParam("nombreTipoCatalogo") String nombreTipoCatalogo) {
+            @Parameter(description = "Contiene el identificador del tipo de catalogo a consultar", example = "1") @QueryParam("id") Short idTipoCatalogo,
+            @Parameter(description = "Contiene la descripción del tipo de catalogo a consultar") @QueryParam("nombre") String nombreTipoCatalogo) {
         DatosConsulta datosConsulta = new DatosConsulta(idTipoCatalogo, nombreTipoCatalogo);
         Iterable<TipoCatalogo> tiposDeCatalogos = catalogoFactory.obtenerTiposCatalogos(datosConsulta);
         return new CatalogoResponseDto<>(Constantes.HTTP_200, Constantes.MENSAJE_EXITO, tiposDeCatalogos);
     }
 
     /**
-     * Registra un nuevo catalogo
+     * Registra un nuevo tipo de catalogo
      * @param datosInsercion - Datos del catalogo a insertar
      * @return CatalogoResponse<Boolean> Respuesta con valor true si se registro correctamente
      */
@@ -66,26 +65,24 @@ public class TipoCatalogoController {
     }
 
     /**
-     * Elimina un catalogo a partir de un identificador
-     * @param @PathParam("idCatalogo")  - Identificador de catalogo
-     * @param @PathParam("idCategoria") - Identificador de categoría
+     * Elimina un tipo de catalogo a partir de un identificador
+     * @param @PathParam("idTipoCatalogo")  - Identificador de catalogo
      * @param @PathParam("usuario")     - Usuario que realiza la eliminación
      * @return CatalogoResponse<Boolean> Respuesta eliminación con valor true si fue exitoso
      */
     @DELETE
-    @Path("/{idCatalogo}/categoria/{idCategoria}/usuario/{usuario}")
+    @Path("/{idTipoCatalogo}/usuario/{usuario}")
     @Operation(summary = "Elimina un catalogo a partir de un identificador")
     @Parameter(in = ParameterIn.HEADER, description = "Folio único de operación - UID", name = "x-request-id", required = true)
     public CatalogoResponseDto<Boolean> eliminar(
-            @Parameter(description = "Identificador de catalogo") @PathParam("idCatalogo") Integer idCatalogo,
-            @Parameter(description = "Identificador de categoría") @PathParam("idCategoria") Integer idCategoria,
+            @Parameter(description = "Identificador del tipo de catalogo") @PathParam("idTipoCatalogo") Short idTipoCatalogo,
             @Parameter(description = "Usuario que opera") @PathParam("usuario") String usuario) {
-        boolean exitoEliminar = catalogoFactory.eliminarTipoCatalogo(idCategoria, usuario);
+        boolean exitoEliminar = catalogoFactory.eliminarTipoCatalogo(idTipoCatalogo, usuario);
         return new CatalogoResponseDto<>(Constantes.HTTP_200, Constantes.MENSAJE_EXITO, exitoEliminar);
     }
 
     /**
-     * Actualiza los datos especificados de un catalogo
+     * Actualiza los datos especificados de un tipo de catalogo
      * @param datosActualizacion - Datos de actualización
      * @return CatalogoResponse<Boolean> - Respuesta de actualización, true si fue exitosa
      */

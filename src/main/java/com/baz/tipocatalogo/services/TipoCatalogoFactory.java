@@ -60,7 +60,7 @@ public class TipoCatalogoFactory {
          * @param usuario Usuario que elimina
          * @return boolean True si la eliminación fue exitosa
          */
-        public boolean eliminarTipoCatalogo(Integer idCategoria, String usuario) {
+        public boolean eliminarTipoCatalogo(Short idCategoria, String usuario) {
                 return eliminaCatalogo.eliminarTipoCatalogo(idCategoria, usuario);
         }
 

@@ -28,9 +28,9 @@ public class EliminarTipoCatalogoDao {
      * @param usuario Usuario que elimina
      * @return boolean True si se elimino correctamente
      */
-    public boolean eliminarTipoCatalogo(Integer idTipoCatalogo, String usuario) {
+    public boolean eliminarTipoCatalogo(Short idTipoCatalogo, String usuario) {
         StoredProcedure fnEliminaTipoCatalogo = new StoredProcedure("SC_CATREM.FNTIPOCATALDEL", OperacionPsql.class);
-        fnEliminaTipoCatalogo.addParameters(new ProceduredParameter(1, "PA_FITIPOCATID", idTipoCatalogo, Integer.class));
+        fnEliminaTipoCatalogo.addParameters(new ProceduredParameter(1, "PA_FITIPOCATID", idTipoCatalogo, Short.class));
         fnEliminaTipoCatalogo.addParameters(new ProceduredParameter(2, "PA_USUARIO", usuario, String.class));
         var data = accesoDatos.<OperacionPsql>obtenerElementos(fnEliminaTipoCatalogo);
         return !data.isEmpty() && data.get(0).estatus == 1;
