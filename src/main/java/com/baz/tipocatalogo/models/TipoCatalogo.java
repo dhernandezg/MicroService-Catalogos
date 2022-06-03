@@ -40,7 +40,7 @@ public class TipoCatalogo implements Serializable {
     /**
      * Contiene el identificador para el estatus del tipo de catalogo
      */
-    @Column(name="statusid")
+    @Column(name = "statusid")
     private Short idEstatus;
 
     /**

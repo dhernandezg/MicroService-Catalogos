@@ -20,7 +20,7 @@ import javax.ws.rs.core.MediaType;
 
 /**
  * <b>CategoriasController</b>
- * @descripcion: Clase princiàl que define los métodos HTTP para
+ * @descripcion: Clase principal que define los métodos HTTP para
  * consumo de servicios.
  * @autor: Diego Vázquez Pérez
  * @ultimaModificacion: 05/05/2022

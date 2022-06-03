@@ -19,7 +19,7 @@ import com.baz.utils.*;
 public class ConsultarTipoCatalogoDao {
     /**
      * Objeto de acceso a base de datos
-     * */
+     */
     @Inject
     BaseDeDatosService accesoDatos;
 

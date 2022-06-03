@@ -14,11 +14,11 @@ import lombok.Data;
 public class DatosConsulta {
     /**
      * Contiene el id del tipo de catalogo
-     * */
+     */
     private Short idTipoCatalogo;
 
     /**
      * Contiene la descripción del tipo de catalogo
-     * */
+     */
     private String tipoCatalogo;
 }

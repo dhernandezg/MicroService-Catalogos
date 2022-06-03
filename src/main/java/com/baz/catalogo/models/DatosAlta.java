@@ -16,28 +16,29 @@ import lombok.Data;
 public class DatosAlta {
     /**
      * Identificador de categoría
-     * */
+     */
     @NotNull
     private Integer idCategoria;
-    
+
     /**
      * Identificador de tipo de catalogo
-     * */
+     */
     private Short idTipoCatalogo;
 
     /**
      * Nombre del catalogo
-     * */
+     */
     @NotNull
     private String nombreCatalogo;
 
     /**
      * Identificador del catalogo base
-     * */
+     */
     private Integer idCatalogoBase;
 
     /**
      * Nombre del usuario
-     * */
+     */
+    @NotNull
     private String usuario;
 }

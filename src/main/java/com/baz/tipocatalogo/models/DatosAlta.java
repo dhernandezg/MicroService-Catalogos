@@ -14,14 +14,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DatosAlta {
-
     /**
      * Nombre del tipo de catalogo
-     * */
+     */
     private String tipoCatalogo;
 
     /**
      * Nombre del usuario que da de alta
-     * */
+     */
     private String usuario;
 }

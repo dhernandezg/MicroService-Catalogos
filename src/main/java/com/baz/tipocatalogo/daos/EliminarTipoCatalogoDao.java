@@ -16,16 +16,16 @@ import com.baz.utils.StoredProcedure;
  */
 @Model
 public class EliminarTipoCatalogoDao {
-     /**
+    /**
      * Objeto de acceso a base de datos
-     * */
+     */
     @Inject
     BaseDeDatosService accesoDatos;
 
     /**
      * Elimina el tipo del catalogo especificado
      * @param idTipoCatalogo Identificador del tipo del catalogo
-     * @param usuario Usuario que elimina
+     * @param usuario        Usuario que elimina
      * @return boolean True si se elimino correctamente
      */
     public boolean eliminarTipoCatalogo(Short idTipoCatalogo, String usuario) {

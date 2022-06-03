@@ -3,6 +3,7 @@ package com.baz.tipocatalogo.models;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 /**
  * <b>DatosActualizacion</b>
  * @descripcion: Entidad que contiene los datos de actualización de los tipos de catálogos
@@ -15,21 +16,21 @@ import lombok.NoArgsConstructor;
 public class DatosActualizacion {
     /**
      * Identificador del tipo de catalogo
-     * */
+     */
     private Short idTipoCatalogo;
 
     /**
      * Descripción del tipo de catalogo
-     * */
+     */
     private String tipoCatalogo;
 
     /**
      * Nombre de usuario
-     * */
+     */
     private String usuario;
 
     /**
      * Identificador del estatus del catalogo
-     * */
+     */
     private Short idEstatus;
 }
